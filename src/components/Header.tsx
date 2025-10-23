@@ -6,7 +6,7 @@ export default function Header() {
       <div className="flex flex-row  justify-between items-center">
         {/* Logo */}
         <div className="flex-none w-fill pr-20">
-          <Link href="/" className="text-[32px] font-bold text-primary-dark">
+          <Link href="/" className="text-4xl font-bold text-primary-dark">
             UniBookIt
           </Link>
         </div>
@@ -16,29 +16,29 @@ export default function Header() {
           <div className="flex flex-row w-fill gap-8">
             <Link
               href="/service"
-              className="text-secondary-dark hover:text-primary-dark text-[16px] font-bold"
+              className="text-secondary-dark hover:text-primary-dark text-lg font-bold"
             >
               Service
             </Link>
             <Link
               href="/about"
-              className="text-secondary-dark hover:text-primary-dark  text-[16px] font-bold"
+              className="text-secondary-dark hover:text-primary-dark  text-lg font-bold"
             >
               About
             </Link>
             <Link
               href="/faq"
-              className="text-secondary-dark hover:text-primary-dark  text-[16px] font-bold"
+              className="text-secondary-dark hover:text-primary-dark  text-lg font-bold"
             >
               FAQ
             </Link>
           </div>
 
           {/* Sign In Button */}
-          <div className="flex justify-end items-center bg-primary-dark rounded-full px-6 py-2 text-nowrap">
+          <div className="flex justify-end items-center bg-primary-dark rounded-full px-6 py-2 text-nowrap hover:bg-secondary-light">
             <Link
               href="/login"
-              className="text-white text-sm font-medium hover:bg-secondary-dark transition-colors"
+              className="text-white text-semibold  text-md font-bold transition-colors"
             >
               Sign In
             </Link>

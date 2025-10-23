@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Assets Directory Structure
 
-## Getting Started
+This directory contains all the assets used in the UniBookIt application.
 
-First, run the development server:
+## 📁 Directory Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+src/assets/
+├── icons/           # SVG icons and small graphics
+├── images/          # Photos, logos, and raster images
+├── illustrations/   # Custom illustrations and graphics
+└── README.md       # This file
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Usage Guidelines
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Icons (`src/assets/icons/`)
+- **Purpose**: Small SVG icons, UI elements, buttons
+- **Format**: SVG preferred, PNG for complex icons
+- **Naming**: `icon-name.svg` (kebab-case)
+- **Examples**: `menu.svg`, `close.svg`, `arrow-right.svg`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Images (`src/assets/images/`)
+- **Purpose**: Photos, logos, hero images
+- **Format**: JPG, PNG, WebP
+- **Naming**: `image-name.jpg` (kebab-case)
+- **Examples**: `hero-student.jpg`, `logo.png`, `university-building.jpg`
 
-## Learn More
+### Illustrations (`src/assets/illustrations/`)
+- **Purpose**: Custom graphics, diagrams, illustrations
+- **Format**: SVG preferred for scalability
+- **Naming**: `illustration-name.svg` (kebab-case)
+- **Examples**: `student-with-books.svg`, `university-campus.svg`
 
-To learn more about Next.js, take a look at the following resources:
+## 📦 Public Assets
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+public/
+├── icons/           # Static icons (favicon, etc.)
+├── images/          # Static images
+└── illustrations/   # Static illustrations
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔧 Import Examples
 
-## Deploy on Vercel
+### In React Components:
+```tsx
+// Import SVG as component
+import StudentIllustration from '@/assets/illustrations/student-with-books.svg';
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+// Import as URL
+import heroImage from '@/assets/images/hero-student.jpg';
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+// Usage
+<img src={heroImage} alt="Student" />
+<StudentIllustration className="w-64 h-64" />
+```
+
+### In CSS:
+```css
+.hero-section {
+  background-image: url('/icons/hero-pattern.svg');
+}
+```
+
+## 📏 Image Guidelines
+
+- **Icons**: 16x16, 24x24, 32x32, 48x48px
+- **Images**: Optimized for web (WebP when possible)
+- **Illustrations**: Vector format (SVG) for scalability
+- **Max file size**: 500KB for images, 100KB for icons
+
+## 🎨 Design System Integration
+
+All assets should follow the UniBookIt design system:
+- **Colors**: Use the defined color palette
+- **Style**: Consistent with the overall design
+- **Accessibility**: Proper alt text and ARIA labels

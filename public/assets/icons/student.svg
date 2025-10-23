@@ -1,0 +1,10 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Student with graduation cap -->
+  <circle cx="32" cy="20" r="8" fill="#FFC20F"/>
+  <path d="M24 28C24 24 28 20 32 20C36 20 40 24 40 28V40H24V28Z" fill="#FFC20F"/>
+  <rect x="20" y="40" width="24" height="16" rx="2" fill="#04235C"/>
+  <rect x="28" y="48" width="8" height="8" fill="#304D79"/>
+  <!-- Graduation cap -->
+  <path d="M20 20L32 16L44 20L32 24L20 20Z" fill="#04235C"/>
+  <rect x="30" y="16" width="4" height="8" fill="#304D79"/>
+</svg>

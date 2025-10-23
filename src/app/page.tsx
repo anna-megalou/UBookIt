@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Clock } from "tabler-icons-react";
 export default function Home() {
   return (
-    <div className="container bg-white rounded-4xl h-screen justify-center">
+    <div className="container bg-white rounded-4xl justify-center mx-auto px-auto">
       <div className="flex flex-col justify-center items-center w-full">
         {/* Hero Section */}
         <div className="flex flex-row justify-center items-center px-30 pt-20 w-full">
@@ -34,31 +35,25 @@ export default function Home() {
           </div>
         </div>
         {/* Feature Cards */}
-        <div className="flex flex-row justify-center items-center px-30">
+        <div className="flex flex-row justify-center items-center px-30  sm:py-16  sm:gap-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Card 1 - Highlighted */}
-            <div className="bg-blue-900 text-white p-8 rounded-2xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-4">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                  </svg>
+            <div className="bg-primary-dark text-white px-6 py-6 rounded-3xl h-50">
+              <div className="flex flex-row justify-start items-center mb-4 gap-3">
+                <div className="flex items-start justify-start mr-2">
+                  <Clock className="w-14 h-14"/>
                 </div>
-                <h3 className="text-xl font-semibold">
+                <h3 className="text-2xl font-semibold">
                   Παρακολούθηση παραγγελίας
                 </h3>
               </div>
-              <p className="text-blue-100">
+              <p className="text-white text-sm font-semibold">
                 Παρακολούθησε την παραγγελία σου σε πραγματικό χρόνο
               </p>
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl h-50">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
                   <svg
@@ -79,7 +74,7 @@ export default function Home() {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl h-50">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
                   <svg

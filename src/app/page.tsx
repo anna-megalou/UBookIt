@@ -7,7 +7,7 @@ export default function Home() {
     <div className="container bg-white rounded-4xl justify-center mx-auto px-auto">
       <div className="flex flex-col justify-center items-center w-full">
         {/* Hero Section */}
-        <div className="flex flex-row justify-center items-center px-30 pt-20 w-full">
+        <div className="flex flex-row justify-center items-center px-30 pt-20 w-full relative">
           {/* Left Content */}
           <div className="flex flex-col justify-start items-start gap-8">
             <div className="flex flex-col justify-center items-start gap-8">
@@ -29,20 +29,15 @@ export default function Home() {
               </Link>
             </div>
           </div>
-
-          {/* Right Content - Illustration */}
-          <div className="flex flex-col justify-center items-center ml-60 w-full h-full">
-            <img src="/assets/images/kid_with_books.png" alt="Hero Illustration" />
-          </div>
         </div>
         {/* Feature Cards */}
         <div className="flex flex-row justify-center items-center px-30  sm:py-16  sm:gap-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-10 w-full">
             {/* Card 1 - Highlighted */}
             <div className="bg-primary-dark text-white px-6 py-6 rounded-3xl h-50">
               <div className="flex flex-row justify-start items-center mb-4 gap-3">
                 <div className="flex items-start justify-start mr-2">
-                  <Clock className="w-14 h-14"/>
+                  <Clock className="w-14 h-14" />
                 </div>
                 <h3 className="text-2xl font-semibold">
                   Παρακολούθηση παραγγελίας
@@ -69,18 +64,27 @@ export default function Home() {
             </div>
 
             {/* Card 3 */}
-            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl h-50">
-              <div className="flex flex-row justify-start items-center mb-4 gap-3">
-                <div className="flex items-start justify-start mr-2">
-                  <CreditCard className="w-14 h-14 text-primary-dark" />
-                </div>
-                <h3 className="text-2xl font-semibold text-primary-dark">
-                  Αγορά βιβλίων
-                </h3>
+            {/* Right Content - Illustration */}
+            <div className="flex flex-col absolute right-6 top-10 gap-0 absolute" >
+              <div className="flex flex-col justify-bottom items-bottom w-full h-full">
+                <img
+                  src="/assets/images/kid_with_books.png"
+                  alt="Hero Illustration"
+                />
               </div>
-              <p className="text-secondary-dark text-sm font-semibold">
-                Ασφαλής πληρωμή και άμεση παράδοση στο σπίτι
-              </p>
+              <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl h-50">
+                <div className="flex flex-row justify-start items-center mb-4 gap-3">
+                  <div className="flex items-start justify-start mr-2">
+                    <CreditCard className="w-14 h-14 text-primary-dark" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-primary-dark">
+                    Αγορά βιβλίων
+                  </h3>
+                </div>
+                <p className="text-secondary-dark text-sm font-semibold">
+                  Ασφαλής πληρωμή και άμεση παράδοση στο σπίτι
+                </p>
+              </div>
             </div>
           </div>
         </div>

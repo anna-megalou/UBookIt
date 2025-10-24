@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Clock } from "tabler-icons-react";
+import { Clock, ShoppingCart } from "tabler-icons-react";
+import { BookOpen, CreditCard } from "lucide-react";
 export default function Home() {
   return (
     <div className="container bg-white rounded-4xl justify-center mx-auto px-auto">
@@ -54,42 +55,30 @@ export default function Home() {
 
             {/* Card 2 */}
             <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl h-50">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <svg
-                    className="w-6 h-6 text-blue-900"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-                  </svg>
+              <div className="flex flex-row justify-start items-center mb-4 gap-3">
+                <div className="flex items-start justify-start mr-2">
+                  <BookOpen className="w-14 h-14 text-primary-dark" />
                 </div>
-                <h3 className="text-xl font-semibold text-blue-900">
+                <h3 className="text-2xl font-semibold text-primary-dark">
                   Επιλογή βιβλίων
                 </h3>
               </div>
-              <p className="text-gray-600">
+              <p className="text-secondary-dark text-sm font-semibold">
                 Δήλωσε τα βιβλία σου όσο γρήγορα μπορείς
               </p>
             </div>
 
             {/* Card 3 */}
             <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl h-50">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <svg
-                    className="w-6 h-6 text-blue-900"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M7 4V2c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v2h4c1.1 0 2 .9 2 2v14c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h4zm2 0h6V4H9v2zm-2 4h10v10H7V8z" />
-                  </svg>
+              <div className="flex flex-row justify-start items-center mb-4 gap-3">
+                <div className="flex items-start justify-start mr-2">
+                  <CreditCard className="w-14 h-14 text-primary-dark" />
                 </div>
-                <h3 className="text-xl font-semibold text-blue-900">
+                <h3 className="text-2xl font-semibold text-primary-dark">
                   Αγορά βιβλίων
                 </h3>
               </div>
-              <p className="text-gray-600">
+              <p className="text-secondary-dark text-sm font-semibold">
                 Ασφαλής πληρωμή και άμεση παράδοση στο σπίτι
               </p>
             </div>

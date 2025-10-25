@@ -5,11 +5,11 @@ import { BookOpen, CreditCard } from "lucide-react";
 export default function Home() {
   return (
     <div className="container bg-white rounded-4xl justify-center mx-auto px-auto">
-      <div className="flex flex-col justify-center items-center w-full">
+      <div className="flex flex-col justify-center items-start w-full relative">
         {/* Hero Section */}
-        <div className="flex flex-row justify-center items-center px-30 pt-20 w-full relative">
+        <div className="flex flex-row justify-center items-center px-30 pt-20 pb-14 w-4/7">
           {/* Left Content */}
-          <div className="flex flex-col justify-start items-start gap-8">
+          <div className="flex flex-col justify-start items-start gap-12">
             <div className="flex flex-col justify-center items-start gap-8">
               <h1 className="text-5xl font-bold text-primary-dark">
                 Παρέλαβε τα πανεπιστημιακά βιβλία σου εύκολα και γρήγορα
@@ -29,9 +29,19 @@ export default function Home() {
               </Link>
             </div>
           </div>
+          <div className="absolute bottom-60 right-65 w-auto h-auto">
+                <Image
+                  src="/assets/images/kid_with_books.png"
+                  alt="Hero Illustration"
+                  width={320}
+                  height={320}
+                  className="object-fill"
+                />
+              </div>
         </div>
+
         {/* Feature Cards */}
-        <div className="flex flex-row justify-center items-center px-30  sm:py-16  sm:gap-10">
+        <div className="flex flex-row justify-center items-center px-30  sm:py-16  sm:gap-10 relative ">
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-10 w-full">
             {/* Card 1 - Highlighted */}
             <div className="bg-primary-dark text-white px-6 py-6 rounded-3xl h-50">
@@ -65,26 +75,18 @@ export default function Home() {
 
             {/* Card 3 */}
             {/* Right Content - Illustration */}
-            <div className="flex flex-col absolute right-6 top-10 gap-0 absolute" >
-              <div className="flex flex-col justify-bottom items-bottom w-full h-full">
-                <img
-                  src="/assets/images/kid_with_books.png"
-                  alt="Hero Illustration"
-                />
-              </div>
-              <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl h-50">
-                <div className="flex flex-row justify-start items-center mb-4 gap-3">
-                  <div className="flex items-start justify-start mr-2">
-                    <CreditCard className="w-14 h-14 text-primary-dark" />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-primary-dark">
-                    Αγορά βιβλίων
-                  </h3>
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl h-50 relative">
+              <div className="flex flex-row justify-start items-center mb-4 gap-3">
+                <div className="flex items-start justify-start mr-2">
+                  <CreditCard className="w-14 h-14 text-primary-dark" />
                 </div>
-                <p className="text-secondary-dark text-sm font-semibold">
-                  Ασφαλής πληρωμή και άμεση παράδοση στο σπίτι
-                </p>
+                <h3 className="text-2xl font-semibold text-primary-dark">
+                  Αγορά βιβλίων
+                </h3>
               </div>
+              <p className="text-secondary-dark text-sm font-semibold">
+                Ασφαλής πληρωμή και άμεση παράδοση στο σπίτι
+              </p>
             </div>
           </div>
         </div>

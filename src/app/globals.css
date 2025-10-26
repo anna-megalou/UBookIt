@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme inline {
+@theme {
   --color-primary-dark: #04235C;
   --color-primary-light: #F0F9FF;
   --color-secondary-dark: #304D79;
@@ -9,6 +9,9 @@
   --color-accents-yellow: #FFC20F;
   --color-accents-green: #27C840;
   --color-accents-red: #FF5F57;
+  
+  --breakpoint-sm-min: 1100px;
+  --breakpoint-lg-custom: 1057px;
 }
 
 body {

@@ -16,7 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "UniBookIt - Get Your University Books Easily",
-  description: "Order your university books with just one click. Track your order in real-time and get secure delivery to your home.",
+  description:
+    "Order your university books with just one click. Track your order in real-time and get secure delivery to your home.",
 };
 
 export default function RootLayout({
@@ -30,8 +31,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-primary-light flex flex-col justify-center  min-h-screen`}
       >
         <Header />
-        <main className="container mx-auto px-auto bg-primary-light flex-1">
-          {children}  
+        <div className="h-20 w-20"></div>
+        <main className="flex-1 w-full py-8 px-4">
+          {children}
         </main>
         <Footer />
       </body>

@@ -10,7 +10,7 @@ import { IconBrandInstagramFilled, IconBrandLinkedinFilled, IconBrandTwitterFill
 
 export default function Footer() {
   return (
-    <footer className="container mx-auto px-sm py-10 bg-primary-light static bottom-0 w-full">
+    <footer className="container mx-auto px-sm py-10 bg-primary-light">
       <div className="flex flex-row justify-between items-center">
         {/* Copyright */}
         <div className="flex flex-col w-fill gap-6 justify-between items-start">

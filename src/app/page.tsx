@@ -5,7 +5,7 @@ import { BookOpen, CreditCard } from "lucide-react";
 export default function Home() {
   return (
     <div className="container bg-white rounded-4xl justify-center mx-auto px-auto">
-      <div className="flex flex-col justify-center items-start w-full relative">
+      <div className="flex flex-col justify-center items-start w-full relative sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start">
         {/* Hero Section */}
         <div className="flex flex-row justify-center items-center px-30 pt-20 pb-14 w-4/7">
           {/* Left Content */}
@@ -29,20 +29,22 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="absolute bottom-60 right-65 w-auto h-auto">
-                <Image
-                  src="/assets/images/kid_with_books.png"
-                  alt="Hero Illustration"
-                  width={320}
-                  height={320}
-                  className="object-fill"
-                />
-              </div>
+          <div className="absolute bottom-60 right-65 md:right-20">
+            <Image
+              priority
+              src="/assets/images/kid_with_books.png"
+              alt="Hero Illustration"
+              width={320}
+              height={320}
+              className="object-fill w-60 h-60 sm-min:w-72 sm-min:h-72 xl-custom:w-80 xl-custom:h-80 sm:hidden lg:block"
+              style={{ width: 'auto', height: 'auto' }}
+            />
+          </div>
         </div>
 
         {/* Feature Cards */}
-        <div className="flex flex-row justify-center items-center px-30  sm:py-16  sm:gap-10 relative ">
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-10 w-full">
+        <div className="flex flex-row justify-center items-center px-30  sm:py-16  sm:gap-15 relative ">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-10 sm:gap-15 w-full">
             {/* Card 1 - Highlighted */}
             <div className="bg-primary-dark text-white px-6 py-6 rounded-3xl h-50">
               <div className="flex flex-row justify-start items-center mb-4 gap-3">

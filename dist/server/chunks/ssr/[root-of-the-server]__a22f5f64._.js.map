@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 11, "column": 0}, "map": {"version":3,"sources":["file:///Users/annamegalou/UBookIt/src/app/login/page.tsx"],"sourcesContent":["import Link from \"next/link\";\nimport Image from \"next/image\";\nimport { Clock, ShoppingCart } from \"tabler-icons-react\";\nimport { BookOpen, CreditCard } from \"lucide-react\";\nexport default function Home() {\n  return (\n    <div className=\"container bg-white rounded-4xl justify-center mx-auto px-auto\">\n      <div className=\"flex flex-col justify-center items-start w-full relative sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start\">\n       \n      </div>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;;AAIe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC;YAAI,WAAU;;;;;;;;;;;AAKrB","debugId":null}}]
+}

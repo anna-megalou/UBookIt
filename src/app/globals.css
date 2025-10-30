@@ -10,8 +10,10 @@
   --color-accents-green: #27C840;
   --color-accents-red: #FF5F57;
   
-  --breakpoint-sm-min: 1100px;
-  --breakpoint-lg-custom: 1057px;
+  --breakpoint-md-1: 1550px;
+  --breakpoint-md-2: 1300px;
+  --breakpoint-md-3: 1260px;
+  --breakpoint-sm-1: 768px;
 }
 
 body {

@@ -9,7 +9,7 @@ export default function Home() {
         {/* Hero Section */}
         <div className="flex flex-row justify-center items-center px-30 pt-20 pb-14 w-4/7">
           {/* Left Content */}
-          <div className="flex flex-col justify-start items-start gap-12">
+          <div className="flex flex-col justify-start items-start sm:justify-center sm:items-center md:justify-start md:items-start lg:justify-start lg:items-start gap-12">
             <div className="flex flex-col justify-center items-start gap-8">
               <h1 className="text-5xl font-bold text-primary-dark">
                 Παρέλαβε τα πανεπιστημιακά βιβλία σου εύκολα και γρήγορα
@@ -36,7 +36,7 @@ export default function Home() {
               alt="Hero Illustration"
               width={320}
               height={320}
-              className="object-fill w-60 h-60 sm-min:w-72 sm-min:h-72 xl-custom:w-80 xl-custom:h-80 sm:hidden lg:block"
+              className="object-fill w-60 h-60 sm-min:w-72 sm-min:h-72 md-1:hidden lg:block"
               style={{ width: 'auto', height: 'auto' }}
             />
           </div>

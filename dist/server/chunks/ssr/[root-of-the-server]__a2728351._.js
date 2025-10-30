@@ -34,7 +34,7 @@ function Home() {
                     className: "flex flex-row justify-center items-center px-30 pt-20 pb-14 w-4/7",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-col justify-start items-start gap-12",
+                            className: "flex flex-col justify-start items-start sm:justify-center sm:items-center md:justify-start md:items-start lg:justify-start lg:items-start gap-12",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex flex-col justify-center items-start gap-8",
@@ -91,7 +91,7 @@ function Home() {
                                 alt: "Hero Illustration",
                                 width: 320,
                                 height: 320,
-                                className: "object-fill w-60 h-60 sm-min:w-72 sm-min:h-72 xl-custom:w-80 xl-custom:h-80 sm:hidden lg:block",
+                                className: "object-fill w-60 h-60 sm-min:w-72 sm-min:h-72 md-1:hidden lg:block",
                                 style: {
                                     width: 'auto',
                                     height: 'auto'

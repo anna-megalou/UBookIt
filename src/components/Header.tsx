@@ -8,7 +8,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-none w-fill pr-20">
             <Link href="/" className="text-4xl font-bold text-primary-dark">
-              UniBookIt
+              UBookIt
             </Link>
           </div>
 

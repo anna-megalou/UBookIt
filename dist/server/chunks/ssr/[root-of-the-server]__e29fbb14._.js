@@ -21,7 +21,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$imag
 ;
 function LoginPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "container bg-white rounded-4xl lg:justify-start lg:items-start md:justify-center md:items-center sm:justify-center sm:items-center mx-auto px-auto",
+        className: "container bg-white rounded-4xl lg:justify-start lg:items-start md:justify-center md:items-center sm:justify-center sm:items-center mx-auto px-auto py-0 my-0",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex flex-row justify-start items-start w-full sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start px-12 lg:mx-16 sm:mx-0 py-35 relative",
             children: [
@@ -29,11 +29,11 @@ function LoginPage() {
                     className: "flex flex-col sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start gap-8 border-4 border-secondary-border shadow-sm bg-white-light lg:px-8 py-6 sm:px-4 rounded-4xl object-contain ",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-col justify-start items-start pl-4 pr-10 mr-16 pt-5 gap-2",
+                            className: "flex flex-col justify-start items-start pl-4 pr-10 mr-16 pt-10 gap-2",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                     className: "text-4xl font-bold text-primary-dark",
-                                    children: "Where are you studying?"
+                                    children: "Enter your credentials"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/login/signin/page.tsx",
                                     lineNumber: 12,
@@ -66,56 +66,121 @@ function LoginPage() {
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-col justify-start items-start gap-2 w-full px-4 pb-4 gap-6",
+                            className: "flex flex-col justify-start items-start gap-4 w-full px-4 pb-4 gap-10",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                                    className: "flex flex-col w-full gap-1",
+                                    className: "flex flex-col w-full gap-4",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            htmlFor: "university",
-                                            className: "text-primary-dark text-lg font-medium",
-                                            children: "University"
-                                        }, void 0, false, {
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex flex-col justify-start items-start gap-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    htmlFor: "university",
+                                                    className: "text-primary-dark text-lg font-medium",
+                                                    children: "University"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/login/signin/page.tsx",
+                                                    lineNumber: 32,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                    id: "university",
+                                                    type: "text",
+                                                    placeholder: "Choose your university",
+                                                    className: "w-full px-6 py-4 rounded-full border-2 border-secondary-typography text-secondary-dark text-lg focus:border-secondary-dark focus:outline-none not-placeholder-shown:border-secondary-dark"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/login/signin/page.tsx",
+                                                    lineNumber: 40,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/src/app/login/signin/page.tsx",
-                                            lineNumber: 28,
+                                            lineNumber: 31,
                                             columnNumber: 15
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                            id: "university",
-                                            type: "text",
-                                            placeholder: "Choose your university",
-                                            className: "w-full px-6 py-4 rounded-full border-2 border-secondary-typography text-primary-dark text-lg"
-                                        }, void 0, false, {
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex flex-col justify-start items-start gap-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    htmlFor: "university",
+                                                    className: "text-primary-dark text-lg font-medium",
+                                                    children: "Username"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/login/signin/page.tsx",
+                                                    lineNumber: 49,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                    id: "university",
+                                                    type: "text",
+                                                    placeholder: "Username",
+                                                    className: "w-full px-6 py-4 rounded-full border-2 border-secondary-typography text-secondary-dark text-lg focus:border-secondary-dark focus:outline-none not-placeholder-shown:border-secondary-dark"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/login/signin/page.tsx",
+                                                    lineNumber: 57,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/src/app/login/signin/page.tsx",
-                                            lineNumber: 36,
+                                            lineNumber: 48,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex flex-col justify-start items-start gap-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    htmlFor: "university",
+                                                    className: "text-primary-dark text-lg font-medium",
+                                                    children: "Password"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/login/signin/page.tsx",
+                                                    lineNumber: 66,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                    id: "password",
+                                                    type: "password",
+                                                    placeholder: "Password",
+                                                    className: "w-full px-6 py-4 rounded-full border-2 border-secondary-typography text-secondary-dark text-lg focus:border-secondary-dark focus:outline-none not-placeholder-shown:border-secondary-dark"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/login/signin/page.tsx",
+                                                    lineNumber: 74,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/login/signin/page.tsx",
+                                            lineNumber: 65,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/login/signin/page.tsx",
-                                    lineNumber: 26,
+                                    lineNumber: 29,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex justify-center items-center bg-primary-dark rounded-full px-10 py-2 w-full h-15",
+                                    className: "flex justify-center items-center bg-primary-dark rounded-full px-10 py-4 w-full h-15",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                         href: "/login/signin",
                                         className: "text-white text-semibold  text-md font-bold",
                                         children: "Continue"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/login/signin/page.tsx",
-                                        lineNumber: 45,
+                                        lineNumber: 84,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/login/signin/page.tsx",
-                                    lineNumber: 44,
+                                    lineNumber: 83,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/login/signin/page.tsx",
-                            lineNumber: 25,
+                            lineNumber: 28,
                             columnNumber: 11
                         }, this)
                     ]
@@ -125,7 +190,7 @@ function LoginPage() {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-col md-1:right-40 md-1:bottom-26 md-2:right-18 md-2:bottom-26 md-3:right-28 md-3:bottom-30 absolute",
+                    className: "flex flex-col md-1:right-40 md-1:bottom-30 md-2:right-18 md-2:bottom-30 md-3:right-28 md-3:bottom-40 absolute",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "w-full",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -133,21 +198,21 @@ function LoginPage() {
                             alt: "Login Illustration",
                             width: 350,
                             height: 350,
-                            className: "object-fill sm-1:hidden md-3:block md-2:block md-1:block md-1:w-130 md-1:h-130 md-2:w-110 md-2:h-110 md-3:w-100 md-3:h-100",
+                            className: "object-fill sm-1:hidden md-3:block md-2:block md-1:block md-1:w-150 md-1:h-160 md-2:w-140 md-2:h-150 md-3:w-100 md-3:h-100",
                             priority: true
                         }, void 0, false, {
                             fileName: "[project]/src/app/login/signin/page.tsx",
-                            lineNumber: 58,
+                            lineNumber: 97,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/login/signin/page.tsx",
-                        lineNumber: 57,
+                        lineNumber: 96,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/login/signin/page.tsx",
-                    lineNumber: 56,
+                    lineNumber: 95,
                     columnNumber: 9
                 }, this)
             ]

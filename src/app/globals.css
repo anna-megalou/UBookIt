@@ -11,8 +11,9 @@
   --color-accents-red: #FF5F57;
   
   --breakpoint-md-1: 1550px;
-  --breakpoint-md-2: 1300px;
-  --breakpoint-md-3: 1260px;
+  --breakpoint-md-2: 1320px;
+  --breakpoint-md-3: 1280px;
+  --breakpoint-md-4: 1224px;
   --breakpoint-sm-1: 768px;
 }
 

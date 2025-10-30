@@ -38,7 +38,7 @@ export default function Header() {
             {/* Sign In Button */}
             <div className="flex justify-end items-center bg-primary-dark rounded-full px-6 py-2 text-nowrap hover:bg-secondary-light">
               <Link
-                href="/login"
+                href="/login/prequalification"
                 className="text-white text-semibold  text-md font-bold transition-colors"
               >
                 Sign In

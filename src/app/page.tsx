@@ -22,7 +22,7 @@ export default function Home() {
             {/* Sign In Button */}
             <div className="flex justify-center items-center bg-primary-dark rounded-full px-10 py-3 w-fit">
               <Link
-                href="/login"
+                href="/login/prequalification"
                 className="text-white text-semibold  text-md font-bold"
               >
                 Sign In
@@ -36,7 +36,7 @@ export default function Home() {
               alt="Hero Illustration"
               width={320}
               height={320}
-              className="object-fill w-60 h-60 sm-min:w-72 sm-min:h-72 md-1:hidden lg:block"
+              className="object-fill w-60 h-60 sm:hidden lg:block"
               style={{ width: 'auto', height: 'auto' }}
             />
           </div>

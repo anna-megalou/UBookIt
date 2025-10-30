@@ -15,7 +15,7 @@ export default function LoginPage() {
             {/* Sign in link */}
             <p className="text-lg text-primary-dark">
               Already a member?{" "}
-              <Link href="/login" className="text-primary-dark font-semibold">
+              <Link href="/login/signin" className="text-primary-dark font-semibold">
                 Sign in now!
               </Link>
             </p>
@@ -43,7 +43,7 @@ export default function LoginPage() {
             {/* Continue Button */}
             <div className="flex justify-center items-center bg-primary-dark rounded-full px-10 py-2 w-full h-15">
               <Link
-                href="/login"
+                href="/login/signin"
                 className="text-white text-semibold  text-md font-bold"
               >
                 Continue
@@ -53,14 +53,14 @@ export default function LoginPage() {
         </div>
 
         {/* Right Section - Illustration */}
-        <div className="flex flex-col md-1:right-40 md-1:bottom-26 md-2:right-18 md-2:bottom-26 absolute">
+        <div className="flex flex-col md-1:right-40 md-1:bottom-26 md-2:right-18 md-2:bottom-26 md-3:right-28 md-3:bottom-30 absolute">
           <div className="w-full">
             <Image
               src="/assets/images/login illustration.png"
               alt="Login Illustration"
               width={350}
               height={350}
-              className="object-fill sm-1:hidden md-3:hidden md-2:block md-1:block md-1:w-130 md-1:h-130 md-2:w-120 md-2:h-120"
+              className="object-fill sm-1:hidden md-3:block md-2:block md-1:block md-1:w-130 md-1:h-130 md-2:w-110 md-2:h-110 md-3:w-100 md-3:h-100"
               priority
             />
           </div>

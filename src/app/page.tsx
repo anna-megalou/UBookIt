@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Clock, ShoppingCart } from "tabler-icons-react";
+import { Clock } from "tabler-icons-react";
 import { BookOpen, CreditCard } from "lucide-react";
+import { withBasePath } from "@/lib/utils";
 export default function Home() {
   return (
     <div className="container bg-white rounded-4xl justify-center mx-auto px-auto">
@@ -32,7 +33,7 @@ export default function Home() {
           <div className="absolute bottom-60 right-65 md:right-20">
             <Image
               priority
-              src="/assets/images/kid_with_books.png"
+              src={withBasePath("/assets/images/kid_with_books.png")}
               alt="Hero Illustration"
               width={320}
               height={320}

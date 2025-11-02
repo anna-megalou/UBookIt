@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { withBasePath } from "@/lib/utils";
 
 export default function LoginPage() {
   return (
@@ -56,7 +57,7 @@ export default function LoginPage() {
         <div className="flex flex-col md-1:right-40 md-1:bottom-26 md-2:right-18 md-2:bottom-26 md-3:right-28 md-3:bottom-30 absolute">
           <div className="w-full">
             <Image
-              src="/assets/images/login illustration.png"
+              src={withBasePath("/assets/images/login illustration.png")}
               alt="Login Illustration"
               width={350}
               height={350}

@@ -13,8 +13,11 @@ try {
     fs.rmSync('dist', { recursive: true, force: true });
   }
 
-  // Build the project
-  execSync('next build', { stdio: 'inherit' });
+  // Build the project with production environment to ensure basePath is used
+  execSync('next build', { 
+    stdio: 'inherit',
+    env: { ...process.env, NODE_ENV: 'production' }
+  });
 
 } catch (error) {
   console.error('❌ Build failed:', error.message);

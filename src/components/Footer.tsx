@@ -1,9 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTwitter,
-  faLinkedin,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { IconBrandInstagramFilled, IconBrandLinkedinFilled, IconBrandTwitterFilled } from "@tabler/icons-react";
 

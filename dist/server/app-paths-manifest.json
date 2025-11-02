@@ -1,7 +1,1 @@
-{
-  "/_not-found/page": "app/_not-found/page.js",
-  "/login/page": "app/login/page.js",
-  "/login/prequalification/page": "app/login/prequalification/page.js",
-  "/login/signin/page": "app/login/signin/page.js",
-  "/page": "app/page.js"
-}
+{}

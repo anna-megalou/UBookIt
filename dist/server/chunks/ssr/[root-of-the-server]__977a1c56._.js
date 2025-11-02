@@ -25,7 +25,7 @@ function Home() {
                     className: "flex flex-row justify-center items-start px-25 pt-20 pb-14",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "text-4xl font-bold text-primary-dark",
-                        children: " Επίλεξε τα συγγράμματα που θέλεις για αποστολή "
+                        children: " Επίλεξε τα συγγράμματα που θέλεις να σου αποσταλούν "
                     }, void 0, false, {
                         fileName: "[project]/src/app/selectbooks/page.tsx",
                         lineNumber: 8,
@@ -39,7 +39,7 @@ function Home() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "flex flex-col justify-center items-center px-25 sm:py-4 sm:gap-6 relative",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-[4.5fr_1.5fr] grid-rows-4 gap-25 w-full",
+                        className: "grid grid-cols-[5fr_1.5fr] grid-rows-4 gap-15 w-full",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "col-start-1 row-start-1 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl w-full",
@@ -89,7 +89,7 @@ function Home() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: "text-primary-dark text-sm",
-                                                                children: " Διαφορικός και Ολοκληρωτικός Λογισμός-Θεωρία και Εφαρμογές "
+                                                                children: " Διαφορικός και Ολοκληρωτικός Λογισμός - Θεωρία και Εφαρμογές "
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/selectbooks/page.tsx",
                                                                 lineNumber: 27,
@@ -482,7 +482,7 @@ function Home() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "text-xl font-bold text-primary-dark mb-4",
+                                                className: "text-lg font-bold text-primary-dark mb-4",
                                                 children: " Summary "
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -493,7 +493,7 @@ function Home() {
                                                 className: "flex items-center text-gray-600 mb-6",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "mr-45",
+                                                        className: "mr-43",
                                                         children: " Total "
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -518,7 +518,7 @@ function Home() {
                                                 className: "flex items-center text-gray-600 mb-6",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "mr-27",
+                                                        className: "mr-24",
                                                         children: " Books selected "
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -543,7 +543,7 @@ function Home() {
                                                 className: "flex items-center text-gray-600 mb-6",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "mr-43",
+                                                        className: "mr-40",
                                                         children: " Stores "
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/selectbooks/page.tsx",

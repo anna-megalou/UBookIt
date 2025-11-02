@@ -5,10 +5,10 @@ export default function Home() {
     <div className="container bg-white rounded-4xl justify-center mx-auto px-auto">
       <div className="flex flex-col justify-center items-start w-full relative sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start">
         <div className="flex flex-row justify-center items-start px-25 pt-20 pb-14">
-          <h1 className="text-4xl font-bold text-primary-dark"> Επίλεξε τα συγγράμματα που θέλεις για αποστολή </h1>
+          <h1 className="text-4xl font-bold text-primary-dark"> Επίλεξε τα συγγράμματα που θέλεις να σου αποσταλούν </h1>
         </div>
       <div className="flex flex-col justify-center items-center px-25 sm:py-4 sm:gap-6 relative">
-          <div className="grid grid-cols-[4.5fr_1.5fr] grid-rows-4 gap-25 w-full">
+          <div className="grid grid-cols-[5fr_1.5fr] grid-rows-4 gap-15 w-full">
             {/* Card 1 - Highlighted */}
             <div className="col-start-1 row-start-1 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl w-full">
               {/* Πάνω μέρος - τίτλος + χρόνος */}
@@ -24,7 +24,7 @@ export default function Home() {
                   {/* Αριστερά radio + τίτλος */}
                   <div className="flex items-center gap-2">
                     <input type="radio" name="card1Book1" className="w-5 h-5 accent-primary-dark"/>
-                    <span className="text-primary-dark text-sm"> Διαφορικός και Ολοκληρωτικός Λογισμός-Θεωρία και Εφαρμογές </span>
+                    <span className="text-primary-dark text-sm"> Διαφορικός και Ολοκληρωτικός Λογισμός - Θεωρία και Εφαρμογές </span>
                   </div>
                   {/* Δεξιά badges + τιμή */}
                   <div className="flex items-center gap-2">
@@ -119,17 +119,17 @@ export default function Home() {
 
             <div className="col-start-2 row-start-1 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl self-start row-span-full">
               <div>
-                <h3 className="text-xl font-bold text-primary-dark mb-4"> Summary </h3>
+                <h3 className="text-lg font-bold text-primary-dark mb-4"> Summary </h3>
                 <div className="flex items-center text-gray-600 mb-6">
-                  <p className="mr-45"> Total </p>
+                  <p className="mr-43"> Total </p>
                   <span className="text-primary-dark font-semibold"> 7 € </span>
                 </div>
                 <div className="flex items-center text-gray-600 mb-6">
-                  <p className="mr-27"> Books selected </p>
+                  <p className="mr-24"> Books selected </p>
                   <span className="text-primary-dark font-semibold"> 4 </span>
                 </div>
                 <div className="flex items-center text-gray-600 mb-6">
-                  <p className="mr-43"> Stores </p>
+                  <p className="mr-40"> Stores </p>
                   <span className="text-primary-dark font-semibold"> 3 </span>
                 </div>
               </div>

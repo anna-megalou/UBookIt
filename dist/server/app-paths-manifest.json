@@ -1,3 +1,4 @@
 {
+  "/seebooks/page": "app/seebooks/page.js",
   "/selectbooks/page": "app/selectbooks/page.js"
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { withBasePath } from "@/lib/utils";
+import Select from "@/components/ui/Select";
 
 export default function LoginPage() {
   return (
@@ -8,7 +9,7 @@ export default function LoginPage() {
       <div className="flex flex-row justify-start items-start w-full sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start px-12 lg:mx-16 sm:mx-0 py-35 relative">
         {/* Left Section - Form */}
         <div className="flex flex-col sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start gap-8 border-4 border-secondary-border shadow-sm bg-white-light lg:px-8 py-6 sm:px-4 rounded-4xl object-contain ">
-          <div className="flex flex-col justify-start items-start pl-4 pr-10 mr-16 pt-5 gap-2" >
+          <div className="flex flex-col justify-start items-start pl-4 pr-10 mr-16 pt-5 gap-2">
             {/* Heading */}
             <h1 className="text-4xl font-bold text-primary-dark">
               Where are you studying?
@@ -16,7 +17,10 @@ export default function LoginPage() {
             {/* Sign in link */}
             <p className="text-lg text-primary-dark">
               Already a member?{" "}
-              <Link href="/login/signin" className="text-primary-dark font-semibold">
+              <Link
+                href="/login/signin"
+                className="text-primary-dark font-semibold"
+              >
                 Sign in now!
               </Link>
             </p>
@@ -33,12 +37,34 @@ export default function LoginPage() {
                 University
               </label>
 
-              {/* Input Field */}
-              <input
+              {/* Custom Dropdown Field */}
+              <Select
                 id="university"
-                type="text"
+                required
                 placeholder="Choose your university"
-                className="w-full px-6 py-4 rounded-full border-2 border-secondary-typography text-primary-dark text-lg"
+                options={[
+                  { value: "", label: "Choose your university" },
+                  {
+                    value: "athens",
+                    label: "Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών",
+                  },
+                  {
+                    value: "aristotle",
+                    label: "Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης",
+                  },
+                  { value: "patras", label: "Πανεπιστήμιο Πατρών" },
+                  { value: "crete", label: "Πανεπιστήμιο Κρήτης" },
+                  { value: "ioannina", label: "Πανεπιστήμιο Ιωαννίνων" },
+                  { value: "thessaly", label: "Πανεπιστήμιο Θεσσαλίας" },
+                  { value: "macedonia", label: "Πανεπιστήμιο Μακεδονίας" },
+                  { value: "aegean", label: "Πανεπιστήμιο Αιγαίου" },
+                  { value: "piraeus", label: "Πανεπιστήμιο Πειραιώς" },
+                  {
+                    value: "athens-economics",
+                    label: "Οικονομικό Πανεπιστήμιο Αθηνών",
+                  },
+                  { value: "other", label: "Άλλο" },
+                ]}
               />
             </form>
             {/* Continue Button */}

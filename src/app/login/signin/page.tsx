@@ -40,7 +40,6 @@ export default function LoginPage() {
                 {/* Input Field */}
                 <input
                   id="university"
-                  type="text"
                   placeholder="Choose your university"
                   className="w-full px-6 py-4 rounded-full border-2 border-secondary-typography text-secondary-dark text-lg focus:border-secondary-dark focus:outline-none not-placeholder-shown:border-secondary-dark"
                 />
@@ -59,7 +58,7 @@ export default function LoginPage() {
                   id="username"
                   type="text"
                   placeholder="Username"
-                  className="w-full px-6 py-4 rounded-full border-2 border-secondary-typography text-secondary-dark text-lg focus:border-secondary-dark focus:outline-none not-placeholder-shown:border-secondary-dark"
+                  className="w-full px-6 py-4 rounded-full border-2 border-secondary-typography text-secondary-dark text-lg focus:border-secondary-dark focus:outline-none not-placeholder-shown:border-secondary-dark bg-white"
                 />
               </div>
               {/* Password Label */}
@@ -76,20 +75,19 @@ export default function LoginPage() {
                   id="password"
                   type="password"
                   placeholder="Password"
-                  className="w-full px-6 py-4 rounded-full border-2 border-secondary-typography text-secondary-dark text-lg focus:border-secondary-dark focus:outline-none not-placeholder-shown:border-secondary-dark"
+                  className="w-full px-6 py-4 rounded-full border-2 border-secondary-typography text-secondary-dark text-lg focus:border-secondary-dark focus:outline-none not-placeholder-shown:border-secondary-dark bg-white"
                 />
               </div>
 
               {/* Remember me checkbox */}
               <div className="flex items-center gap-2">
                 <input
-                  id="remember"
                   type="checkbox"
-                  className="w-4 h-4 text-primary-dark border-secondary-typography rounded focus:ring-primary-dark"
+                  className="accent-primary-dark w-4 h-4"
+                  name="myCheckbox"
+                  required
                 />
-                <label htmlFor="remember" className="text-primary-dark text-lg">
-                  Remember me
-                </label>
+                <label className="text-primary-dark text-lg">Remember me</label>
               </div>
             </form>
             <div className="flex flex-col gap-2 w-full">

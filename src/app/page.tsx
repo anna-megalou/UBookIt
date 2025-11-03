@@ -1,8 +1,31 @@
-import Link from "next/link";
 import Image from "next/image";
 import { Clock } from "tabler-icons-react";
 import { BookOpen, CreditCard } from "lucide-react";
 import { withBasePath } from "@/lib/utils";
+import Button from "@/components/ui/Button";
+import FeatureCard from "@/components/ui/FeatureCard";
+
+const features = [
+  {
+    icon: Clock,
+    title: "Παρακολούθηση παραγγελίας",
+    description: "Παρακολούθησε την παραγγελία σου σε πραγματικό χρόνο",
+    highlighted: true,
+  },
+  {
+    icon: BookOpen,
+    title: "Επιλογή βιβλίων",
+    description: "Δήλωσε τα βιβλία σου όσο γρήγορα μπορείς",
+    highlighted: false,
+  },
+  {
+    icon: CreditCard,
+    title: "Αγορά βιβλίων",
+    description: "Ασφαλής πληρωμή και άμεση παράδοση στο σπίτι",
+    highlighted: false,
+  },
+];
+
 export default function Home() {
   return (
     <div className="container bg-white rounded-4xl justify-center mx-auto px-auto">
@@ -20,15 +43,9 @@ export default function Home() {
               </h4>
             </div>
 
-            {/* Sign In Button */}
-            <div className="flex justify-center items-center bg-primary-dark rounded-full px-10 py-3 w-fit">
-              <Link
-                href="/login/prequalification"
-                className="text-white text-semibold  text-md font-bold"
-              >
-                Sign In
-              </Link>
-            </div>
+            <Button href="/login/prequalification" size="md">
+              Sign In
+            </Button>
           </div>
           <div className="absolute bottom-60 right-65 md:right-20">
             <Image
@@ -38,59 +55,23 @@ export default function Home() {
               width={320}
               height={320}
               className="object-fill w-60 h-60 sm:hidden lg:block"
-              style={{ width: 'auto', height: 'auto' }}
+              style={{ width: "auto", height: "auto" }}
             />
           </div>
         </div>
 
         {/* Feature Cards */}
-        <div className="flex flex-row justify-center items-center px-30  sm:py-16  sm:gap-15 relative ">
+        <div className="flex flex-row justify-center items-center px-30 sm:py-16 sm:gap-15 relative">
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-10 sm:gap-15 w-full">
-            {/* Card 1 - Highlighted */}
-            <div className="bg-primary-dark text-white px-6 py-6 rounded-3xl h-50">
-              <div className="flex flex-row justify-start items-center mb-4 gap-3">
-                <div className="flex items-start justify-start mr-2">
-                  <Clock className="w-14 h-14" />
-                </div>
-                <h3 className="text-2xl font-semibold">
-                  Παρακολούθηση παραγγελίας
-                </h3>
-              </div>
-              <p className="text-white text-sm font-semibold">
-                Παρακολούθησε την παραγγελία σου σε πραγματικό χρόνο
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl h-50">
-              <div className="flex flex-row justify-start items-center mb-4 gap-3">
-                <div className="flex items-start justify-start mr-2">
-                  <BookOpen className="w-14 h-14 text-primary-dark" />
-                </div>
-                <h3 className="text-2xl font-semibold text-primary-dark">
-                  Επιλογή βιβλίων
-                </h3>
-              </div>
-              <p className="text-secondary-dark text-sm font-semibold">
-                Δήλωσε τα βιβλία σου όσο γρήγορα μπορείς
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            {/* Right Content - Illustration */}
-            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl h-50 relative">
-              <div className="flex flex-row justify-start items-center mb-4 gap-3">
-                <div className="flex items-start justify-start mr-2">
-                  <CreditCard className="w-14 h-14 text-primary-dark" />
-                </div>
-                <h3 className="text-2xl font-semibold text-primary-dark">
-                  Αγορά βιβλίων
-                </h3>
-              </div>
-              <p className="text-secondary-dark text-sm font-semibold">
-                Ασφαλής πληρωμή και άμεση παράδοση στο σπίτι
-              </p>
-            </div>
+            {features.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+                highlighted={feature.highlighted}
+              />
+            ))}
           </div>
         </div>
       </div>

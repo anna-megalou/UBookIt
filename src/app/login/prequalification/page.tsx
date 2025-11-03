@@ -1,20 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import { withBasePath } from "@/lib/utils";
+import { universities } from "@/lib/constants";
 import Select from "@/components/ui/Select";
+import Button from "@/components/ui/Button";
 
 export default function LoginPage() {
   return (
     <div className="container bg-white rounded-4xl lg:justify-start lg:items-start md:justify-center md:items-center sm:justify-center sm:items-center mx-auto px-auto">
       <div className="flex flex-row justify-start items-start w-full sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start px-12 lg:mx-16 sm:mx-0 py-35 relative">
         {/* Left Section - Form */}
-        <div className="flex flex-col sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start gap-8 border-4 border-secondary-border shadow-sm bg-white-light lg:px-8 py-6 sm:px-4 rounded-4xl object-contain ">
+        <div className="flex flex-col sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start gap-8 border-4 border-secondary-border shadow-sm bg-white-light lg:px-8 py-6 sm:px-4 rounded-4xl object-contain">
           <div className="flex flex-col justify-start items-start pl-4 pr-10 mr-16 pt-5 gap-2">
-            {/* Heading */}
             <h1 className="text-4xl font-bold text-primary-dark">
               Where are you studying?
             </h1>
-            {/* Sign in link */}
             <p className="text-lg text-primary-dark">
               Already a member?{" "}
               <Link
@@ -27,55 +27,24 @@ export default function LoginPage() {
           </div>
 
           {/* Form */}
-          <div className="flex flex-col justify-start items-start gap-2 w-full px-4 pb-4 gap-6">
+          <div className="flex flex-col justify-start items-start gap-6 w-full px-4 pb-4">
             <form className="flex flex-col w-full gap-1">
-              {/* University Label */}
               <label
                 htmlFor="university"
                 className="text-primary-dark text-lg font-medium"
               >
                 University
               </label>
-
-              {/* Custom Dropdown Field */}
               <Select
                 id="university"
                 required
                 placeholder="Choose your university"
-                options={[
-                  { value: "", label: "Choose your university" },
-                  {
-                    value: "athens",
-                    label: "Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών",
-                  },
-                  {
-                    value: "aristotle",
-                    label: "Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης",
-                  },
-                  { value: "patras", label: "Πανεπιστήμιο Πατρών" },
-                  { value: "crete", label: "Πανεπιστήμιο Κρήτης" },
-                  { value: "ioannina", label: "Πανεπιστήμιο Ιωαννίνων" },
-                  { value: "thessaly", label: "Πανεπιστήμιο Θεσσαλίας" },
-                  { value: "macedonia", label: "Πανεπιστήμιο Μακεδονίας" },
-                  { value: "aegean", label: "Πανεπιστήμιο Αιγαίου" },
-                  { value: "piraeus", label: "Πανεπιστήμιο Πειραιώς" },
-                  {
-                    value: "athens-economics",
-                    label: "Οικονομικό Πανεπιστήμιο Αθηνών",
-                  },
-                  { value: "other", label: "Άλλο" },
-                ]}
+                options={universities}
               />
             </form>
-            {/* Continue Button */}
-            <div className="flex justify-center items-center bg-primary-dark rounded-full px-10 py-2 w-full h-15">
-              <Link
-                href="/login/signin"
-                className="text-white text-semibold  text-md font-bold"
-              >
-                Continue
-              </Link>
-            </div>
+            <Button href="/login/signin" fullWidth size="md">
+              Continue
+            </Button>
           </div>
         </div>
 

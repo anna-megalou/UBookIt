@@ -1,37 +1,43 @@
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { ReactNode, ButtonHTMLAttributes } from 'react';
 
-interface ButtonProps {
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
   children: ReactNode;
   href?: string;
-  onClick?: () => void;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
+  fullWidth?: boolean;
   className?: string;
 }
 
-export default function Button({ 
-  children, 
-  href, 
-  onClick, 
-  variant = 'primary', 
+export default function Button({
+  children,
+  href,
+  onClick,
+  variant = 'primary',
   size = 'md',
-  className = ''
+  fullWidth = false,
+  className = '',
+  ...props
 }: ButtonProps) {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
+  const baseClasses =
+    'inline-flex items-center justify-center font-bold rounded-full transition-colors focus:outline-none';
+
   const variantClasses = {
-    primary: 'bg-blue-900 text-white hover:bg-blue-800 focus:ring-blue-500',
-    secondary: 'bg-white text-blue-900 border border-blue-900 hover:bg-blue-50 focus:ring-blue-500'
-  };
-  
-  const sizeClasses = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg'
+    primary: 'bg-primary-dark text-white hover:bg-secondary-dark',
+    secondary: 'bg-white text-primary-dark border border-primary-dark hover:bg-primary-light',
+    outline: 'bg-transparent text-primary-dark border-2 border-primary-dark hover:bg-primary-light',
   };
 
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  const sizeClasses = {
+    sm: 'px-6 py-2 text-sm h-10',
+    md: 'px-10 py-3 text-md h-12',
+    lg: 'px-12 py-4 text-lg h-15',
+  };
+
+  const widthClass = fullWidth ? 'w-full' : 'w-fit';
+
+  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClass} ${className}`;
 
   if (href) {
     return (
@@ -42,7 +48,7 @@ export default function Button({
   }
 
   return (
-    <button onClick={onClick} className={classes}>
+    <button onClick={onClick} className={classes} {...props}>
       {children}
     </button>
   );

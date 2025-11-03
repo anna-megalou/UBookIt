@@ -1,0 +1,41 @@
+import Link from 'next/link';
+
+interface NavigationProps {
+  className?: string;
+  linkClassName?: string;
+  variant?: 'header' | 'footer';
+}
+
+const navigationItems = [
+  { href: '/service', label: 'Service' },
+  { href: '/about', label: 'About' },
+  { href: '/faq', label: 'FAQ' },
+];
+
+export default function Navigation({
+  className = '',
+  linkClassName = '',
+  variant = 'header',
+}: NavigationProps) {
+  const baseLinkClasses =
+    variant === 'header'
+      ? 'text-secondary-dark hover:text-primary-dark text-lg font-bold'
+      : 'text-secondary-dark hover:text-primary-dark text-[16px] font-bold';
+
+  return (
+    <nav className={className}>
+      <div className="flex flex-row w-fill gap-8">
+        {navigationItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`${baseLinkClasses} ${linkClassName}`}
+          >
+            {item.label}
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
+}
+

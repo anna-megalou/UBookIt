@@ -65,7 +65,7 @@ export default function Home() {
 
           {/* Card 3 */}
           <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl w-full">
-            <div className="flex justify-between items-start mb-4">
+            <div className="flex justify-between items-start mb-5">
               <h4 className="text-xl font-semibold text-primary-dark">Εκδόσεις Σταμούλη</h4>
               <span className="text-sm text-gray-500">2-4 Days</span>
             </div>
@@ -74,11 +74,16 @@ export default function Home() {
                 <input type="checkbox" name="card3Book" className="w-5 h-5 accent-primary-dark" />
                 <span className="text-primary-dark text-lg">Εισαγωγή στο Μάρκετινγκ</span>
               </div>
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2 mb-5">
                 <span className="bg-red-400 text-white text-md px-5 py-2 rounded-full">Unavailable</span>
               </div>
             </label> 
-            <div className="container bg-primary-light rounded-3xl mx-auto px-4 py-10">
+            <div className="container bg-primary-light rounded-3xl mx-auto px-4 py-7">
+              <div className="flex items-center gap-3">
+                <span className="text-yellow-500 text-2xl">⚠️</span>
+                <p className="text-primary-dark text-base m-0">You won't receive the books that are not available for delivery. Consider placing your order once all the books are available in the bookstore.</p>
+                <button className="bg-primary-dark text-white px-7 py-2 rounded-3xl font-semibold hover:bg-secondary-light transition-colors whitespace-nowrap">Notify Me</button>
+              </div>
             </div>
           </div>
 

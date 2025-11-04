@@ -9,4 +9,6 @@ export { default as Checkbox } from './Checkbox';
 export { default as Input } from './Input';
 export { default as Select } from './Select';
 export { default as FeatureCard } from './FeatureCard';
+export { default as OrderCard } from './OrderCard';
+export { default as MapView } from './MapView';
 

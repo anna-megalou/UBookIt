@@ -1,4 +1,7 @@
+'use client';
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Navigation from "./Navigation";
 import Button from "./ui/Button";
 

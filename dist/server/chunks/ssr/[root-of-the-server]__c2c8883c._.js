@@ -301,7 +301,7 @@ function LoginPage() {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-col md-1:right-40 md-1:bottom-20 md-2:right-18 md-2:bottom-20 md-3:right-28 md-3:bottom-20 absolute",
+                    className: "flex flex-col md-1:right-50 md-1:bottom-35 md-2:right-18 md-2:bottom-30 md-3:right-28 md-3:bottom-50 absolute",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "w-full",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -309,7 +309,7 @@ function LoginPage() {
                             alt: "Login Illustration",
                             width: 350,
                             height: 350,
-                            className: "object-fill sm-1:hidden md-3:block md-2:block md-1:block md-1:w-150 md-1:h-160 md-2:w-140 md-2:h-150 md-3:w-100 md-3:h-100",
+                            className: "object-fill sm-1:hidden md-3:block md-2:block md-1:block md-1:w-140 md-1:h-140 md-2:w-140 md-2:h-140 md-3:w-100 md-3:h-100",
                             priority: true
                         }, void 0, false, {
                             fileName: "[project]/src/app/login/signin/page.tsx",

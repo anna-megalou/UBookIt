@@ -1525,6 +1525,30 @@
   }
 
   @media (min-width: 1280px) {
+    .md-3\:bottom-40 {
+      bottom: calc(var(--spacing) * 40);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .md-3\:bottom-50 {
+      bottom: calc(var(--spacing) * 50);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .md-3\:bottom-60 {
+      bottom: calc(var(--spacing) * 60);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .md-3\:bottom-450 {
+      bottom: calc(var(--spacing) * 450);
+    }
+  }
+
+  @media (min-width: 1280px) {
     .md-3\:block {
       display: block;
     }
@@ -1537,14 +1561,62 @@
   }
 
   @media (min-width: 1280px) {
+    .md-3\:h-120 {
+      height: calc(var(--spacing) * 120);
+    }
+  }
+
+  @media (min-width: 1280px) {
     .md-3\:w-100 {
       width: calc(var(--spacing) * 100);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .md-3\:w-120 {
+      width: calc(var(--spacing) * 120);
+    }
+  }
+
+  @media (min-width: 1320px) {
+    .md-2\:right-10 {
+      right: calc(var(--spacing) * 10);
     }
   }
 
   @media (min-width: 1320px) {
     .md-2\:right-18 {
       right: calc(var(--spacing) * 18);
+    }
+  }
+
+  @media (min-width: 1320px) {
+    .md-2\:right-20 {
+      right: calc(var(--spacing) * 20);
+    }
+  }
+
+  @media (min-width: 1320px) {
+    .md-2\:right-22 {
+      right: calc(var(--spacing) * 22);
+    }
+  }
+
+  @media (min-width: 1320px) {
+    .md-2\:right-24 {
+      right: calc(var(--spacing) * 24);
+    }
+  }
+
+  @media (min-width: 1320px) {
+    .md-2\:right-28 {
+      right: calc(var(--spacing) * 28);
+    }
+  }
+
+  @media (min-width: 1320px) {
+    .md-2\:right-30 {
+      right: calc(var(--spacing) * 30);
     }
   }
 
@@ -1561,8 +1633,20 @@
   }
 
   @media (min-width: 1320px) {
+    .md-2\:bottom-30 {
+      bottom: calc(var(--spacing) * 30);
+    }
+  }
+
+  @media (min-width: 1320px) {
     .md-2\:block {
       display: block;
+    }
+  }
+
+  @media (min-width: 1320px) {
+    .md-2\:h-100 {
+      height: calc(var(--spacing) * 100);
     }
   }
 
@@ -1573,8 +1657,20 @@
   }
 
   @media (min-width: 1320px) {
+    .md-2\:h-140 {
+      height: calc(var(--spacing) * 140);
+    }
+  }
+
+  @media (min-width: 1320px) {
     .md-2\:h-150 {
       height: calc(var(--spacing) * 150);
+    }
+  }
+
+  @media (min-width: 1320px) {
+    .md-2\:w-100 {
+      width: calc(var(--spacing) * 100);
     }
   }
 
@@ -1597,8 +1693,26 @@
   }
 
   @media (min-width: 1550px) {
+    .md-1\:right-50 {
+      right: calc(var(--spacing) * 50);
+    }
+  }
+
+  @media (min-width: 1550px) {
+    .md-1\:right-60 {
+      right: calc(var(--spacing) * 60);
+    }
+  }
+
+  @media (min-width: 1550px) {
     .md-1\:bottom-20 {
       bottom: calc(var(--spacing) * 20);
+    }
+  }
+
+  @media (min-width: 1550px) {
+    .md-1\:bottom-22 {
+      bottom: calc(var(--spacing) * 22);
     }
   }
 
@@ -1609,8 +1723,38 @@
   }
 
   @media (min-width: 1550px) {
+    .md-1\:bottom-30 {
+      bottom: calc(var(--spacing) * 30);
+    }
+  }
+
+  @media (min-width: 1550px) {
+    .md-1\:bottom-35 {
+      bottom: calc(var(--spacing) * 35);
+    }
+  }
+
+  @media (min-width: 1550px) {
+    .md-1\:bottom-40 {
+      bottom: calc(var(--spacing) * 40);
+    }
+  }
+
+  @media (min-width: 1550px) {
     .md-1\:block {
       display: block;
+    }
+  }
+
+  @media (min-width: 1550px) {
+    .md-1\:h-100 {
+      height: calc(var(--spacing) * 100);
+    }
+  }
+
+  @media (min-width: 1550px) {
+    .md-1\:h-120 {
+      height: calc(var(--spacing) * 120);
     }
   }
 
@@ -1621,14 +1765,38 @@
   }
 
   @media (min-width: 1550px) {
+    .md-1\:h-140 {
+      height: calc(var(--spacing) * 140);
+    }
+  }
+
+  @media (min-width: 1550px) {
     .md-1\:h-160 {
       height: calc(var(--spacing) * 160);
     }
   }
 
   @media (min-width: 1550px) {
+    .md-1\:w-100 {
+      width: calc(var(--spacing) * 100);
+    }
+  }
+
+  @media (min-width: 1550px) {
+    .md-1\:w-120 {
+      width: calc(var(--spacing) * 120);
+    }
+  }
+
+  @media (min-width: 1550px) {
     .md-1\:w-130 {
       width: calc(var(--spacing) * 130);
+    }
+  }
+
+  @media (min-width: 1550px) {
+    .md-1\:w-140 {
+      width: calc(var(--spacing) * 140);
     }
   }
 

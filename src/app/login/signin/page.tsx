@@ -68,14 +68,14 @@ export default function LoginPage() {
         </div>
 
         {/* Right Section - Illustration */}
-        <div className="flex flex-col md-1:right-40 md-1:bottom-20 md-2:right-18 md-2:bottom-20 md-3:right-28 md-3:bottom-20 absolute">
+        <div className="flex flex-col md-1:right-50 md-1:bottom-35 md-2:right-18 md-2:bottom-30 md-3:right-28 md-3:bottom-50 absolute">
           <div className="w-full">
             <Image
               src={withBasePath("/assets/images/login illustration.png")}
               alt="Login Illustration"
               width={350}
               height={350}
-              className="object-fill sm-1:hidden md-3:block md-2:block md-1:block md-1:w-150 md-1:h-160 md-2:w-140 md-2:h-150 md-3:w-100 md-3:h-100"
+              className="object-fill sm-1:hidden md-3:block md-2:block md-1:block md-1:w-140 md-1:h-140 md-2:w-140 md-2:h-140 md-3:w-100 md-3:h-100"
               priority
             />
           </div>

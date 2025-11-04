@@ -40,7 +40,7 @@ export default function Home() {
                 </label>
               </div>
               <div className="flex items-start justify-center">
-                <span className="text-primary-dark font-semibold text-lg">2 €</span>
+                <span className="text-primary-dark font-semibold text-xl">2 €</span>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="bg-green-500 text-white text-md px-7 py-2 rounded-full">Available</span>
-                <span className="text-primary-dark font-semibold text-lg">1,5 €</span>
+                <span className="text-primary-dark font-semibold text-xl">1,5 €</span>
               </div>
             </label>
           </div>
@@ -100,7 +100,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="bg-green-500 text-white text-md px-7 py-2 rounded-full">Available</span>
-                <span className="text-primary-dark font-semibold text-lg">1,5 €</span>
+                <span className="text-primary-dark font-semibold text-xl">1,5 €</span>
               </div>
             </label>
           </div>

@@ -272,6 +272,7 @@
     --container-lg: 32rem;
     --container-xl: 36rem;
     --container-2xl: 42rem;
+    --container-3xl: 48rem;
     --container-4xl: 56rem;
     --container-6xl: 72rem;
     --container-7xl: 80rem;
@@ -299,6 +300,7 @@
     --leading-tight: 1.25;
     --radius-md: .375rem;
     --radius-lg: .5rem;
+    --radius-xl: .75rem;
     --radius-2xl: 1rem;
     --radius-3xl: 1.5rem;
     --radius-4xl: 2rem;
@@ -1153,6 +1155,14 @@
     margin-right: calc(var(--spacing) * 28);
   }
 
+  .mr-28\.5 {
+    margin-right: calc(var(--spacing) * 28.5);
+  }
+
+  .mr-29 {
+    margin-right: calc(var(--spacing) * 29);
+  }
+
   .mr-30 {
     margin-right: calc(var(--spacing) * 30);
   }
@@ -1169,8 +1179,16 @@
     margin-right: calc(var(--spacing) * 43);
   }
 
+  .mr-44 {
+    margin-right: calc(var(--spacing) * 44);
+  }
+
   .mr-45 {
     margin-right: calc(var(--spacing) * 45);
+  }
+
+  .mr-47 {
+    margin-right: calc(var(--spacing) * 47);
   }
 
   .mr-50 {
@@ -1203,6 +1221,10 @@
 
   .mb-8 {
     margin-bottom: calc(var(--spacing) * 8);
+  }
+
+  .mb-20 {
+    margin-bottom: calc(var(--spacing) * 20);
   }
 
   .-ml-2 {
@@ -1497,6 +1519,10 @@
 
   .w-full {
     width: 100%;
+  }
+
+  .max-w-3xl {
+    max-width: var(--container-3xl);
   }
 
   .max-w-4xl {
@@ -1941,6 +1967,10 @@
     border-radius: 0;
   }
 
+  .rounded-xl {
+    border-radius: var(--radius-xl);
+  }
+
   .rounded-t-lg {
     border-top-left-radius: var(--radius-lg);
     border-top-right-radius: var(--radius-lg);
@@ -2157,6 +2187,10 @@
     padding-block: calc(var(--spacing) * 4);
   }
 
+  .py-5 {
+    padding-block: calc(var(--spacing) * 5);
+  }
+
   .py-6 {
     padding-block: calc(var(--spacing) * 6);
   }
@@ -2171,6 +2205,10 @@
 
   .py-12 {
     padding-block: calc(var(--spacing) * 12);
+  }
+
+  .py-15 {
+    padding-block: calc(var(--spacing) * 15);
   }
 
   .py-16 {
@@ -2259,6 +2297,14 @@
 
   .pb-16 {
     padding-bottom: calc(var(--spacing) * 16);
+  }
+
+  .pb-20 {
+    padding-bottom: calc(var(--spacing) * 20);
+  }
+
+  .pb-30 {
+    padding-bottom: calc(var(--spacing) * 30);
   }
 
   .pb-50 {

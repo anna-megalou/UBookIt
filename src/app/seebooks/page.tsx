@@ -8,40 +8,40 @@ export default function Home() {
           <h1 className="text-4xl font-bold text-primary-dark"> Επιβεβαίωσε τα συγγράμματα που έχεις δηλώσει στον Εύδοξο </h1>
         </div>
       <div className="flex flex-col justify-center items-center px-25 sm:py-4 sm:gap-6 w-full relative">
-        <div className="grid grid-cols-[4.5fr_1.5fr] grid-rows-6 gap-10 w-full">
+        <div className="grid gap-10 w-full max-w-7xl mx-auto">
             {/* Card 1 */}
-            <div className="col-start-1 row-start-1 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
-                <h4 className="text-lg font-semibold text-primary-dark">Μαθηματικά I (1ο Εξάμηνο)</h4>
-                <p>Διαφορικός και Ολοκληρωτικός Λογισμός - Θεωρία και Εφαρμογές | Broken Hill Publishers</p>
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
+                <h4 className="text-xl font-semibold text-primary-dark">Μαθηματικά I (1ο Εξάμηνο)</h4>
+                <p className="text-lg">Διαφορικός και Ολοκληρωτικός Λογισμός - Θεωρία και Εφαρμογές | Broken Hill Publishers</p>
             </div>
 
             {/* Card 2 */}
-            <div className="col-start-1 row-start-2 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
-                <h4 className="text-lg font-semibold text-primary-dark">Λογιστική I (1ο Εξάμηνο)</h4>
-                <p>Λογιστική: Χρηματοοικονομικές Αναφορές σύμφωνα με τα Ελληνικά και τα Διεθνή Λογιστικά Πρότυπα | ΜΠΕΝΟΥ & ΣΙΑ Ε.Ε.</p>
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
+                <h4 className="text-xl font-semibold text-primary-dark">Λογιστική I (1ο Εξάμηνο)</h4>
+                <p className="text-lg">Λογιστική: Χρηματοοικονομικές Αναφορές σύμφωνα με τα Ελληνικά και τα Διεθνή Λογιστικά Πρότυπα | ΜΠΕΝΟΥ & ΣΙΑ Ε.Ε.</p>
             </div>
 
             {/* Card 3 */}
-            <div className="col-start-1 row-start-3 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
-                <h4 className="text-lg font-semibold text-primary-dark">Εισαγωγή στην Πληροφορική (1ο Εξάμηνο)</h4>
-                <p>Αρχές Λειτουργίας και Προγραμματισμού Η/Υ | Βιβλιοδιανομή Οικονομικού Πανεπιστημίου Αθηνών</p>
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
+                <h4 className="text-xl font-semibold text-primary-dark">Εισαγωγή στην Πληροφορική (1ο Εξάμηνο)</h4>
+                <p className="text-lg">Αρχές Λειτουργίας και Προγραμματισμού Η/Υ | Βιβλιοδιανομή Οικονομικού Πανεπιστημίου Αθηνών</p>
             </div>
 
             {/* Card 4 */}
-            <div className="col-start-1 row-start-4 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
-                <h4 className="text-lg font-semibold text-primary-dark">Εισαγωγή στην Διοίκηση Επιχειρήσεων (1ο Εξάμηνο)</h4>
-                <p>Εισαγωγή στο Management | Broken Hill Publishers</p>
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
+                <h4 className="text-xl font-semibold text-primary-dark">Εισαγωγή στην Διοίκηση Επιχειρήσεων (1ο Εξάμηνο)</h4>
+                <p className="text-lg">Εισαγωγή στο Management | Broken Hill Publishers</p>
             </div>
 
             {/* Card 5 */}
-            <div className="col-start-1 row-start-5 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
-                <h4 className="text-lg font-semibold text-primary-dark">Εισαγωγή στο Μάρκετινγκ (1ο Εξάμηνο)</h4>
-                <p>Εισαγωγή στο Μάρκετινγκ | Εκδόσεις Σταμούλη</p>
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
+                <h4 className="text-xl font-semibold text-primary-dark">Εισαγωγή στο Μάρκετινγκ (1ο Εξάμηνο)</h4>
+                <p className="text-lg">Εισαγωγή στο Μάρκετινγκ | Εκδόσεις Σταμούλη</p>
             </div>
 
             {/* Card 6 */}
-            <div className="col-start-1 row-start-6 justify-self-center mt-4">
-                <Link href="/selectbooks" className="bg-primary-dark text-white font-bold text-lg rounded-full px-15 py-4 hover:bg-secondary-light transition-colors whitespace-nowrap">
+            <div className="justify-self-center mt-6 pb-20">
+                <Link href="/selectbooks" className="bg-primary-dark text-white font-bold text-lg rounded-full px-15 py-5 hover:bg-secondary-light transition-colors whitespace-nowrap">
                     Continue
                 </Link>
             </div>

@@ -41,13 +41,13 @@ function Home() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "flex flex-col justify-center items-center px-25 sm:py-4 sm:gap-6 w-full relative",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-[4.5fr_1.5fr] grid-rows-6 gap-10 w-full",
+                        className: "grid gap-10 w-full max-w-7xl mx-auto",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "col-start-1 row-start-1 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl",
+                                className: "border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                        className: "text-lg font-semibold text-primary-dark",
+                                        className: "text-xl font-semibold text-primary-dark",
                                         children: "Μαθηματικά I (1ο Εξάμηνο)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/seebooks/page.tsx",
@@ -55,6 +55,7 @@ function Home() {
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-lg",
                                         children: "Διαφορικός και Ολοκληρωτικός Λογισμός - Θεωρία και Εφαρμογές | Broken Hill Publishers"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/seebooks/page.tsx",
@@ -68,10 +69,10 @@ function Home() {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "col-start-1 row-start-2 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl",
+                                className: "border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                        className: "text-lg font-semibold text-primary-dark",
+                                        className: "text-xl font-semibold text-primary-dark",
                                         children: "Λογιστική I (1ο Εξάμηνο)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/seebooks/page.tsx",
@@ -79,6 +80,7 @@ function Home() {
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-lg",
                                         children: "Λογιστική: Χρηματοοικονομικές Αναφορές σύμφωνα με τα Ελληνικά και τα Διεθνή Λογιστικά Πρότυπα | ΜΠΕΝΟΥ & ΣΙΑ Ε.Ε."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/seebooks/page.tsx",
@@ -92,10 +94,10 @@ function Home() {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "col-start-1 row-start-3 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl",
+                                className: "border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                        className: "text-lg font-semibold text-primary-dark",
+                                        className: "text-xl font-semibold text-primary-dark",
                                         children: "Εισαγωγή στην Πληροφορική (1ο Εξάμηνο)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/seebooks/page.tsx",
@@ -103,6 +105,7 @@ function Home() {
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-lg",
                                         children: "Αρχές Λειτουργίας και Προγραμματισμού Η/Υ | Βιβλιοδιανομή Οικονομικού Πανεπιστημίου Αθηνών"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/seebooks/page.tsx",
@@ -116,10 +119,10 @@ function Home() {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "col-start-1 row-start-4 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl",
+                                className: "border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                        className: "text-lg font-semibold text-primary-dark",
+                                        className: "text-xl font-semibold text-primary-dark",
                                         children: "Εισαγωγή στην Διοίκηση Επιχειρήσεων (1ο Εξάμηνο)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/seebooks/page.tsx",
@@ -127,6 +130,7 @@ function Home() {
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-lg",
                                         children: "Εισαγωγή στο Management | Broken Hill Publishers"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/seebooks/page.tsx",
@@ -140,10 +144,10 @@ function Home() {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "col-start-1 row-start-5 border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl",
+                                className: "border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                        className: "text-lg font-semibold text-primary-dark",
+                                        className: "text-xl font-semibold text-primary-dark",
                                         children: "Εισαγωγή στο Μάρκετινγκ (1ο Εξάμηνο)"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/seebooks/page.tsx",
@@ -151,6 +155,7 @@ function Home() {
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-lg",
                                         children: "Εισαγωγή στο Μάρκετινγκ | Εκδόσεις Σταμούλη"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/seebooks/page.tsx",
@@ -164,10 +169,10 @@ function Home() {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "col-start-1 row-start-6 justify-self-center mt-4",
+                                className: "justify-self-center mt-6 pb-20",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/selectbooks",
-                                    className: "bg-primary-dark text-white font-bold text-lg rounded-full px-15 py-4 hover:bg-secondary-light transition-colors whitespace-nowrap",
+                                    className: "bg-primary-dark text-white font-bold text-lg rounded-full px-15 py-5 hover:bg-secondary-light transition-colors whitespace-nowrap",
                                     children: "Continue"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/seebooks/page.tsx",

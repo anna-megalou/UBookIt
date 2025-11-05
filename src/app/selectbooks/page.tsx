@@ -5,14 +5,14 @@ export default function Home() {
   return (
     <div className="container bg-white rounded-4xl mx-auto px-4 py-6">
       {/* Header */}
-      <div className="flex justify-center lg:justify-start items-start px-4 pt-7 pb-15">
+      <div className="flex justify-center lg:justify-start items-start px-16 pt-7 pb-15">
         <h1 className="text-4xl font-bold text-primary-dark">
           Επίλεξε τα συγγράμματα που θέλεις να σου αποσταλούν
         </h1>
       </div>
 
       {/* Flex container για δύο στήλες */}
-      <div className="flex gap-10">
+      <div className="flex gap-10 px-16">
         
         {/* Αριστερή στήλη: Cards */}
         <div className="flex-1 grid auto-rows-auto gap-y-5 pb-20">
@@ -111,7 +111,7 @@ export default function Home() {
           <h3 className="text-lg font-bold text-primary-dark mb-4">Summary</h3>
           <div className="flex items-center text-gray-600 mb-6">
             <p className="mr-47">Total</p>
-            <span className="text-primary-dark font-semibold">7 €</span>
+            <span className="text-primary-dark font-semibold">5 €</span>
           </div>
           <div className="flex items-center text-gray-600 mb-6">
             <p className="mr-28.5">Books selected</p>
@@ -122,7 +122,9 @@ export default function Home() {
             <span className="text-primary-dark font-semibold">3</span>
           </div>
           <div className="flex justify-center mt-6">
-            <button className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold">Continue</button>
+            <Link href="/orderbooks" className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold">
+                    Continue
+            </Link>
           </div>
         </div>
       </div>

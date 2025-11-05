@@ -96,11 +96,11 @@ export default function Home() {
             <label className="flex justify-between items-center">
               <div className="flex items-center gap-5">
                 <input type="checkbox" name="card4Book" className="w-5 h-5 accent-primary-dark"/>
-                <span className="text-primary-dark text-lg">Λογιστική: Χρηματοοικονομικές Αναφορές σύμφωνα με τα Ελληνικά και τα Διεθνή Λογιστικά Πρότυπα</span>
+                <span className="text-primary-dark text-lg flex-shrink max-w-[650px]">Λογιστική: Χρηματοοικονομικές Αναφορές σύμφωνα με τα Ελληνικά και τα Διεθνή Λογιστικά Πρότυπα</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="bg-green-500 text-white text-md px-7 py-2 rounded-full">Available</span>
-                <span className="text-primary-dark font-semibold text-xl">1,5 €</span>
+                <span className="text-primary-dark font-semibold text-xl whitespace-nowrap">1,5 €</span>
               </div>
             </label>
           </div>

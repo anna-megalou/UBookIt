@@ -25,19 +25,11 @@ export default function Home() {
             <div className="flex flex-wrap gap-6 mb-4">
               <div className="flex items-center gap-2 flex-1">
                 <label className="w-20 text-mg font-semibold text-primary-dark">AM</label>
-                <input
-                  type="text"
-                  placeholder="academic id"
-                  className="border border-gray-300 rounded-full px-4 py-2 w-full"
-                />
+                <input type="text" placeholder="academic id" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
               </div>
               <div className="flex items-center gap-2 flex-1">
                 <label className="w-24 text-md font-semibold text-primary-dark">Identity</label>
-                <input
-                  type="text"
-                  placeholder="identity id"
-                  className="border border-gray-300 rounded-full px-4 py-2 w-full"
-                />
+                <input type="text" placeholder="identity id" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
               </div>
             </div>
 
@@ -45,19 +37,11 @@ export default function Home() {
             <div className="flex flex-wrap gap-6 mb-4">
               <div className="flex items-center gap-2 flex-1">
                 <label className="w-20 text-md font-semibold text-primary-dark">Name</label>
-                <input
-                  type="text"
-                  placeholder="name"
-                  className="border border-gray-300 rounded-full px-4 py-2 w-full"
-                />
+                <input type="text"placeholder="name" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
               </div>
               <div className="flex items-center gap-2 flex-1">
                 <label className="w-24 text-md font-semibold text-primary-dark">Surname</label>
-                <input
-                  type="text"
-                  placeholder="surname"
-                  className="border border-gray-300 rounded-full px-4 py-2 w-full"
-                />
+                <input type="text" placeholder="surname" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
               </div>
             </div>
 
@@ -65,11 +49,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-6 mb-4">
               <div className="flex items-center gap-2 flex-1">
                 <label className="w-20 text-md font-semibold text-primary-dark">Email</label>
-                <input
-                  type="email"
-                  placeholder="your email"
-                  className="border border-gray-300 rounded-full px-4 py-2 w-full"
-                />
+                <input type="email" placeholder="your email" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
               </div>
             </div>
 
@@ -77,11 +57,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-6">
               <div className="flex items-center gap-2 flex-1">
                 <label className="w-20 text-md font-semibold text-primary-dark">Phone</label>
-                <input
-                  type="tel"
-                  placeholder="your phone"
-                  className="border border-gray-300 rounded-full px-4 py-2 w-full"
-                />
+                <input type="tel" placeholder="your phone" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
               </div>
             </div>
           </div>
@@ -96,19 +72,11 @@ export default function Home() {
             <div className="flex flex-wrap gap-6 mb-4">
               <div className="flex items-center gap-2 flex-1">
                 <label className="w-20 text-md font-semibold text-primary-dark">City</label>
-                <input
-                  type="text"
-                  placeholder="city"
-                  className="border border-gray-300 rounded-full px-4 py-2 w-full"
-                />
+                <input type="text" placeholder="city" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
               </div>
               <div className="flex items-center gap-2 flex-1">
                 <label className="w-24 text-md font-semibold text-primary-dark">Prefecture</label>
-                <input
-                  type="text"
-                  placeholder="prefecture"
-                  className="border border-gray-300 rounded-full px-4 py-2 w-full"
-                />
+                <input type="text" placeholder="prefecture" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
               </div>
             </div>
 
@@ -116,19 +84,11 @@ export default function Home() {
             <div className="flex flex-wrap gap-6">
               <div className="flex items-center gap-2 flex-1">
                 <label className="w-20 text-md font-semibold text-primary-dark">Street</label>
-                <input
-                  type="text"
-                  placeholder="street name"
-                  className="border border-gray-300 rounded-full px-4 py-2 w-full"
-                />
+                <input type="text" placeholder="street name" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
               </div>
               <div className="flex items-center gap-2 flex-1">
                 <label className="w-24 text-md font-semibold text-primary-dark">Street id</label>
-                <input
-                  type="text"
-                  placeholder="street id"
-                  className="border border-gray-300 rounded-full px-4 py-2 w-full"
-                />
+                <input type="text" placeholder="street id" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
               </div>
             </div>
           </div>

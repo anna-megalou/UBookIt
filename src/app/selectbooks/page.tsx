@@ -107,23 +107,23 @@ export default function Home() {
         </div>
 
         {/* Δεξιά στήλη: Summary */}
-        <div className="w-75 sticky top-6 self-start border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
-          <h3 className="text-lg font-bold text-primary-dark mb-4">Summary</h3>
-          <div className="flex items-center text-gray-600 mb-6">
-            <p className="mr-47">Total</p>
+        <div className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 sticky top-6 self-start border-3 border-secondary-border shadow-sm bg-white-light px-4 py-5 sm:px-6 sm:py-6 rounded-3xl mx-auto">
+          <h3 className="text-lg font-bold text-primary-dark mb-6 text-center md:text-left">Summary</h3>
+          <div className="flex justify-between items-center text-gray-600 mb-4">
+            <p>Total</p>
             <span className="text-primary-dark font-semibold">5 €</span>
           </div>
-          <div className="flex items-center text-gray-600 mb-6">
-            <p className="mr-28.5">Books selected</p>
+          <div className="flex justify-between items-center text-gray-600 mb-4">
+            <p>Books selected</p>
             <span className="text-primary-dark font-semibold">4</span>
           </div>
-          <div className="flex items-center text-gray-600 mb-6">
-            <p className="mr-44">Stores</p>
+          <div className="flex justify-between items-center text-gray-600 mb-6">
+            <p>Stores</p>
             <span className="text-primary-dark font-semibold">3</span>
           </div>
           <div className="flex justify-center mt-6">
-            <Link href="/orderbooks" className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold">
-                    Continue
+            <Link href="/orderbooks" className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors">
+              Continue
             </Link>
           </div>
         </div>

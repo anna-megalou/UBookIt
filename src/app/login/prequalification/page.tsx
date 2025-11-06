@@ -42,7 +42,7 @@ export default function LoginPage() {
                 options={universities}
               />
             </form>
-            <Button href="/login/signin" fullWidth size="md">
+            <Button href="/login/signin" fullWidth size="lg">
               Continue
             </Button>
           </div>

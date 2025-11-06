@@ -87,9 +87,7 @@ input:not(:placeholder-shown) {
   background-color: white !important;
 }
 
-/* ============================================
-   Map View - Custom positioning from 1024px
-   ============================================ */
+
 @media (min-width: 1024px) {
   .map-image-1271 {
     object-position: 10% center !important;

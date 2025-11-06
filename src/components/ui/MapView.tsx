@@ -26,7 +26,7 @@ export default function MapView({ order }: MapViewProps) {
       <div className="relative z-10 h-full flex items-center justify-center">
         <div className="relative w-full h-full">
           {/* Bookstore (origin) - bottom left */}
-          <div className="absolute bottom-[8%] left-[2%] w-40 h-40 md:w-20 md:h-20 lg:w-40 lg:h-40 z-20">
+          <div className="absolute bottom-[8%] left-[2%] w-40 h-40 md:w-20 md:h-20 lg:w-40 lg:h-40 z-20 lg:bottom-[8%] xl:bottom-[8%]">
             <Image
               src={withBasePath('/assets/images/bookstore.png')}
               alt="Bookstore"
@@ -37,7 +37,7 @@ export default function MapView({ order }: MapViewProps) {
           </div>
 
           {/* Delivery Truck - middle right */}
-          <div className="absolute top-[26%] left-[46%] w-40 h-40 md:w-20 md:h-20 lg:w-50 lg:h-50 z-20">
+          <div className="absolute top-[26%] left-[46%] lg:w-50 lg:h-50 md:left-[50%] lg:left-[46%] xl:left-[46%] z-20 md:top-[26%] lg:top-[26%] xl:top-[26%]">
             <Image
               src={withBasePath('/assets/images/truck.png')}
               alt="Delivery Truck"

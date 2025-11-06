@@ -1686,6 +1686,14 @@
     padding-top: calc(var(--spacing) * 8);
   }
 
+  .pt-10 {
+    padding-top: calc(var(--spacing) * 10);
+  }
+
+  .pt-18 {
+    padding-top: calc(var(--spacing) * 18);
+  }
+
   .pt-20 {
     padding-top: calc(var(--spacing) * 20);
   }

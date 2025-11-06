@@ -597,7 +597,7 @@ function OrdersPage() {
         "OrdersPage.useState": (order)=>order.status === "delivering"
     }["OrdersPage.useState"]) : null);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "container justify-center items-center py-6 mx-auto px-8",
+        className: "container justify-center items-center pt-0 mx-auto px-8",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex flex-row lg:flex-row gap-6 h-full",
             children: [
@@ -660,7 +660,7 @@ function OrdersPage() {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "w-full lg:w-2/3 flex-1 pt-4 mt-5 mb-0 pb-0",
+                    className: "w-full lg:w-2/3 flex-1 pt-18 mt-5 mb-0 pb-0",
                     children: selectedOrderIndex !== null ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$MapView$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                         order: mockOrders[selectedOrderIndex]
                     }, void 0, false, {

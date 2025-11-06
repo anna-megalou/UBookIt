@@ -1,6 +1,6 @@
 'use client';
 
-import { Order } from '@/app/orders/page';
+import { Order } from '@/app/tracking/page';
 
 interface OrderCardProps {
   order: Order;

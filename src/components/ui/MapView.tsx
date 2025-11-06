@@ -10,14 +10,14 @@ interface MapViewProps {
 
 export default function MapView({ order }: MapViewProps) {
   return (
-    <div className="bg-white rounded-2xl mx-8 px-8 h-full relative overflow-hidden min-h-[600px]">
+    <div className="bg-white rounded-2xl mx-0 md:mx-8 px-4 md:px-8 h-full relative overflow-hidden min-h-[400px] md:min-h-[600px]">
       {/* Map Background Image */}
       <div className="absolute inset-0 rounded-2xl overflow-hidden">
         <Image
           src={withBasePath('/assets/images/map.png')}
           alt="Map"
           fill
-          className="object-cover"
+          className="object-cover map-image-1271"
           priority
         />
       </div>
@@ -26,7 +26,7 @@ export default function MapView({ order }: MapViewProps) {
       <div className="relative z-10 h-full flex items-center justify-center">
         <div className="relative w-full h-full">
           {/* Bookstore (origin) - bottom left */}
-          <div className="absolute bottom-[2%] left-[2%] w-50 h-50 z-20">
+          <div className="absolute bottom-[8%] left-[2%] w-40 h-40 md:w-20 md:h-20 lg:w-40 lg:h-40 z-20">
             <Image
               src={withBasePath('/assets/images/bookstore.png')}
               alt="Bookstore"
@@ -37,7 +37,7 @@ export default function MapView({ order }: MapViewProps) {
           </div>
 
           {/* Delivery Truck - middle right */}
-          <div className="absolute top-[26%] left-[46%] w-50 h-50 z-20">
+          <div className="absolute top-[26%] left-[46%] w-40 h-40 md:w-20 md:h-20 lg:w-50 lg:h-50 z-20">
             <Image
               src={withBasePath('/assets/images/truck.png')}
               alt="Delivery Truck"
@@ -48,7 +48,7 @@ export default function MapView({ order }: MapViewProps) {
           </div>
 
           {/* House (destination) - top right */}
-          <div className="absolute top-[12%] right-[2%] w-30 h-30 z-20">
+          <div className="absolute top-[12%] right-[2%] w-40 h-40 md:w-20 md:h-20 lg:w-30 lg:h-30 z-20">
             <Image
               src={withBasePath('/assets/images/house.png')}
               alt="House"

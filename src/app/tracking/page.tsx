@@ -65,10 +65,10 @@ export default function OrdersPage() {
   );
 
   return (
-    <div className="container justify-center items-center pt-0 mx-auto px-8">
-      <div className="flex flex-row lg:flex-row gap-6 h-full">
+    <div className="container justify-center items-center pt-0 mx-auto px-4 md:px-8">
+      <div className="flex flex-col md:flex-col lg:flex-row gap-6 h-full">
         {/* Left Panel - Orders List */}
-        <div className="w-full lg:w-1/3 flex flex-col gap-2 pl-2">
+        <div className="w-full lg:w-1/3 flex flex-col gap-2 md:pl-2">
           {/* Back Button */}
           <Link
             href="/"
@@ -97,7 +97,7 @@ export default function OrdersPage() {
         </div>
 
         {/* Right Panel - Map/Preview */}
-        <div className="w-full lg:w-2/3 flex-1 pt-18 mt-5 mb-0 pb-0">
+        <div className="w-full lg:w-2/3 flex-1 md:mt-5 lg:mt-0 mb-0 pb-0">
           {selectedOrderIndex !== null ? (
             <MapView order={mockOrders[selectedOrderIndex]} />
           ) : (

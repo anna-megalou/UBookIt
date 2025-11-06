@@ -164,6 +164,8 @@
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
     --text-5xl: 3rem;
@@ -195,6 +197,7 @@
     --color-secondary-dark: #304d79;
     --color-secondary-border: #e0edfa;
     --color-secondary-typography: #99aac1;
+    --color-accents-green: #27c840;
     --color-accents-red: #ff5f57;
   }
 
@@ -1323,6 +1326,10 @@
     border-color: var(--color-secondary-typography);
   }
 
+  .bg-accents-green {
+    background-color: var(--color-accents-green);
+  }
+
   .bg-black {
     background-color: var(--color-black);
   }
@@ -1510,6 +1517,11 @@
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
   }
 
   .text-4xl {

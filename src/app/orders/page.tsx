@@ -58,8 +58,10 @@ const mockOrders: Order[] = [
 ];
 
 export default function OrdersPage() {
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(
-    mockOrders.find((order) => order.status === 'delivering') || null
+  const [selectedOrderIndex, setSelectedOrderIndex] = useState<number | null>(
+    mockOrders.findIndex((order) => order.status === 'delivering') !== -1
+      ? mockOrders.findIndex((order) => order.status === 'delivering')
+      : null
   );
 
   return (
@@ -85,8 +87,8 @@ export default function OrdersPage() {
               <OrderCard
                 key={`${order.id}-${index}`}
                 order={order}
-                isSelected={selectedOrder?.id === order.id && selectedOrder?.status === order.status}
-                onClick={() => setSelectedOrder(order)}
+                isSelected={selectedOrderIndex === index}
+                onClick={() => setSelectedOrderIndex(index)}
               />
             ))}
           </div>
@@ -94,8 +96,8 @@ export default function OrdersPage() {
 
         {/* Right Panel - Map/Preview */}
         <div className="w-full lg:w-2/3 flex-1">
-          {selectedOrder ? (
-            <MapView order={selectedOrder} />
+          {selectedOrderIndex !== null ? (
+            <MapView order={mockOrders[selectedOrderIndex]} />
           ) : (
             <div className="bg-white rounded-2xl p-12 h-full flex flex-col items-center justify-center relative overflow-hidden">
               {/* Background icons */}

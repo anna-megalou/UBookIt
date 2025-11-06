@@ -92,7 +92,7 @@ function Home() {
                                                                         columnNumber: 21
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-primary-dark text-lg",
+                                                                        className: "text-primary-dark font-medium text-lg",
                                                                         children: "Διαφορικός και Ολοκληρωτικός Λογισμός - Θεωρία και Εφαρμογές"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -106,7 +106,7 @@ function Home() {
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "bg-green-500 text-white text-md px-7 py-2 rounded-full",
+                                                                className: "bg-green-500 text-white font-medium text-md px-7 py-2 rounded-full",
                                                                 children: "Available"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -135,7 +135,7 @@ function Home() {
                                                                         columnNumber: 21
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-primary-dark text-lg",
+                                                                        className: "text-primary-dark font-medium text-lg",
                                                                         children: "Εισαγωγή στο Management"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -149,7 +149,7 @@ function Home() {
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "bg-red-400 text-white text-md px-5 py-2 rounded-full",
+                                                                className: "bg-red-400 text-white font-medium text-md px-5 py-2 rounded-full",
                                                                 children: "Unavailable"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -239,7 +239,7 @@ function Home() {
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-primary-dark text-lg",
+                                                        className: "text-primary-dark font-medium text-lg",
                                                         children: "Αρχές Λειτουργίας και Προγραμματισμού Η/Υ"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -256,7 +256,7 @@ function Home() {
                                                 className: "flex items-center gap-2",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "bg-green-500 text-white text-md px-7 py-2 rounded-full",
+                                                        className: "bg-green-500 text-white font-medium text-md px-7 py-2 rounded-full",
                                                         children: "Available"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -333,7 +333,7 @@ function Home() {
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-primary-dark text-lg",
+                                                        className: "text-primary-dark font-medium text-lg",
                                                         children: "Εισαγωγή στο Μάρκετινγκ"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -349,7 +349,7 @@ function Home() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-center gap-2 mb-5",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "bg-red-400 text-white text-md px-5 py-2 rounded-full",
+                                                    className: "bg-red-400 text-white font-medium text-md px-5 py-2 rounded-full",
                                                     children: "Unavailable"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -381,7 +381,7 @@ function Home() {
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-primary-dark text-base m-0",
+                                                    className: "text-primary-dark font-medium text-base m-0",
                                                     children: "You won't receive the books that are not available for delivery. Consider placing your order once all the books are available in the bookstore."
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -457,7 +457,7 @@ function Home() {
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-primary-dark text-lg flex-shrink max-w-[650px]",
+                                                        className: "text-primary-dark font-medium text-lg flex-shrink max-w-[650px]",
                                                         children: "Λογιστική: Χρηματοοικονομικές Αναφορές σύμφωνα με τα Ελληνικά και τα Διεθνή Λογιστικά Πρότυπα"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -474,7 +474,7 @@ function Home() {
                                                 className: "flex items-center gap-2",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "bg-green-500 text-white text-md px-7 py-2 rounded-full",
+                                                        className: "bg-green-500 text-white font-medium text-md px-7 py-2 rounded-full",
                                                         children: "Available"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/selectbooks/page.tsx",
@@ -549,7 +549,7 @@ function Home() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-between items-center text-gray-600 mb-4",
+                                className: "flex justify-between items-center text-gray-600 font-medium mb-4",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         children: "Books selected"
@@ -573,7 +573,7 @@ function Home() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-between items-center text-gray-600 mb-6",
+                                className: "flex justify-between items-center text-gray-600 font-medium mb-6",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         children: "Stores"

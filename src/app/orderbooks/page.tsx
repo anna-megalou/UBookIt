@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="container bg-white rounded-4xl mx-auto px-4 py-6">
       {/* Header */}
-      <div className="flex justify-center lg:justify-start items-start px-4 pt-7 pb-10">
+      <div className="flex justify-center lg:justify-start items-start px-16 pt-7 pb-15">
         <h1 className="text-4xl font-bold text-primary-dark">
           Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου
         </h1>

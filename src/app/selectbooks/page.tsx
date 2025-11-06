@@ -27,16 +27,16 @@ export default function Home() {
                 <label className="flex justify-between items-center">
                   <div className="flex items-center gap-5">
                     <input type="checkbox" name="card1Books" className="w-5 h-5 accent-primary-dark"/>
-                    <span className="text-primary-dark text-lg">Διαφορικός και Ολοκληρωτικός Λογισμός - Θεωρία και Εφαρμογές</span>
+                    <span className="text-primary-dark font-medium text-lg">Διαφορικός και Ολοκληρωτικός Λογισμός - Θεωρία και Εφαρμογές</span>
                   </div>
-                  <span className="bg-green-500 text-white text-md px-7 py-2 rounded-full">Available</span>
+                  <span className="bg-green-500 text-white font-medium text-md px-7 py-2 rounded-full">Available</span>
                 </label>
                 <label className="flex justify-between items-center">
                   <div className="flex items-center gap-5">
                     <input type="checkbox" name="card1Books" className="w-5 h-5 accent-primary-dark"/>
-                    <span className="text-primary-dark text-lg">Εισαγωγή στο Management</span>
+                    <span className="text-primary-dark font-medium text-lg">Εισαγωγή στο Management</span>
                   </div>
-                  <span className="bg-red-400 text-white text-md px-5 py-2 rounded-full">Unavailable</span>
+                  <span className="bg-red-400 text-white font-medium text-md px-5 py-2 rounded-full">Unavailable</span>
                 </label>
               </div>
               <div className="flex items-start justify-center">
@@ -54,10 +54,10 @@ export default function Home() {
             <label className="flex justify-between items-center">
               <div className="flex items-center gap-5">
                 <input type="checkbox" name="card2Book" className="w-5 h-5 accent-primary-dark" />
-                <span className="text-primary-dark text-lg">Αρχές Λειτουργίας και Προγραμματισμού Η/Υ</span>
+                <span className="text-primary-dark font-medium text-lg">Αρχές Λειτουργίας και Προγραμματισμού Η/Υ</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="bg-green-500 text-white text-md px-7 py-2 rounded-full">Available</span>
+                <span className="bg-green-500 text-white font-medium text-md px-7 py-2 rounded-full">Available</span>
                 <span className="text-primary-dark font-semibold text-xl">1,5 €</span>
               </div>
             </label>
@@ -72,16 +72,16 @@ export default function Home() {
             <label className="flex justify-between items-center">
               <div className="flex items-center gap-5 mb-3">
                 <input type="checkbox" name="card3Book" className="w-5 h-5 accent-primary-dark" />
-                <span className="text-primary-dark text-lg">Εισαγωγή στο Μάρκετινγκ</span>
+                <span className="text-primary-dark font-medium text-lg">Εισαγωγή στο Μάρκετινγκ</span>
               </div>
               <div className="flex items-center gap-2 mb-5">
-                <span className="bg-red-400 text-white text-md px-5 py-2 rounded-full">Unavailable</span>
+                <span className="bg-red-400 text-white font-medium text-md px-5 py-2 rounded-full">Unavailable</span>
               </div>
             </label> 
             <div className="container bg-primary-light rounded-3xl mx-auto px-4 py-7">
               <div className="flex items-center gap-3">
                 <span className="text-yellow-500 text-2xl">⚠️</span>
-                <p className="text-primary-dark text-base m-0">You won't receive the books that are not available for delivery. Consider placing your order once all the books are available in the bookstore.</p>
+                <p className="text-primary-dark font-medium text-base m-0">You won't receive the books that are not available for delivery. Consider placing your order once all the books are available in the bookstore.</p>
                 <button className="bg-primary-dark text-white px-7 py-2 rounded-3xl font-semibold hover:bg-secondary-light transition-colors whitespace-nowrap">Notify Me</button>
               </div>
             </div>
@@ -96,10 +96,10 @@ export default function Home() {
             <label className="flex justify-between items-center">
               <div className="flex items-center gap-5">
                 <input type="checkbox" name="card4Book" className="w-5 h-5 accent-primary-dark"/>
-                <span className="text-primary-dark text-lg flex-shrink max-w-[650px]">Λογιστική: Χρηματοοικονομικές Αναφορές σύμφωνα με τα Ελληνικά και τα Διεθνή Λογιστικά Πρότυπα</span>
+                <span className="text-primary-dark font-medium text-lg flex-shrink max-w-[650px]">Λογιστική: Χρηματοοικονομικές Αναφορές σύμφωνα με τα Ελληνικά και τα Διεθνή Λογιστικά Πρότυπα</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="bg-green-500 text-white text-md px-7 py-2 rounded-full">Available</span>
+                <span className="bg-green-500 text-white font-medium text-md px-7 py-2 rounded-full">Available</span>
                 <span className="text-primary-dark font-semibold text-xl whitespace-nowrap">1,5 €</span>
               </div>
             </label>
@@ -113,11 +113,11 @@ export default function Home() {
             <p>Total</p>
             <span className="text-primary-dark font-semibold">5 €</span>
           </div>
-          <div className="flex justify-between items-center text-gray-600 mb-4">
+          <div className="flex justify-between items-center text-gray-600 font-medium mb-4">
             <p>Books selected</p>
             <span className="text-primary-dark font-semibold">4</span>
           </div>
-          <div className="flex justify-between items-center text-gray-600 mb-6">
+          <div className="flex justify-between items-center text-gray-600 font-medium mb-6">
             <p>Stores</p>
             <span className="text-primary-dark font-semibold">3</span>
           </div>

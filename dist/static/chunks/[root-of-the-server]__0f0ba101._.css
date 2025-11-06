@@ -1178,10 +1178,6 @@
     margin-right: calc(var(--spacing) * 28);
   }
 
-  .mr-28\.5 {
-    margin-right: calc(var(--spacing) * 28.5);
-  }
-
   .mr-29 {
     margin-right: calc(var(--spacing) * 29);
   }
@@ -1406,10 +1402,6 @@
     height: calc(var(--spacing) * 80);
   }
 
-  .h-\[500px\] {
-    height: 500px;
-  }
-
   .h-auto {
     height: auto;
   }
@@ -1539,26 +1531,6 @@
     width: calc(var(--spacing) * 300);
   }
 
-  .w-\[20\%\] {
-    width: 20%;
-  }
-
-  .w-\[30\%\] {
-    width: 30%;
-  }
-
-  .w-\[400px\] {
-    width: 400px;
-  }
-
-  .w-\[calc\(100\%-\<width_of_left_column\>\)\] {
-    width: calc(100% - < width of left column> );
-  }
-
-  .w-\[calc\(100\%-calc\(8\/9\*100\%\)\)\] {
-    width: 11.1111%;
-  }
-
   .w-auto {
     width: auto;
   }
@@ -1588,24 +1560,8 @@
     max-width: var(--container-7xl);
   }
 
-  .max-w-\[200px\] {
-    max-width: 200px;
-  }
-
-  .max-w-\[400px\] {
-    max-width: 400px;
-  }
-
-  .max-w-\[600px\] {
-    max-width: 600px;
-  }
-
   .max-w-\[650px\] {
     max-width: 650px;
-  }
-
-  .max-w-\[6500px\] {
-    max-width: 6500px;
   }
 
   .max-w-lg {
@@ -1686,52 +1642,12 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .grid-cols-\[1fr_auto\] {
-    grid-template-columns: 1fr auto;
-  }
-
   .grid-cols-\[1fr_auto_auto\] {
     grid-template-columns: 1fr auto auto;
   }
 
   .grid-cols-\[4\.5fr_1\.5fr\] {
     grid-template-columns: 4.5fr 1.5fr;
-  }
-
-  .grid-cols-\[5\.5fr_1fr\] {
-    grid-template-columns: 5.5fr 1fr;
-  }
-
-  .grid-cols-\[5fr_1\.2fr\] {
-    grid-template-columns: 5fr 1.2fr;
-  }
-
-  .grid-cols-\[5fr_1\.5fr\] {
-    grid-template-columns: 5fr 1.5fr;
-  }
-
-  .grid-cols-\[5fr_1fr\] {
-    grid-template-columns: 5fr 1fr;
-  }
-
-  .grid-cols-\[6fr_1\.5fr\] {
-    grid-template-columns: 6fr 1.5fr;
-  }
-
-  .grid-cols-\[6fr_1fr\] {
-    grid-template-columns: 6fr 1fr;
-  }
-
-  .grid-cols-\[7fr_1\.5fr\] {
-    grid-template-columns: 7fr 1.5fr;
-  }
-
-  .grid-cols-\[7fr_1fr\] {
-    grid-template-columns: 7fr 1fr;
-  }
-
-  .grid-cols-\[8fr_1fr\] {
-    grid-template-columns: 8fr 1fr;
   }
 
   .grid-rows-2 {
@@ -2658,12 +2574,6 @@
   }
 
   @media (hover: hover) {
-    .hover\:bg-green-600:hover {
-      background-color: var(--color-green-600);
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:bg-primary-dark\/90:hover {
       background-color: rgba(4, 35, 92, .9);
     }
@@ -2762,20 +2672,8 @@
   }
 
   @media (min-width: 40rem) {
-    .sm\:w-\[40\%\] {
-      width: 40%;
-    }
-  }
-
-  @media (min-width: 40rem) {
     .sm\:grid-cols-1 {
       grid-template-columns: repeat(1, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 40rem) {
-    .sm\:grid-cols-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
@@ -2871,30 +2769,6 @@
   }
 
   @media (min-width: 48rem) {
-    .md\:w-2\/5 {
-      width: 40%;
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:w-\[25\%\] {
-      width: 25%;
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:w-\[35\%\] {
-      width: 35%;
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:w-\[500px\] {
-      width: 500px;
-    }
-  }
-
-  @media (min-width: 48rem) {
     .md\:grid-cols-1 {
       grid-template-columns: repeat(1, minmax(0, 1fr));
     }
@@ -2925,18 +2799,6 @@
   }
 
   @media (min-width: 48rem) {
-    .md\:px-6 {
-      padding-inline: calc(var(--spacing) * 6);
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:py-6 {
-      padding-block: calc(var(--spacing) * 6);
-    }
-  }
-
-  @media (min-width: 48rem) {
     .md\:text-left {
       text-align: left;
     }
@@ -2955,18 +2817,6 @@
   }
 
   @media (min-width: 64rem) {
-    .lg\:w-2\/5 {
-      width: 40%;
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .lg\:w-\[25\%\] {
-      width: 25%;
-    }
-  }
-
-  @media (min-width: 64rem) {
     .lg\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -2975,12 +2825,6 @@
   @media (min-width: 64rem) {
     .lg\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .lg\:grid-cols-\[2fr_1fr\] {
-      grid-template-columns: 2fr 1fr;
     }
   }
 
@@ -3011,12 +2855,6 @@
   @media (min-width: 64rem) {
     .lg\:px-8 {
       padding-inline: calc(var(--spacing) * 8);
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .lg\:text-left {
-      text-align: left;
     }
   }
 

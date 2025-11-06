@@ -1,8 +1,4 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/login/prequalification/page": "app/login/prequalification/page.js",
-  "/login/signin/page": "app/login/signin/page.js",
-  "/orders/page": "app/orders/page.js",
-  "/page": "app/page.js",
   "/tracking/page": "app/tracking/page.js"
 }

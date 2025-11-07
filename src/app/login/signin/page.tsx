@@ -54,7 +54,7 @@ export default function LoginPage() {
               />
             </form>
             <div className="flex flex-col gap-2 w-full">
-              <Button href="/login/signin" fullWidth size="lg">
+              <Button href="/confirm/declaration" fullWidth size="lg">
                 sign in
               </Button>
               <p className="text-sm text-secondary-typography text-center w-full font-medium">

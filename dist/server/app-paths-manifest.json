@@ -1,4 +1,10 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
+  "/confirm/declaration/page": "app/confirm/declaration/page.js",
+  "/login/prequalification/page": "app/login/prequalification/page.js",
+  "/login/signin/page": "app/login/signin/page.js",
+  "/orderbooks/page": "app/orderbooks/page.js",
+  "/page": "app/page.js",
+  "/select/books/page": "app/select/books/page.js",
   "/tracking/page": "app/tracking/page.js"
 }

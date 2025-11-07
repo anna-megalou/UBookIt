@@ -1,0 +1,53 @@
+import Link from "next/link";
+import Image from "next/image";
+export default function Home() {
+  return (
+    <div className="container bg-white rounded-4xl justify-center mx-auto px-auto">
+      <div className="flex flex-col justify-center items-start w-full relative sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start">
+        <div className="flex flex-row justify-center items-start px-25 pt-20 pb-14">
+          <h1 className="text-4xl font-bold text-primary-dark"> Επιβεβαίωσε τα συγγράμματα που έχεις δηλώσει στον Εύδοξο </h1>
+        </div>
+      <div className="flex flex-col justify-center items-center px-25 sm:py-4 sm:gap-6 w-full relative">
+        <div className="grid gap-10 w-full max-w-7xl mx-auto">
+            {/* Card 1 */}
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
+                <h4 className="text-xl font-semibold text-primary-dark">Μαθηματικά I (1ο Εξάμηνο)</h4>
+                <p className="text-lg">Διαφορικός και Ολοκληρωτικός Λογισμός - Θεωρία και Εφαρμογές | Broken Hill Publishers</p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
+                <h4 className="text-xl font-semibold text-primary-dark">Λογιστική I (1ο Εξάμηνο)</h4>
+                <p className="text-lg">Λογιστική: Χρηματοοικονομικές Αναφορές σύμφωνα με τα Ελληνικά και τα Διεθνή Λογιστικά Πρότυπα | ΜΠΕΝΟΥ & ΣΙΑ Ε.Ε.</p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
+                <h4 className="text-xl font-semibold text-primary-dark">Εισαγωγή στην Πληροφορική (1ο Εξάμηνο)</h4>
+                <p className="text-lg">Αρχές Λειτουργίας και Προγραμματισμού Η/Υ | Βιβλιοδιανομή Οικονομικού Πανεπιστημίου Αθηνών</p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
+                <h4 className="text-xl font-semibold text-primary-dark">Εισαγωγή στην Διοίκηση Επιχειρήσεων (1ο Εξάμηνο)</h4>
+                <p className="text-lg">Εισαγωγή στο Management | Broken Hill Publishers</p>
+            </div>
+
+            {/* Card 5 */}
+            <div className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl">
+                <h4 className="text-xl font-semibold text-primary-dark">Εισαγωγή στο Μάρκετινγκ (1ο Εξάμηνο)</h4>
+                <p className="text-lg">Εισαγωγή στο Μάρκετινγκ | Εκδόσεις Σταμούλη</p>
+            </div>
+
+            {/* Card 6 */}
+            <div className="justify-self-center mt-6 pb-20">
+                <Link href="/select/books" className="bg-primary-dark text-white font-bold text-lg rounded-full px-15 py-5 hover:bg-secondary-light transition-colors whitespace-nowrap">
+                    Continue
+                </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

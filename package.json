@@ -8,7 +8,9 @@
     "export": "node scripts/build-static.js",
     "start": "next start",
     "lint": "eslint",
-    "serve": "npx serve dist"
+    "serve": "npx serve dist",
+    "deploy:package": "node scripts/deploy-package.js",
+    "prepare:static": "node scripts/prepare-static-files.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
@@ -30,6 +32,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "archiver": "^7.0.1",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "tailwindcss": "^4.1.14",

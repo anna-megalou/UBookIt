@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { withBasePath } from "@/lib/utils";
 
 export default function Home() {
   return (
@@ -93,12 +94,12 @@ export default function Home() {
         {/* Right side - Image + Payment summary */}
         <div className="flex flex-col items-center w-full lg:w-1/3">
           <Image
-            src="/assets/images/kid_with_card.png"
+            src={withBasePath("/assets/images/kid_with_card.png")}
             alt="Kid with card"
             width={320}
             height={320}
             className="object-fill w-60 h-60 sm-min:w-72 sm-min:h-72 xl-custom:w-80 xl-custom:h-80 sm:hidden lg:block"
-              style={{ width: 'auto', height: 'auto' }}
+            style={{ width: 'auto', height: 'auto' }}
           />
 
           <div className="border-3 border-secondary-border shadow-sm bg-white-light rounded-3xl p-6 w-full bg-white">

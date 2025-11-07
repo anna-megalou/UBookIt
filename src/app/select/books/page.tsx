@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ReceiptText } from "lucide-react";
 
 
@@ -83,7 +82,7 @@ export default function Home() {
             <div className="container bg-primary-light rounded-3xl mx-auto px-4 py-7">
               <div className="flex items-center gap-3">
                 <span className="text-yellow-500 text-2xl">⚠️</span>
-                <p className="text-primary-dark font-medium text-base m-0">You won't receive the books that are not available for delivery. Consider placing your order once all the books are available in the bookstore.</p>
+                <p className="text-primary-dark font-medium text-base m-0">You won&apos;t receive the books that are not available for delivery. Consider placing your order once all the books are available in the bookstore.</p>
                 <button className="bg-primary-dark text-white px-7 py-2 rounded-3xl font-semibold hover:bg-secondary-light transition-colors whitespace-nowrap">Notify Me</button>
               </div>
             </div>

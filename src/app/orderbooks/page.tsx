@@ -17,9 +17,7 @@ export default function Home() {
         <div className="flex flex-col gap-8 flex-1">
           {/* Personal details */}
           <div className="border-3 border-secondary-border shadow-sm bg-white-light rounded-3xl p-8 w-full">
-            <h2 className="text-2xl font-semibold text-primary-dark mb-6">
-              Personal details
-            </h2>
+            <h2 className="text-2xl font-semibold text-primary-dark mb-6">Personal details</h2>
 
             {/* Row 1 */}
             <div className="flex flex-wrap gap-6 mb-4">
@@ -64,9 +62,7 @@ export default function Home() {
 
           {/* Location details */}
           <div className="border-3 border-secondary-border shadow-sm bg-white-light rounded-3xl p-9 w-full">
-            <h2 className="text-2xl font-semibold text-primary-dark mb-6">
-              Location details
-            </h2>
+            <h2 className="text-2xl font-semibold text-primary-dark mb-6">Location details</h2>
 
             {/* Row 1 */}
             <div className="flex flex-wrap gap-6 mb-4">
@@ -106,25 +102,29 @@ export default function Home() {
           />
 
           <div className="border-3 border-secondary-border shadow-sm bg-white-light rounded-3xl p-6 w-full bg-white">
-            <h3 className="text-xl font-bold text-primary-dark mb-4">
-              Proceed your payment
-            </h3>
-
+            <h3 className="text-xl font-bold text-primary-dark mb-4">Proceed your payment</h3>
             <div className="flex justify-between mb-3">
               <p className="text-gray-700 text-lg">Total amount</p>
               <span className="text-gray-700 font-semibold text-lg">5€</span>
             </div>
-
-            <ul className="text-gray-600 mb-6 text-md">
-              <li><strong>•</strong> Broken Hill Publishers — 2€</li>
-              <li><strong>•</strong> Βιβλιοδιανομή Ο.Π.Α. — 1,5€</li>
-              <li><strong>•</strong> ΜΠΕΝΟΥ & ΣΙΑ Ε.Ε. — 1,5€</li>
+            <ul className="text-gray-600 mb-6 text-md space-y-2">
+              <li className="flex justify-between">
+                <span><strong>•</strong> Broken Hill Publishers</span>
+                <span>2€</span>
+              </li>
+              <li className="flex justify-between">
+                <span><strong>•</strong> Βιβλιοδιανομή Ο.Π.Α.</span>
+                <span>1,5€</span>
+              </li>
+              <li className="flex justify-between">
+                <span><strong>•</strong> ΜΠΕΝΟΥ & ΣΙΑ Ε.Ε.</span>
+                <span>1,5€</span>
+              </li>
             </ul>
-
             <div className="flex justify-center">
-                <Link href="/nextpage" className="bg-primary-dark text-white text-center font-semibold py-2 px-10 rounded-3xl">
-                    Continue <strong>→</strong>
-                </Link>
+              <Link href="/nextpage" className="bg-primary-dark text-white text-center font-semibold py-2 px-10 rounded-3xl">
+                Continue <strong>→</strong>
+              </Link>
             </div>
           </div>
         </div>

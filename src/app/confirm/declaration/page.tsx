@@ -41,7 +41,7 @@ export default function Home() {
 
             {/* Card 6 */}
             <div className="justify-self-center mt-6 pb-20">
-                <Link href="/selectbooks" className="bg-primary-dark text-white font-bold text-lg rounded-full px-15 py-5 hover:bg-secondary-light transition-colors whitespace-nowrap">
+                <Link href="/select/books" className="bg-primary-dark text-white font-bold text-lg rounded-full px-15 py-5 hover:bg-secondary-light transition-colors whitespace-nowrap">
                     Continue
                 </Link>
             </div>

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ReceiptText } from "lucide-react";
+
 
 export default function Home() {
   return (
@@ -108,9 +110,12 @@ export default function Home() {
 
         {/* Δεξιά στήλη: Summary */}
         <div className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 sticky top-6 self-start border-3 border-secondary-border shadow-sm bg-white-light px-4 py-5 sm:px-6 sm:py-6 rounded-3xl mx-auto">
-          <h3 className="text-lg font-bold text-primary-dark mb-6 text-center md:text-left">Summary</h3>
+          <h3 className="flex items-center gap-2 text-lg font-bold text-primary-dark mb-6 text-center md:text-left">
+            <ReceiptText className="w-5 h-5 text-primary-dark" />
+            Summary
+          </h3>
           <div className="flex justify-between items-center text-gray-600 mb-4">
-            <p>Total</p>
+            <p>Total amount</p>
             <span className="text-primary-dark font-semibold">5 €</span>
           </div>
           <div className="flex justify-between items-center text-gray-600 font-medium mb-4">

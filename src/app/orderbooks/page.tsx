@@ -122,7 +122,7 @@ export default function Home() {
               </li>
             </ul>
             <div className="flex justify-center">
-              <Link href="/nextpage" className="bg-primary-dark text-white text-center font-semibold py-2 px-10 rounded-3xl">
+              <Link href="/payment" className="bg-primary-dark text-white text-center font-semibold py-2 px-10 rounded-3xl">
                 Continue <strong>→</strong>
               </Link>
             </div>

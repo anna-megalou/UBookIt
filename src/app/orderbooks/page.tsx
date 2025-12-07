@@ -1,3 +1,4 @@
+'use client';
 import Link from "next/link";
 import Image from "next/image";
 
@@ -122,9 +123,12 @@ export default function Home() {
               </li>
             </ul>
             <div className="flex justify-center">
-              <Link href="/payment" className="bg-primary-dark text-white text-center font-semibold py-2 px-10 rounded-3xl">
+              <button
+                onClick={() => window.location.href = 'http://ism.dmst.aueb.gr/ismgroup17/payment.jsp'}
+                className="bg-primary-dark text-white text-center font-semibold py-2 px-10 rounded-3xl"
+              >
                 Continue <strong>→</strong>
-              </Link>
+              </button>
             </div>
           </div>
         </div>

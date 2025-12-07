@@ -94,4 +94,45 @@ input:not(:placeholder-shown) {
   }
 }
 
+/* ============================================
+   Breadcrumb Styles (FlyonUI compatible)
+   ============================================ */
+.breadcrumbs ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.5rem;
+}
+
+.breadcrumbs li {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs a {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+  color: var(--color-secondary-dark);
+  text-decoration: underline;
+}
+
+.breadcrumbs-separator {
+  display: flex;
+  align-items: center;
+  color: var(--color-secondary-typography);
+  margin: 0 0.25rem;
+}
+
+.breadcrumbs [aria-current="page"] {
+  color: var(--color-primary-dark);
+  font-weight: 500;
+}
+
 

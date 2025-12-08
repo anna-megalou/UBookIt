@@ -557,7 +557,7 @@ function Home() {
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/orderbooks/page.tsx",
                                                     lineNumber: 130,
-                                                    columnNumber: 14
+                                                    columnNumber: 26
                                                 }, this)
                                             ]
                                         }, void 0, true, {

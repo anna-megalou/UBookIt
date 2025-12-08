@@ -14,9 +14,8 @@ public class Payment {
     private double totalAmount;
     private Timestamp paymentDate;
 
-    public Payment(int paymentId, int userId, int declarationId, String shippingMethod, String paymentMethod,
-                   String cardLast4, String cardHolderName, double extraFee, double totalAmount, Timestamp paymentDate) {
-        this.paymentId = paymentId;
+    public Payment(int userId, int declarationId, String shippingMethod, String paymentMethod,
+                   String cardLast4, String cardHolderName, double extraFee, double totalAmount) {
         this.userId = userId;
         this.declarationId = declarationId;
         this.shippingMethod = shippingMethod;
@@ -25,7 +24,6 @@ public class Payment {
         this.cardHolderName = cardHolderName;
         this.extraFee = extraFee;
         this.totalAmount = totalAmount;
-        this.paymentDate = paymentDate;
     }
 
     public int getPaymentId() { 

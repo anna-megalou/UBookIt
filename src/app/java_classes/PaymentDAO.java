@@ -7,11 +7,12 @@ public class PaymentDAO {
     public boolean insertPayment(Payment payment) throws Exception {
         DB db = new DB();
         Connection con = db.getConnection();
-        String query = "INSERT INTO payment (user_id, declaration_id, shipping_method, payment_method, card_last4, card_holder_name, extra_fee, total_amount, payment_date) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstm = null;
+        String query = "INSERT INTO payment (user_id, declaration_id, shipping_method, payment_method, card_last4, card_holder_name, extra_fee, total_amount) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            PreparedStatement pstm = con.prepareStatement(query);
+            pstm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, payment.getUserId());
             pstm.setInt(2, payment.getDeclarationId());
             pstm.setString(3, payment.getShippingMethod());
@@ -19,9 +20,17 @@ public class PaymentDAO {
             pstm.setString(5, payment.getCardLast4());
             pstm.setString(6, payment.getCardHolderName());
             pstm.setDouble(7, payment.getExtraFee());
-            pstm.setDouble(8, payment.getTotalAmount());
-            pstm.setTimestamp(9, payment.getPaymentDate()); 
+            pstm.setDouble(8, payment.getTotalAmount()); 
              
+            int affectedRows = pstm.executeUpdate();
+
+            if (affectedRows > 0) {
+                try (ResultSet rs = pstm.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        payment.setPaymentId(rs.getInt(1));
+                    }
+                }
+            }
 
             pstm.executeUpdate();
             pstm.close();

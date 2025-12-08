@@ -192,74 +192,86 @@
 <body>
     <%@ include file="header.jsp" %>
     <div class="container">
+        <% if(request.getAttribute("message") != null) { %>		
+            <div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %></div>
+        <% } else { %>
+            <div class="alert alert-success text-center" role="alert">Η παραγγελία σας ολοκληρώθηκε με επιτυχία!</div>
+        <%
+        } 
+        %>
+
         <h1>Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου</h1>
 
-        <div class="flex gap-4">
+        <form action="paymentController.jsp" method="post">
 
-            <!-- Left side -->
-            <div style="flex: 3; display: flex; flex-direction: column; gap: 1rem;">
-                <!-- Shipping method -->
-                <div class="card1">
-                    <h2>Shipping method</h2>
-                    <div class="radio-group">
-                        <label><input type="radio" name="shipping" value="address"> Address</label>
-                        <label><input type="radio" name="shipping" value="boxNow"> BOX NOW</label>
-                    </div>
-                </div>
+            <div class="flex gap-4">
 
-                <!-- Payment method -->
-                <div id="payment-card" class="card2">
-                    <h2>Payment method</h2>
-                    <div class="radio-group">
-                        <label><input type="radio" name="payment" value="cod"> Cash on delivery (+1,00€)</label>
-                        <label><input type="radio" name="payment" value="card"> Card</label>
-                    </div>
-                    <div class="payment-fields">
-                        <div class="field-row">
-                            <div class="field-inline">
-                                <label for="cardNumber">Card number</label>
-                                <input type="text" id="cardNumber" class="input-base" placeholder="card number">
-                            </div>
-                            <div class="field-inline">
-                                <label for="expDate">Expiration Date</label>
-                                <input type="text" id="expDate" class="input-base" placeholder="exp. date">
-                            </div>
-                        </div>
-                        <div class="field-row">
-                            <div class="field-inline">
-                                <label for="cardName">Name on card</label>
-                                <input type="text" id="cardName" class="input-base" placeholder="name">
-                            </div>
-                            <div class="field-inline cvv-field">
-                                <label for="cvv">CVV</label>
-                                <input type="text" id="cvv" class="input-base" placeholder="CVV">
-                            </div>
+                <!-- Left side -->
+                <div style="flex: 3; display: flex; flex-direction: column; gap: 1rem;">
+                    <!-- Shipping method -->
+                
+                    <div class="card1">
+                        <h2>Shipping method</h2>
+                        <div class="radio-group">
+                            <label><input type="radio" name="shipping" value="address"> Address</label>
+                            <label><input type="radio" name="shipping" value="boxNow"> BOX NOW</label>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Right side -->
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 0.1rem;">
-                <div class="card3">
-                    <h2>Final amount</h2>
-                    <div class="flex justify-between">
-                        <span>Delivery</span>
-                        <span id="delivery-fee">5,00€</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span>+</span>
-                        <span id="cash-fee">0,00€</span>
-                    </div>
-                    <hr>
-                    <div class="flex justify-between" style="font-weight: bold;">
-                        <span>Total</span>
-                        <span id="total-amount">5,00€</span>
-                    </div>
-                    <div class="button-wrapper">
-                        <button class="button-confirm">Confirm</button>
+                    <!-- Payment method -->
+                    <div id="payment-card" class="card2">
+                        <h2>Payment method</h2>
+                        <div class="radio-group">
+                            <label><input type="radio" name="payment" value="cod"> Cash on delivery (+1,00€)</label>
+                            <label><input type="radio" name="payment" value="card"> Card</label>
+                        </div>
+                        <div class="payment-fields">
+                            <div class="field-row">
+                                <div class="field-inline">
+                                    <label for="cardNumber">Card number</label>
+                                    <input type="text" id="cardNumber" class="input-base" placeholder="card number">
+                                </div>
+                                <div class="field-inline">
+                                    <label for="expDate">Expiration Date</label>
+                                    <input type="text" id="expDate" class="input-base" placeholder="exp. date">
+                                </div>
+                            </div>
+                            <div class="field-row">
+                                <div class="field-inline">
+                                    <label for="cardName">Name on card</label>
+                                    <input type="text" id="cardName" class="input-base" placeholder="name">
+                                </div>
+                                <div class="field-inline cvv-field">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" class="input-base" placeholder="CVV">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Right side -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 0.1rem;">
+                    <div class="card3">
+                        <h2>Final amount</h2>
+                        <div class="flex justify-between">
+                            <span>Delivery</span>
+                            <span id="delivery-fee">5,00€</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>+</span>
+                            <span id="cash-fee">0,00€</span>
+                        </div>
+                        <hr>
+                        <div class="flex justify-between" style="font-weight: bold;">
+                            <span>Total</span>
+                            <span id="total-amount">5,00€</span>
+                        </div>
+                        <div class="button-wrapper">
+                            <button type="submit" class="button-confirm">Confirm</button>
+                        </div>
+                    </div>
+                </form>
 
                 <div class="image-container">
                     <img src="images/payment-method.png" alt="Money and card">

@@ -2,8 +2,10 @@ import Image from "next/image";
 import { Clock } from "tabler-icons-react";
 import { BookOpen, CreditCard } from "lucide-react";
 import { withBasePath } from "@/lib/utils";
+import { faqItems } from "@/lib/constants";
 import Button from "@/components/ui/Button";
 import FeatureCard from "@/components/ui/FeatureCard";
+import FAQ from "@/components/ui/FAQ";
 
 const features = [
   {
@@ -47,7 +49,7 @@ export default function Home() {
               Sign In
             </Button>
           </div>
-          <div className="absolute bottom-60 right-65 md:right-20">
+          <div className="absolute bottom-246 right-65 md:right-20">
             <Image
               priority
               src={withBasePath("/assets/images/kid_with_books.png")}
@@ -73,6 +75,11 @@ export default function Home() {
               />
             ))}
           </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div id="faq" className="w-full px-30 pb-0 scroll-mt-20">
+          <FAQ items={faqItems} />
         </div>
       </div>
     </div>

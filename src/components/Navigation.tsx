@@ -13,13 +13,13 @@ const navigationItemsLogin = [
   { href: '/', label: 'Home' },
   { href: '/service', label: 'Service' },
   { href: '/about', label: 'About' },
-  { href: '/faq', label: 'FAQ' },
+  { href: '/#faq', label: 'FAQ' },
 ];
 
 const navigationItems = [
   { href: '/service', label: 'Service' },
   { href: '/about', label: 'About' },
-  { href: '/faq', label: 'FAQ' },
+  { href: '/#faq', label: 'FAQ' },
 ];
 
 export default function Navigation({

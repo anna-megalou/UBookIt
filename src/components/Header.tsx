@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 import Button from "./ui/Button";
 import Breadcrumb from "./ui/Breadcrumb";
 
 export default function Header() {
   const pathname = usePathname();
+  const [buttonText, setButtonText] = useState('Sign In');
+  const [buttonHref, setButtonHref] = useState('/login/prequalification');
   
   // Pages where Sign In should become Logout
   const logoutPages = [
@@ -16,9 +19,19 @@ export default function Header() {
     '/orderbooks'
   ];
   
-  const showLogout = logoutPages.includes(pathname);
-  const buttonText = showLogout ? 'Logout' : 'Sign In';
-  const buttonHref = showLogout ? '/' : '/login/prequalification';
+  useEffect(() => {
+    // Normalize pathname (remove trailing slash if present)
+    const normalizedPathname = pathname?.replace(/\/$/, '') || '';
+    
+    // Check if current path matches any logout page
+    const showLogout = logoutPages.some(page => normalizedPathname === page || normalizedPathname.startsWith(page + '/'));
+    
+    setButtonText(showLogout ? 'Log out' : 'Sign In');
+    setButtonHref(showLogout ? '/' : '/login/prequalification');
+    
+    // Debug: Log to verify pathname updates
+    console.log('Header - Current pathname:', pathname, 'Normalized:', normalizedPathname, 'Show logout:', showLogout, 'Button text:', showLogout ? 'Log out' : 'Sign In');
+  }, [pathname]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-60 bg-primary-light pt-6 pb-4 h-20">
@@ -35,7 +48,11 @@ export default function Header() {
           {/* Navigation */}
           <div className="flex flex-row justify-end items-center gap-12">
             <Navigation variant="header" />
-            <Button href={buttonHref} size="sm">
+            <Button 
+              key={`${pathname}-${buttonText}`} 
+              href={buttonHref} 
+              size="sm"
+            >
               {buttonText}
             </Button>
           </div>

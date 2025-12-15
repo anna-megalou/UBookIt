@@ -1,10 +1,20 @@
+"use client";
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface NavigationProps {
   className?: string;
   linkClassName?: string;
   variant?: 'header' | 'footer';
 }
+
+const navigationItemsLogin = [
+  { href: '/', label: 'Home' },
+  { href: '/service', label: 'Service' },
+  { href: '/about', label: 'About' },
+  { href: '/faq', label: 'FAQ' },
+];
 
 const navigationItems = [
   { href: '/service', label: 'Service' },
@@ -17,6 +27,7 @@ export default function Navigation({
   linkClassName = '',
   variant = 'header',
 }: NavigationProps) {
+  const pathname = usePathname();
   const baseLinkClasses =
     variant === 'header'
       ? 'text-secondary-dark hover:text-primary-dark text-lg font-bold'
@@ -25,7 +36,16 @@ export default function Navigation({
   return (
     <nav className={className}>
       <div className="flex flex-row w-fill gap-8">
-        {navigationItems.map((item) => (
+        {
+        pathname === "/login/prequalification/" || pathname === "/login/signin/" ? navigationItemsLogin.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`${baseLinkClasses} ${linkClassName}`}
+          >
+            {item.label}
+          </Link>
+        )) : navigationItems.map((item) => (
           <Link
             key={item.href}
             href={item.href}

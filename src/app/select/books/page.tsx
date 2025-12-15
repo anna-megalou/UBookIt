@@ -23,8 +23,12 @@ export default function Home() {
     { id: 5, name: "Λογιστική: Χρηματοοικονομικές Αναφορές σύμφωνα με τα Ελληνικά και τα Διεθνή Λογιστικά Πρότυπα", store: "ΜΠΕΝΟΥ & ΣΙΑ Ε.Ε.", available: true, price: 1.5 },
   ];
 
-
   const [selectedBooks, setSelectedBooks] = useState<Book[]>([]);
+
+  const storeTotals = selectedBooks.reduce((acc: Record<string, number>, book) => {
+    acc[book.store] = (acc[book.store] || 0) + book.price;
+    return acc;
+  }, {});
 
   // Λίστα βιβλίων
   const toggleBook = (book: Book) => {
@@ -37,20 +41,6 @@ export default function Home() {
 
   const totalPrice = selectedBooks.reduce((sum, book) => sum + book.price, 0);
   const uniqueStores = [...new Set(selectedBooks.map(b => b.store))];
-
-  const handleContinue = async () => {
-    const response = await fetch("http://ism.dmst.aueb.gr/ismgroup17/setInitalAmount.jsp", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ books: selectedBooks, totalPrice, stores: uniqueStores }),
-      credentials: 'include',
-    });
-    if (response.ok) {
-      router.push("http://ism.dmst.aueb.gr/ismgroup17/orderbooks.jsp"); 
-  } else {
-      console.error("Failed to submit order.");
-  }
-  };
 
   return (
     <div className="container bg-white rounded-4xl mx-auto px-4 py-6">
@@ -210,14 +200,27 @@ export default function Home() {
             <p>Stores</p>
             <span className="text-primary-dark font-semibold">{uniqueStores.length}</span>
           </div>
-          <div className="flex justify-center mt-6">
-            <button 
-              onClick={handleContinue} 
+
+          {/* FORM POST προς JSP */}
+          <form
+            method="POST"
+            action="http://ism.dmst.aueb.gr/ismgroup17/orderbooks.jsp"
+            className="flex justify-center mt-6"
+          >
+            <input type="hidden" name="totalPrice" value={totalPrice} />
+            {Object.entries(storeTotals).map(([store, price]) => (
+    <div key={store}>
+      <input type="hidden" name="storeName" value={store} />
+      <input type="hidden" name="storePrice" value={price} />
+    </div>
+  ))}
+            <button
+              type="submit"
               className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors"
             >
               Continue
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>

@@ -192,13 +192,6 @@
 <body>
     <%@ include file="header.jsp" %>
     <div class="container">
-        <% if(request.getAttribute("message") != null) { %>		
-            <div class="alert alert-danger text-center" role="alert"><%=(String)request.getAttribute("message") %></div>
-        <% } else { %>
-            <div class="alert alert-success text-center" role="alert">Η παραγγελία σας ολοκληρώθηκε με επιτυχία!</div>
-        <%
-        } 
-        %>
 
         <h1>Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου</h1>
 
@@ -250,26 +243,32 @@
                     </div>
                 </div>
 
+                <%
+Double priceObj = (Double) session.getAttribute("price");
+double price = (priceObj != null) ? priceObj.doubleValue() : 0.0;
+%>
                 <!-- Right side -->
                 <div style="flex: 1; display: flex; flex-direction: column; gap: 0.1rem;">
                     <div class="card3">
-                        <h2>Final amount</h2>
-                        <div class="flex justify-between">
-                            <span>Delivery</span>
-                            <span id="delivery-fee">5,00€</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>+</span>
-                            <span id="cash-fee">0,00€</span>
-                        </div>
-                        <hr>
-                        <div class="flex justify-between" style="font-weight: bold;">
-                            <span>Total</span>
-                            <span id="total-amount">5,00€</span>
-                        </div>
-                        <div class="button-wrapper">
-                            <button type="submit" class="button-confirm">Confirm</button>
-                        </div>
+                        <h3 style="font-size: 1.2rem; font-weight: bold; color:#04235C;">Final amount</h3>
+    
+    <div class="flex justify-between amount-row">
+        <span>Delivery</span>
+        <span id="delivery-fee"><%= price %> €</span>
+    </div>
+    <div class="flex justify-between amount-row">
+        <span>+</span>
+        <span id="cash-fee">0,00 €</span>
+    </div>
+    <hr>
+    <div class="flex justify-between amount-row" style="font-weight:bold;">
+        <span>Total</span>
+        <span id="total-amount"><%= price %> €</span>
+    </div>
+
+    <div class="button-wrapper">
+        <button type="submit" class="button-confirm">Confirm</button>
+    </div>
                     </div>
                 </form>
 
@@ -281,44 +280,45 @@
     </div>
     <%@ include file="footer.jsp" %>
     <script>
-    // --- Fields & card container ---
+    // Παίρνουμε τα στοιχεία
     const paymentRadios = document.querySelectorAll('input[name="payment"]');
     const cardFields = document.querySelector('#payment-card .payment-fields');
     const cardContainer = document.getElementById('payment-card');
 
+    // Αρχικά κρύβουμε τα πεδία της κάρτας
     cardFields.style.display = 'none';
-    cardContainer.style.height = '100px';
+    cardContainer.style.height = '100px'; // ύψος χωρίς τα πεδία
 
     paymentRadios.forEach(radio => {
         radio.addEventListener('change', () => {
-            // εμφανιση/απόκρυψη πεδίων κάρτας
-            if (radio.value === 'card' && radio.checked) {
-                cardFields.style.display = 'block';
-                cardContainer.style.height = '225px';
-            } else {
-                cardFields.style.display = 'none';
-                cardContainer.style.height = '100px';
-            }
+            if (radio.checked) {
+                if (radio.value === 'card') {
+                    // Εμφάνιση πεδίων κάρτας
+                    cardFields.style.display = 'block';
+                    cardContainer.style.height = '225px'; // προσαρμοσμένο ύψος
+                } else {
+                    // Απόκρυψη πεδίων κάρτας
+                    cardFields.style.display = 'none';
+                    cardContainer.style.height = '100px';
+                }
 
-            // ενημέρωση ποσού
-            const deliveryFee = 5.00;
-            const cashExtra = 1.00;
-            const totalEl = document.getElementById('total-amount');
-            const cashFeeEl = document.getElementById('cash-fee');
+                // Υπολογισμός ποσού
+                const deliveryFee = parseFloat('<%= price %>');
+                const cashExtra = 1.0;
+                const totalEl = document.getElementById('total-amount');
+                const cashFeeEl = document.getElementById('cash-fee');
 
-            if (radio.value === 'cod' && radio.checked) {
-                cashFeeEl.textContent = cashExtra.toFixed(2) + '€';
-                totalEl.textContent = (deliveryFee + cashExtra).toFixed(2) + '€';
-            } else if (radio.value === 'card' && radio.checked) {
-                cashFeeEl.textContent = '0,00€';
-                totalEl.textContent = deliveryFee.toFixed(2) + '€';
+                if (radio.value === 'cod') {
+                    cashFeeEl.textContent = cashExtra.toFixed(2) + ' €';
+                    totalEl.textContent = (deliveryFee + cashExtra).toFixed(2) + ' €';
+                } else if (radio.value === 'card') {
+                    cashFeeEl.textContent = '0,00 €';
+                    totalEl.textContent = deliveryFee.toFixed(2) + ' €';
+                }
             }
         });
     });
-
-    // αρχική τιμή
-    document.getElementById('cash-fee').textContent = '0,00€';
-    document.getElementById('total-amount').textContent = '5,00€';
 </script>
+
 </body>
 </html>

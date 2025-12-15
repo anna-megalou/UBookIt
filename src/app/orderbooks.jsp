@@ -1,4 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html lang="el">
 <head>
@@ -94,7 +97,6 @@
             border-radius: 1.5rem;
             padding: 1.5rem;
             background-color: white;
-            height: 200px;
             width: 350px;
             margin-top: 0rem;
             margin-left: 3rem;
@@ -159,6 +161,31 @@
         .side-right img {
             width: 260px;
             height: auto;
+        }
+        .amount-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+        .store-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .store-row {
+            display: grid;
+            grid-template-columns: 250px auto; 
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .store-name {
+            text-align: left; 
+            overflow-wrap: break-word;
+        }
+        .store-price {
+            text-align: right; 
         }
         .button {
             background-color: #04235C;
@@ -272,22 +299,47 @@
 
                 <div class="card3">
                     <h3 style="font-size: 1.2rem; font-weight: bold; color:#04235C;">Proceed your payment</h3>
-                    <% Double amount = (Double) session.getAttribute("amount"); %>
-                    <div class="flex space-between">
-                        <span>Total amount</span>
-                        <span><b><%= amount %></b></span>
+                    <% String pr = request.getParameter("totalPrice");
+                    double price = 0;
+                    if (pr != null && !pr.isEmpty()) {
+                        try {
+                            price = Double.parseDouble(pr);
+                        } catch (NumberFormatException e) {
+                            price = 0; // fallback
+                        }
+                    }
+                    session.setAttribute("price", price);
+                    String[] storeNames = request.getParameterValues("storeName");
+                    String[] storePrices = request.getParameterValues("storePrice");
+
+                    session.setAttribute("storeNames", storeNames);
+                    session.setAttribute("storePrices", storePrices);
+                    String amount;
+                    if (price % 1 == 0) {
+                        amount = String.valueOf((int) price);
+                    } else {
+                        amount = String.valueOf(price);
+                    }
+                    %>
+
+                    <div class="amount-row">
+                        <span>Amount</span>
+                        <span><%= amount %> €</span>
                     </div>
 
-                    <ul style="margin-top: 1rem; padding-left: 0; list-style: none; color:#555;">
-                        <li class="flex space-between">
-                            <span>• Broken Hill Publishers</span> <span>2€</span>
-                        </li>
-                        <li class="flex space-between">
-                            <span>• Βιβλιοδιανομή Ο.Π.Α.</span> <span>1.5€</span>
-                        </li>
-                        <li class="flex space-between">
-                            <span>• ΜΠΕΝΟΥ & ΣΙΑ Ε.Ε.</span> <span>1.5€</span>
-                        </li>
+                    <ul class="store-list">
+                        <%
+                        if (storeNames != null && storePrices != null) {
+                            for (int i = 0; i < storeNames.length; i++) {
+                        %>
+                                 <li class="store-row">
+                                    <span class="store-name">• <%= storeNames[i] %></span>
+                                    <span class="store-price"><%= storePrices[i] %> €</span>
+                                </li>
+                        <%
+                            }
+                        }
+                        %>
                     </ul>
 
                     <button class="button" onclick="window.location.href='payment.jsp'">

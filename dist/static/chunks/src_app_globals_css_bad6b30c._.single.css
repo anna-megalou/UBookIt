@@ -2286,6 +2286,10 @@
     text-align: center;
   }
 
+  .text-left {
+    text-align: left;
+  }
+
   .text-right {
     text-align: right;
   }
@@ -2414,6 +2418,10 @@
 
   .text-primary-dark {
     color: var(--color-primary-dark);
+  }
+
+  .text-red-500 {
+    color: var(--color-red-500);
   }
 
   .text-secondary-dark {

@@ -45,13 +45,13 @@ try {
         extra_fee = 0.00;
     }
 
-    Double amountObj = (Double) session.getAttribute("amount"); // Το δέχομαι με το που επιλέξει ο χρήστης ποια συγγράμματα θέλει να του αποσταλούν
-    if (amountObj == null) {
+    double amount = (Double) session.getAttribute("amount"); // Το δέχομαι με το που επιλέξει ο χρήστης ποια συγγράμματα θέλει να του αποσταλούν
+    if (amount == null) {
         throw new Exception("Amount not found in session");
     }
-    double amount = amountObj;
 
     double total_amount = amount + extra_fee;
+    session.setAttribute("total_amount", total_amount);
 
     Payment payment = new Payment(userId, declarationId, ship_method, pay_method,
                                   card_last4, card_holder, extra_fee, total_amount);
@@ -59,13 +59,11 @@ try {
     PaymentDAO paymentDAO = new PaymentDAO();
     paymentDAO.insertPayment(payment);
     
-    %>
-    <jsp:forward page="payment.jsp" />
-    <%
+    response.sendRedirect("payment.jsp"); 
+    return;
 } catch(Exception e) {
     request.setAttribute("message", "Could not save payment: " + e.getMessage());
-    %>
-    <jsp:forward page="payment.jsp" />
-    <%
+    response.sendRedirect("payment.jsp"); 
+    return;
 }
 %>

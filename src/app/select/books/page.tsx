@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ReceiptText } from "lucide-react";
 
 export default function Home() {
+  const router = useRouter();
   interface Book {
     id: number;
     name: string;
@@ -37,11 +39,17 @@ export default function Home() {
   const uniqueStores = [...new Set(selectedBooks.map(b => b.store))];
 
   const handleContinue = async () => {
-    await fetch("/api/submit-books", {
+    const response = await fetch("http://ism.dmst.aueb.gr/ismgroup17/setInitalAmount.jsp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ books: selectedBooks, totalPrice, stores: uniqueStores }),
+      credentials: 'include',
     });
+    if (response.ok) {
+      router.push("http://ism.dmst.aueb.gr/ismgroup17/orderbooks.jsp"); 
+  } else {
+      console.error("Failed to submit order.");
+  }
   };
 
   return (
@@ -203,9 +211,12 @@ export default function Home() {
             <span className="text-primary-dark font-semibold">{uniqueStores.length}</span>
           </div>
           <div className="flex justify-center mt-6">
-            <Link href="/orderbooks" onClick={handleContinue} className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors">
+            <button 
+              onClick={handleContinue} 
+              className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors"
+            >
               Continue
-            </Link>
+            </button>
           </div>
         </div>
       </div>

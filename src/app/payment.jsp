@@ -53,7 +53,7 @@
             border-radius: 2rem;
             max-width: 1400px;
             margin: 2rem auto;
-            padding: 2rem;
+            padding: 2rem 3rem;
         }
         h1 {
             font-size: 2rem;

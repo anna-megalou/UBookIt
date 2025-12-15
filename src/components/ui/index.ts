@@ -12,4 +12,6 @@ export { default as FeatureCard } from './FeatureCard';
 export { default as OrderCard } from './OrderCard';
 export { default as MapView } from './MapView';
 export { default as FAQ } from './FAQ';
+export { default as About } from './About';
+export { default as Universities } from './Universities';
 

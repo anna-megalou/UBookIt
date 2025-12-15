@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 interface FAQItem {
   question: string;
@@ -13,7 +13,7 @@ interface FAQProps {
   title?: string;
 }
 
-export default function FAQ({ items, title = 'Συχνές Ερωτήσεις' }: FAQProps) {
+export default function FAQ({ items, title = "Συχνές Ερωτήσεις" }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleItem = (index: number) => {
@@ -21,7 +21,7 @@ export default function FAQ({ items, title = 'Συχνές Ερωτήσεις' }
   };
 
   return (
-    <div className="w-full py-30 px-4 sm:px-6 lg:px-8">
+    <div className="w-full pb-30 pt-0 mt-0 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {title && (
           <h2 className="text-4xl font-bold text-primary-dark mb-12 text-center">
@@ -44,13 +44,15 @@ export default function FAQ({ items, title = 'Συχνές Ερωτήσεις' }
                 </span>
                 <ChevronDown
                   className={`w-5 h-5 text-secondary-dark flex-shrink-0 transition-transform duration-200 ${
-                    openIndex === index ? 'transform rotate-180' : ''
+                    openIndex === index ? "transform rotate-180" : ""
                   }`}
                 />
               </button>
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  openIndex === index
+                    ? "max-h-96 opacity-100"
+                    : "max-h-0 opacity-0"
                 }`}
               >
                 <div className="px-6 py-4 bg-primary-light border-t border-secondary-border">

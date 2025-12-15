@@ -16,6 +16,14 @@ export default function LoginPage() {
   const [universities, setUniversities] = useState<University[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedUniversity, setSelectedUniversity] = useState<string>('');
+
+  const getSigninUrl = () => {
+    if (!selectedUniversity) return "/login/signin";
+    const selectedUni = universities.find(uni => uni.value === selectedUniversity);
+    const universityName = selectedUni?.label || selectedUniversity;
+    return `/login/signin?university=${encodeURIComponent(universityName)}`;
+  };
 
   useEffect(() => {
     const fetchUniversities = async () => {
@@ -95,6 +103,8 @@ export default function LoginPage() {
                 placeholder={loading ? "Loading universities..." : "Choose your university"}
                 options={universities}
                 className={loading ? "opacity-50 cursor-not-allowed" : ""}
+                value={selectedUniversity}
+                onChange={(value) => setSelectedUniversity(value)}
               />
               {error && (
                 <p className="text-red-500 text-sm mt-1">
@@ -102,7 +112,12 @@ export default function LoginPage() {
                 </p>
               )}
             </form>
-            <Button href="/login/signin" fullWidth size="lg">
+            <Button 
+              href={getSigninUrl()} 
+              fullWidth 
+              size="lg"
+              disabled={!selectedUniversity}
+            >
               Continue
             </Button>
           </div>

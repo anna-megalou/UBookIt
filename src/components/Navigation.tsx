@@ -11,13 +11,13 @@ interface NavigationProps {
 
 const navigationItemsLogin = [
   { href: '/', label: 'Home' },
-  { href: '/', label: 'Service' },
+  { href: '/#hero', label: 'Service' },
   { href: '/#about', label: 'About' },
   { href: '/#faq', label: 'FAQ' },
 ];
 
 const navigationItems = [
-  { href: '/', label: 'Service' },
+  { href: '/#hero', label: 'Service' },
   { href: '/#about', label: 'About' },
   { href: '/#faq', label: 'FAQ' },
 ];

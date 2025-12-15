@@ -25,7 +25,7 @@ const features = featuresData.map((feature) => ({
 export default function Home() {
   return (
     <div className="container bg-white rounded-4xl justify-center mx-auto px-auto">
-      <div className="flex flex-col justify-start items-start w-full sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start">
+      <div  id="hero" className="flex flex-col justify-start items-start w-full sm:justify-center sm:items-center md:justify-center md:items-center lg:justify-start lg:items-start">
         {/* Hero Section */}
         <div className="flex flex-row justify-center items-center px-30 pt-20 pb-14 w-4/7">
           {/* Left Content */}

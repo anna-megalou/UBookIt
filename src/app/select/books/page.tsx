@@ -79,8 +79,6 @@ export default function SelectBooks() {
     return Object.values(groups);
   }, [allBooks]);
 
-
-  // Λογική Επιλογής Βιβλίου
   const toggleBook = (book: Book) => {
     if (selectedBooks.some(b => b.bookId === book.bookId)) {
       setSelectedBooks(selectedBooks.filter(b => b.bookId !== book.bookId));
@@ -89,20 +87,16 @@ export default function SelectBooks() {
     }
   };
 
-  // Υπολογισμοί για το Summary
   const storeTotals = selectedBooks.reduce((acc: Record<string, number>, book) => {
     acc[book.store] = (acc[book.store] || 0) + book.price;
     return acc;
   }, {});
 
   const formatPrice = (price: number): string => {
-    // Χρησιμοποιούμε Intl.NumberFormat για ακριβή μορφοποίηση νομίσματος
-    // 'el-GR' για κόμμα ως δεκαδικό διαχωριστικό
-    // 'EUR' για το σύμβολο του ευρώ
     return new Intl.NumberFormat('el-GR', {
         style: 'currency',
         currency: 'EUR',
-        minimumFractionDigits: 2, // Εξασφαλίζει πάντα δύο δεκαδικά ψηφία
+        minimumFractionDigits: 2, 
     }).format(price);
 };
   

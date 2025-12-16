@@ -1,4 +1,5 @@
 {
   "/confirm/declaration/page": "app/confirm/declaration/page.js",
+  "/page": "app/page.js",
   "/select/books/page": "app/select/books/page.js"
 }

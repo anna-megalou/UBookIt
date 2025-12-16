@@ -18,16 +18,14 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 function SelectBooks() {
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
-    const [allBooks, setAllBooks] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]); // Όλα τα βιβλία με πλήρεις πληροφορίες
+    const [allBooks, setAllBooks] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [selectedBooks, setSelectedBooks] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
-    // *** 💡 Βήμα 2: Φόρτωση και Εμπλουτισμός Δεδομένων από Session Storage ***
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
         ;
     }, [
         router
     ]);
-    // *** 💡 Βήμα 3: Δυναμική Ομαδοποίηση των Βιβλίων ανά Εκδότη/Βιβλιοπωλείο ***
     const groupedPublishers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
         const groups = {};
         allBooks.forEach((book)=>{
@@ -61,6 +59,16 @@ function SelectBooks() {
         acc[book.store] = (acc[book.store] || 0) + book.price;
         return acc;
     }, {});
+    const formatPrice = (price)=>{
+        // Χρησιμοποιούμε Intl.NumberFormat για ακριβή μορφοποίηση νομίσματος
+        // 'el-GR' για κόμμα ως δεκαδικό διαχωριστικό
+        // 'EUR' για το σύμβολο του ευρώ
+        return new Intl.NumberFormat('el-GR', {
+            style: 'currency',
+            currency: 'EUR',
+            minimumFractionDigits: 2
+        }).format(price);
+    };
     const totalPrice = selectedBooks.reduce((sum, book)=>sum + book.price, 0);
     const uniqueStores = [
         ...new Set(selectedBooks.map((b)=>b.store))
@@ -71,7 +79,7 @@ function SelectBooks() {
             children: "Προετοιμασία επιλογών..."
         }, void 0, false, {
             fileName: "[project]/src/app/select/books/page.tsx",
-            lineNumber: 109,
+            lineNumber: 113,
             columnNumber: 12
         }, this);
     }
@@ -85,12 +93,12 @@ function SelectBooks() {
                     children: "Επίλεξε τα συγγράμματα που θέλεις να σου αποσταλούν"
                 }, void 0, false, {
                     fileName: "[project]/src/app/select/books/page.tsx",
-                    lineNumber: 116,
+                    lineNumber: 120,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/select/books/page.tsx",
-                lineNumber: 115,
+                lineNumber: 119,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -109,7 +117,7 @@ function SelectBooks() {
                                                 children: publisherGroup.publisherName
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/select/books/page.tsx",
-                                                lineNumber: 134,
+                                                lineNumber: 138,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -117,13 +125,13 @@ function SelectBooks() {
                                                 children: publisherGroup.deliveryDays
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/select/books/page.tsx",
-                                                lineNumber: 137,
+                                                lineNumber: 141,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/select/books/page.tsx",
-                                        lineNumber: 133,
+                                        lineNumber: 137,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -146,7 +154,7 @@ function SelectBooks() {
                                                                 className: "w-5 h-5 accent-primary-dark"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/select/books/page.tsx",
-                                                                lineNumber: 152,
+                                                                lineNumber: 156,
                                                                 columnNumber: 33
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -154,13 +162,13 @@ function SelectBooks() {
                                                                 children: book.bookTitle
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/select/books/page.tsx",
-                                                                lineNumber: 159,
+                                                                lineNumber: 163,
                                                                 columnNumber: 33
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/select/books/page.tsx",
-                                                        lineNumber: 151,
+                                                        lineNumber: 155,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -171,36 +179,33 @@ function SelectBooks() {
                                                                 children: book.available ? "Available" : "Unavailable"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/select/books/page.tsx",
-                                                                lineNumber: 165,
+                                                                lineNumber: 169,
                                                                 columnNumber: 33
                                                             }, this),
                                                             book.price > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: "text-primary-dark font-semibold text-xl whitespace-nowrap",
-                                                                children: [
-                                                                    book.price,
-                                                                    " €"
-                                                                ]
-                                                            }, void 0, true, {
+                                                                children: formatPrice(book.price)
+                                                            }, void 0, false, {
                                                                 fileName: "[project]/src/app/select/books/page.tsx",
-                                                                lineNumber: 169,
+                                                                lineNumber: 173,
                                                                 columnNumber: 37
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/select/books/page.tsx",
-                                                        lineNumber: 164,
+                                                        lineNumber: 168,
                                                         columnNumber: 29
                                                     }, this)
                                                 ]
                                             }, book.bookId, true, {
                                                 fileName: "[project]/src/app/select/books/page.tsx",
-                                                lineNumber: 150,
+                                                lineNumber: 154,
                                                 columnNumber: 25
                                             }, this);
                                         })
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/select/books/page.tsx",
-                                        lineNumber: 143,
+                                        lineNumber: 147,
                                         columnNumber: 15
                                     }, this),
                                     publisherGroup.books.some((b)=>!b.available) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -213,7 +218,7 @@ function SelectBooks() {
                                                     children: "⚠️"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/select/books/page.tsx",
-                                                    lineNumber: 183,
+                                                    lineNumber: 187,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -221,7 +226,7 @@ function SelectBooks() {
                                                     children: "You won't receive the books that are not available for delivery. Consider placing your order once all the books are available in the bookstore."
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/select/books/page.tsx",
-                                                    lineNumber: 184,
+                                                    lineNumber: 188,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -229,29 +234,29 @@ function SelectBooks() {
                                                     children: "Notify Me"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/select/books/page.tsx",
-                                                    lineNumber: 187,
+                                                    lineNumber: 191,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/select/books/page.tsx",
-                                            lineNumber: 182,
+                                            lineNumber: 186,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/select/books/page.tsx",
-                                        lineNumber: 181,
+                                        lineNumber: 185,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, index, true, {
                                 fileName: "[project]/src/app/select/books/page.tsx",
-                                lineNumber: 128,
+                                lineNumber: 132,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/app/select/books/page.tsx",
-                        lineNumber: 125,
+                        lineNumber: 129,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -264,14 +269,14 @@ function SelectBooks() {
                                         className: "w-5 h-5 text-primary-dark"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/select/books/page.tsx",
-                                        lineNumber: 200,
+                                        lineNumber: 204,
                                         columnNumber: 13
                                     }, this),
                                     "Summary"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/select/books/page.tsx",
-                                lineNumber: 199,
+                                lineNumber: 203,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -281,40 +286,16 @@ function SelectBooks() {
                                         children: "Total amount"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/select/books/page.tsx",
-                                        lineNumber: 204,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-primary-dark font-semibold",
-                                        children: [
-                                            totalPrice.toFixed(2),
-                                            " €"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/app/select/books/page.tsx",
-                                        lineNumber: 205,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/select/books/page.tsx",
-                                lineNumber: 203,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-between items-center text-gray-600 font-medium mb-4",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        children: "Books selected"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/select/books/page.tsx",
                                         lineNumber: 208,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "text-primary-dark font-semibold",
-                                        children: selectedBooks.length
-                                    }, void 0, false, {
+                                        children: [
+                                            formatPrice(totalPrice),
+                                            " "
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/src/app/select/books/page.tsx",
                                         lineNumber: 209,
                                         columnNumber: 13
@@ -326,10 +307,10 @@ function SelectBooks() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-between items-center text-gray-600 font-medium mb-6",
+                                className: "flex justify-between items-center text-gray-600 font-medium mb-4",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        children: "Stores"
+                                        children: "Books selected"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/select/books/page.tsx",
                                         lineNumber: 212,
@@ -337,7 +318,7 @@ function SelectBooks() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "text-primary-dark font-semibold",
-                                        children: uniqueStores.length
+                                        children: selectedBooks.length
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/select/books/page.tsx",
                                         lineNumber: 213,
@@ -347,6 +328,30 @@ function SelectBooks() {
                             }, void 0, true, {
                                 fileName: "[project]/src/app/select/books/page.tsx",
                                 lineNumber: 211,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex justify-between items-center text-gray-600 font-medium mb-6",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        children: "Stores"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/select/books/page.tsx",
+                                        lineNumber: 216,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-primary-dark font-semibold",
+                                        children: uniqueStores.length
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/select/books/page.tsx",
+                                        lineNumber: 217,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/select/books/page.tsx",
+                                lineNumber: 215,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -360,7 +365,7 @@ function SelectBooks() {
                                         value: totalPrice.toFixed(2)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/select/books/page.tsx",
-                                        lineNumber: 222,
+                                        lineNumber: 226,
                                         columnNumber: 13
                                     }, this),
                                     Object.entries(storeTotals).map(([store, price])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -371,7 +376,7 @@ function SelectBooks() {
                                                     value: store
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/select/books/page.tsx",
-                                                    lineNumber: 225,
+                                                    lineNumber: 229,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -380,13 +385,13 @@ function SelectBooks() {
                                                     value: price.toFixed(2)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/select/books/page.tsx",
-                                                    lineNumber: 226,
+                                                    lineNumber: 230,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, store, true, {
                                             fileName: "[project]/src/app/select/books/page.tsx",
-                                            lineNumber: 224,
+                                            lineNumber: 228,
                                             columnNumber: 17
                                         }, this)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -396,31 +401,31 @@ function SelectBooks() {
                                         children: "Continue"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/select/books/page.tsx",
-                                        lineNumber: 229,
+                                        lineNumber: 233,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/select/books/page.tsx",
-                                lineNumber: 217,
+                                lineNumber: 221,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/select/books/page.tsx",
-                        lineNumber: 198,
+                        lineNumber: 202,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/select/books/page.tsx",
-                lineNumber: 122,
+                lineNumber: 126,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/select/books/page.tsx",
-        lineNumber: 113,
+        lineNumber: 117,
         columnNumber: 5
     }, this);
 }

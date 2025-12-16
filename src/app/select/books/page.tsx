@@ -12,9 +12,9 @@ interface DeclaredBook {
 }
 
 interface Book extends DeclaredBook {
-  id: number; // Προστέθηκε για τοπική διαχείριση (αν χρειαστεί)
+  id: number; 
   price: number;
-  store: string; // Το βιβλιοπωλείο (μπορεί να είναι ίδιο με το publisher)
+  store: string; 
   available: boolean;
   days: string;
 }
@@ -28,22 +28,16 @@ interface PublisherGroup {
 export default function SelectBooks() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [allBooks, setAllBooks] = useState<Book[]>([]); // Όλα τα βιβλία με πλήρεις πληροφορίες
+  const [allBooks, setAllBooks] = useState<Book[]>([]); 
   const [selectedBooks, setSelectedBooks] = useState<Book[]>([]);
 
-  // *** 💡 Βήμα 2: Φόρτωση και Εμπλουτισμός Δεδομένων από Session Storage ***
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const storedData = sessionStorage.getItem('eleyth-declared-books');
       if (storedData) {
         const declaredBooks: DeclaredBook[] = JSON.parse(storedData);
         
-        // *** ⚠️ ΣΗΜΑΝΤΙΚΟ: Simulated API Call ***
-        // Εδώ θα έπρεπε να καλέσεις ένα API με τα bookIds/publishers 
-        // για να πάρεις ΤΙΜΗ, ΔΙΑΘΕΣΙΜΟΤΗΤΑ και ΧΡΟΝΟ ΠΑΡΑΔΟΣΗΣ.
-        // Χρησιμοποιούμε μια mock συνάρτηση για να προσομοιώσουμε αυτό:
         const enrichedBooks = declaredBooks.map((declaredBook, index) => {
-          // Προσομοιώνουμε πληροφορίες διαθεσιμότητας/τιμής βάσει τίτλου/εκδότη
           const isAvailable = index % 3 !== 0; // Κάθε τρίτο βιβλίο είναι Unavailable
           const price = isAvailable ? (index % 2 === 0 ? 2.0 : 1.5) : 0;
           const days = declaredBook.publisher.includes('Broken') ? "2-4 Days" : "1-3 Days";
@@ -67,7 +61,6 @@ export default function SelectBooks() {
     }
   }, [router]);
   
-  // *** 💡 Βήμα 3: Δυναμική Ομαδοποίηση των Βιβλίων ανά Εκδότη/Βιβλιοπωλείο ***
   const groupedPublishers: PublisherGroup[] = useMemo(() => {
     const groups: Record<string, PublisherGroup> = {};
 
@@ -101,6 +94,17 @@ export default function SelectBooks() {
     acc[book.store] = (acc[book.store] || 0) + book.price;
     return acc;
   }, {});
+
+  const formatPrice = (price: number): string => {
+    // Χρησιμοποιούμε Intl.NumberFormat για ακριβή μορφοποίηση νομίσματος
+    // 'el-GR' για κόμμα ως δεκαδικό διαχωριστικό
+    // 'EUR' για το σύμβολο του ευρώ
+    return new Intl.NumberFormat('el-GR', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 2, // Εξασφαλίζει πάντα δύο δεκαδικά ψηφία
+    }).format(price);
+};
   
   const totalPrice = selectedBooks.reduce((sum, book) => sum + book.price, 0);
   const uniqueStores = [...new Set(selectedBooks.map(b => b.store))];
@@ -167,7 +171,7 @@ export default function SelectBooks() {
                                 </span>
                                 {book.price > 0 && (
                                     <span className="text-primary-dark font-semibold text-xl whitespace-nowrap">
-                                        {book.price} €
+                                        {formatPrice(book.price)} 
                                     </span>
                                 )}
                             </div>
@@ -202,7 +206,7 @@ export default function SelectBooks() {
           </h3>
           <div className="flex justify-between items-center text-gray-600 mb-4">
             <p>Total amount</p>
-            <span className="text-primary-dark font-semibold">{totalPrice.toFixed(2)} €</span>
+            <span className="text-primary-dark font-semibold">{formatPrice(totalPrice)} </span>
           </div>
           <div className="flex justify-between items-center text-gray-600 font-medium mb-4">
             <p>Books selected</p>

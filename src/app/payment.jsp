@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.text.DecimalFormat" %>
 <!DOCTYPE html>
 <html lang="el">
 <head>
@@ -102,6 +103,9 @@
             width: 300px;
             margin-right: 2.5rem;
             margin-top: 1rem;
+        }
+        .card3 h3 {
+            margin-top: 0;
         }
         label {
             display: flex;
@@ -244,31 +248,34 @@
                 </div>
 
                 <%
-Double priceObj = (Double) session.getAttribute("price");
-double price = (priceObj != null) ? priceObj.doubleValue() : 0.0;
-%>
+                Double priceObj = (Double) session.getAttribute("price");
+                double price = (priceObj != null) ? priceObj.doubleValue() : 0.0;
+                DecimalFormat df = new DecimalFormat("0.00");
+                String priceFormatted = df.format(price);
+                %>
+
                 <!-- Right side -->
                 <div style="flex: 1; display: flex; flex-direction: column; gap: 0.1rem;">
                     <div class="card3">
                         <h3 style="font-size: 1.2rem; font-weight: bold; color:#04235C;">Final amount</h3>
     
-    <div class="flex justify-between amount-row">
-        <span>Delivery</span>
-        <span id="delivery-fee"><%= price %> €</span>
-    </div>
-    <div class="flex justify-between amount-row">
-        <span>+</span>
-        <span id="cash-fee">0,00 €</span>
-    </div>
-    <hr>
-    <div class="flex justify-between amount-row" style="font-weight:bold;">
-        <span>Total</span>
-        <span id="total-amount"><%= price %> €</span>
-    </div>
+                        <div class="flex justify-between amount-row">
+                            <span>Delivery</span>
+                            <span id="delivery-fee"><%= priceFormatted %> €</span>
+                        </div>
+                        <div class="flex justify-between amount-row">
+                            <span>+</span>
+                            <span id="cash-fee">0,00 €</span>
+                        </div>
+                        <hr>
+                        <div class="flex justify-between amount-row" style="font-weight:bold;">
+                            <span>Total</span>
+                            <span id="total-amount"><%= priceFormatted %> €</span>
+                        </div>
 
-    <div class="button-wrapper">
-        <button type="submit" class="button-confirm">Confirm</button>
-    </div>
+                        <div class="button-wrapper">
+                            <button type="submit" class="button-confirm">Confirm</button>
+                        </div>
                     </div>
                 </form>
 
@@ -309,11 +316,11 @@ double price = (priceObj != null) ? priceObj.doubleValue() : 0.0;
                 const cashFeeEl = document.getElementById('cash-fee');
 
                 if (radio.value === 'cod') {
-                    cashFeeEl.textContent = cashExtra.toFixed(2) + ' €';
-                    totalEl.textContent = (deliveryFee + cashExtra).toFixed(2) + ' €';
+                    cashFeeEl.textContent = cashExtra.toLocaleString('el-GR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+                    totalEl.textContent = (deliveryFee + cashExtra).toLocaleString('el-GR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
                 } else if (radio.value === 'card') {
                     cashFeeEl.textContent = '0,00 €';
-                    totalEl.textContent = deliveryFee.toFixed(2) + ' €';
+                    totalEl.textContent = deliveryFee.toLocaleString('el-GR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
                 }
             }
         });

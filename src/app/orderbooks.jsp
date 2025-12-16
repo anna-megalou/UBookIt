@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.text.DecimalFormatSymbols" %>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
@@ -314,27 +316,31 @@ request.setCharacterEncoding("UTF-8");
 
                     session.setAttribute("storeNames", storeNames);
                     session.setAttribute("storePrices", storePrices);
-                    String amount;
-                    if (price % 1 == 0) {
-                        amount = String.valueOf((int) price);
-                    } else {
-                        amount = String.valueOf(price);
-                    }
+                    DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+                    symbols.setDecimalSeparator(',');
+                    symbols.setGroupingSeparator('.');
+                    DecimalFormat euroFormat = new DecimalFormat("0.00", symbols);
                     %>
 
                     <div class="amount-row">
                         <span>Amount</span>
-                        <span><%= amount %> €</span>
+                        <span><%= euroFormat.format(price) %> €</span>
                     </div>
 
                     <ul class="store-list">
                         <%
                         if (storeNames != null && storePrices != null) {
                             for (int i = 0; i < storeNames.length; i++) {
+                                double sp = 0;
+                                try {
+                                    sp = Double.parseDouble(storePrices[i]);
+                                } catch (NumberFormatException e) {
+                                    sp = 0;
+                                }
                         %>
                                  <li class="store-row">
                                     <span class="store-name">• <%= storeNames[i] %></span>
-                                    <span class="store-price"><%= storePrices[i] %> €</span>
+                                    <span class="store-price"><%= euroFormat.format(sp) %> €</span>
                                 </li>
                         <%
                             }

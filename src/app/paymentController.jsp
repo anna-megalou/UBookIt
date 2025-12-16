@@ -18,7 +18,7 @@ try {
         throw new Exception("Invalid payment method");
     }
     
-    Integer userIdObj = (Integer) session.getAttribute("user_id");// Το δέχομαι με το που γίνει συνδεθεί ένας χρήστης
+    Integer userIdObj = (Integer) session.getAttribute("user_id");// Το δέχομαι με το συνδεθεί ένας χρήστης
     if (userIdObj == null) {
         throw new Exception("User not logged in");
     }

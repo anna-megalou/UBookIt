@@ -199,6 +199,17 @@
 
         <h1>Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου</h1>
 
+        <% if (request.getAttribute("errorMessage") != null) { %>		
+            <div class="alert alert-danger text-center" style="color: #721c24; background-color: #f8d7da; padding: 10px; border-radius: 10px; border: 1px solid #f5c6cb; margin-bottom: 20px; margin-left: 2.5rem; width: 500px; "><%=(String)request.getAttribute("errorMessage") %></div>
+        <% 
+        } 
+        %>
+        <% if (request.getAttribute("successMessage") != null) { %>
+            <div class="alert alert-success text-center" style="color: #155724; background-color: #d4edda; padding: 10px; border-radius: 10px; border: 1px solid #c3e6cb; margin-bottom: 20px; margin-left: 2.5rem; width: 300px; "><%=(String)request.getAttribute("successMessage") %></div>
+        <%
+        }
+        %>
+
         <form action="paymentController.jsp" method="post">
 
             <div class="flex gap-4">
@@ -226,21 +237,21 @@
                             <div class="field-row">
                                 <div class="field-inline">
                                     <label for="cardNumber">Card number</label>
-                                    <input type="text" id="cardNumber" class="input-base" placeholder="card number">
+                                    <input type="text" id="cardNumber" name="cardNumber" class="input-base" placeholder="card number">
                                 </div>
                                 <div class="field-inline">
                                     <label for="expDate">Expiration Date</label>
-                                    <input type="text" id="expDate" class="input-base" placeholder="exp. date">
+                                    <input type="text" id="expDate" name="expDate" class="input-base" placeholder="exp. date">
                                 </div>
                             </div>
                             <div class="field-row">
                                 <div class="field-inline">
                                     <label for="cardName">Name on card</label>
-                                    <input type="text" id="cardName" class="input-base" placeholder="name">
+                                    <input type="text" id="cardName" name="cardName" class="input-base" placeholder="name">
                                 </div>
                                 <div class="field-inline cvv-field">
                                     <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" class="input-base" placeholder="CVV">
+                                    <input type="text" id="cvv" name="cvv" class="input-base" placeholder="CVV">
                                 </div>
                             </div>
                         </div>

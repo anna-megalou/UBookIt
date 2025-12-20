@@ -10,48 +10,12 @@ request.setCharacterEncoding("UTF-8");
     <meta charset="UTF-8">
     <title>Checkout Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+          body {
+            font-family: Arial, Helvetica, sans-serif;
             background-color: #F0F9FF;
             margin: 0;
             padding: 0;
-        }
-        .container-header {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0rem;
-            height: 25px;
-        }
-        .header-logo {
-            font-size: 2.3rem;
-            font-weight: bold;
-            color: #04235C;
-            margin-top: -10px;
-        }
-        header a {
-            text-decoration: none;
-            color: #04235C; 
-            margin-right: 3rem;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        header a:last-child {
-            margin-right: 0;
-        }
-        .profile-circle {
-            width: 40px;           
-            height: 40px;
-            background-color: #04235C;  
-            color: #F0F9FF;          
-            font-weight: bold;
-            margin-top: -7px;
-            font-size: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;   
-            cursor: default;       
-            user-select: none;     
+            padding-top: 100px; /* Space for fixed header */
         }
         .container {
             background-color: white;
@@ -59,6 +23,45 @@ request.setCharacterEncoding("UTF-8");
             max-width: 1400px;
             margin: 2rem auto;
             padding: 2rem 3rem;
+        }
+        .container-header {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0rem;
+            height: 25px;
+        }
+        /* Breadcrumb Styles */
+        .breadcrumbs ul {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 0.5rem;
+        }
+        .breadcrumbs li {
+            display: flex;
+            align-items: center;
+        }
+        .breadcrumbs a {
+            color: #04235C;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .breadcrumbs a:hover {
+            color: #304D79;
+            text-decoration: underline;
+        }
+        .breadcrumbs-separator {
+            display: flex;
+            align-items: center;
+            color: #99AAC1;
+            margin: 0 0.25rem;
+        }
+        .breadcrumbs [aria-current="page"] {
+            color: #04235C;
+            font-weight: 500;
         }
         h1 {
             font-size: 2rem;
@@ -114,20 +117,21 @@ request.setCharacterEncoding("UTF-8");
         .personal-fields {
             margin-left: 2rem;
             margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr auto 1fr;
+            gap: 1rem 1.5rem;
+            align-items: center;
         }
         .field-row {
-            display: flex;
-            gap: 2rem;   
-            margin-top: 1.5rem;
+            display: contents;
         }
         .field-inline {
-            display: flex;
-            align-items: center;
-            gap: 0.1rem; 
+            display: contents;
         }
         .field-inline label {
-            min-width: 120px;      
-            text-align: right;     
+            text-align: right;
+            font-weight: 500;
+            color: #04235C;
         }
         .input-base {
             border: 1px solid #E0EDFA;
@@ -137,23 +141,16 @@ request.setCharacterEncoding("UTF-8");
             background-color: white;
             font-size: 1rem;
         }
-        #AM { width: 200px; }
-        #identity { width: 200px; }
-        #name { width: 225px; }
-        #surname { width: 225px; }
-        #email { width: 250px; }
-        #phone { width: 200px; }
-        #city { width: 225px; }
-        #prefecture { width: 225px; }
-        #street { width: 275px; }
-        #streetId { width: 175px; }
+        .personal-fields .input-base {
+            width: 72%;
+        }
         input[type="text"],
         input[type="email"],
         input[type="tel"] {
             border: 1px solid #d3d3d3;
             border-radius: 50px;
             padding: 0.6rem 1rem;
-            width: 100%;
+            width: 150px;
         }
         .row {
             display: flex;
@@ -231,36 +228,20 @@ request.setCharacterEncoding("UTF-8");
                 <div class="card1">
                     <h2>Personal Details</h2>
                     <div class="personal-fields">
-                        <div class="field-row">
-                            <div class="field-inline">
-                                <label for="AM">AM</label>
-                                <input type="text" id="AM" class="input-base" placeholder="academic id">
-                            </div>
-                            <div class="field-inline">
-                                <label for="identity">Identity</label>
-                                <input type="text" id="identity" class="input-base" placeholder="identity id">
-                            </div>
-                        </div>
-                        <div class="field-row">
-                            <div class="field-inline">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" class="input-base" placeholder="name">
-                            </div>
-                            <div class="field-inline">
-                                <label for="surname">Surname</label>
-                                <input type="text" id="surname" class="input-base" placeholder="surname">
-                            </div>
-                        </div>
-                        <div class="field-row">
-                            <div class="field-inline">
-                                <label for="email">Email</label>
-                                <input type="text" id="email" class="input-base" placeholder="email">
-                            </div>
-                            <div class="field-inline">
-                                <label for="phone">Phone</label>
-                                <input type="text" id="phone" class="input-base" placeholder="phone">
-                            </div>
-                        </div>
+                        <label for="AM">AM</label>
+                        <input type="text" id="AM" class="input-base" placeholder="academic id">
+                        <label for="identity">Identity</label>
+                        <input type="text" id="identity" class="input-base" placeholder="identity id">
+                        
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="input-base" placeholder="name">
+                        <label for="surname">Surname</label>
+                        <input type="text" id="surname" class="input-base" placeholder="surname">
+                        
+                        <label for="email">Email</label>
+                        <input type="text" id="email" class="input-base" placeholder="email">
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" class="input-base" placeholder="phone">
                     </div>
                 </div>
                 
@@ -269,26 +250,15 @@ request.setCharacterEncoding("UTF-8");
                 <div class="card2">
                     <h2>Location details</h2>
                     <div class="personal-fields">
-                        <div class="field-row">
-                            <div class="field-inline">
-                                <label for="city">City</label>
-                                <input type="text" id="city" class="input-base" placeholder="city">
-                            </div>
-                            <div class="field-inline">
-                                <label for="prefecture">Prefecture</label>
-                                <input type="text" id="prefecture" class="input-base" placeholder="prefecture">
-                            </div>
-                        </div>
-                        <div class="field-row">
-                            <div class="field-inline">
-                                <label for="street">Street</label>
-                                <input type="text" id="street" class="input-base" placeholder="street name">
-                            </div>
-                            <div class="field-inline">
-                                <label for="streetId">Street Id</label>
-                                <input type="text" id="streetId" class="input-base" placeholder="street id">
-                            </div>
-                        </div>
+                        <label for="city">City</label>
+                        <input type="text" id="city" class="input-base" placeholder="city">
+                        <label for="prefecture">Prefecture</label>
+                        <input type="text" id="prefecture" class="input-base" placeholder="prefecture">
+                        
+                        <label for="street">Street</label>
+                        <input type="text" id="street" class="input-base" placeholder="street name">
+                        <label for="streetId">Street Id</label>
+                        <input type="text" id="streetId" class="input-base" placeholder="street id">
                     </div>
                 </div>
             </div>

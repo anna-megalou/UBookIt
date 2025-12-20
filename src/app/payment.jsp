@@ -7,10 +7,18 @@
     <title>Checkout Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background-color: #F0F9FF;
             margin: 0;
             padding: 0;
+            padding-top: 100px; /* Space for fixed header */
+        }
+        .container {
+            background-color: white;
+            border-radius: 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 2rem 3rem;
         }
         .container-header {
             max-width: 1400px;
@@ -293,6 +301,7 @@
                 <div class="image-container">
                     <img src="images/payment-method.png" alt="Money and card">
                 </div>
+            </div>
             </div>
         </div>
     </div>

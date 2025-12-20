@@ -2,7 +2,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { ReceiptText } from "lucide-react";
-import { AlertTriangle, Bell } from "@tabler/icons-react";
 
 // Τύποι Δεδομένων
 interface DeclaredBook {

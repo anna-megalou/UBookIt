@@ -20,28 +20,6 @@
             margin: 2rem auto;
             padding: 2rem 3rem;
         }
-        .container-header {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0rem;
-            height: 25px;
-        }
-        .header-logo {
-            font-size: 2.3rem;
-            font-weight: bold;
-            color: #04235C;
-            margin-top: -10px;
-        }
-        header a {
-            text-decoration: none;
-            color: #04235C; 
-            margin-right: 3rem;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        header a:last-child {
-            margin-right: 0;
-        }
         .profile-circle {
             width: 40px;           
             height: 40px;
@@ -202,8 +180,8 @@
     </style>
 </head>
 <body>
-    <%@ include file="header.jsp" %>
     <div class="container">
+        <%@ include file="header.jsp" %>
 
         <h1>Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου</h1>
 

@@ -215,9 +215,9 @@ request.setCharacterEncoding("UTF-8");
     </style>
 </head>
 <body>
-    <%@ include file="header.jsp" %>
+   
     <div class="container">
-
+        <%@ include file="header.jsp" %>
         <h1>Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου</h1>
 
         <div class="flex gap-4">

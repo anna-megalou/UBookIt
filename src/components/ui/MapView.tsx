@@ -8,7 +8,8 @@ interface MapViewProps {
   order: Order;
 }
 
-export default function MapView({ order }: MapViewProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function MapView(_props: MapViewProps) {
   return (
     <div className="bg-white rounded-2xl mx-0 md:mx-8 px-4 md:px-8 h-full relative overflow-hidden min-h-[400px] md:min-h-[600px]">
       {/* Map Background Image */}

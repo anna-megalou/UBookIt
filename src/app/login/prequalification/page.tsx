@@ -42,10 +42,15 @@ export default function LoginPage() {
         const data = await response.json();
         
         const formattedUniversities = Array.isArray(data) 
-          ? data.map((uni: any) => ({
-              value: uni.value || uni.id || String(uni),
-              label: uni.label || uni.name || String(uni),
-            }))
+          ? data.map((uni: { value?: string; id?: string; label?: string; name?: string } | string) => {
+              if (typeof uni === 'string') {
+                return { value: uni, label: uni };
+              }
+              return {
+                value: uni.value || uni.id || String(uni),
+                label: uni.label || uni.name || String(uni),
+              };
+            })
           : [];
         
         // Add placeholder option at the beginning

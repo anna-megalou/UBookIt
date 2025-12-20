@@ -24,3 +24,20 @@ export function withBasePath(path: string): string {
   return path.startsWith('/') ? path : `/${path}`;
 }
 
+/**
+ * Removes the base path from a pathname
+ * This is needed because usePathname() returns the full path including basePath in production
+ * Use this when comparing pathnames to route paths
+ */
+export function removeBasePath(pathname: string): string {
+  const basePath = getBasePath();
+  if (!basePath || !pathname) {
+    return pathname;
+  }
+  // Remove basePath from the beginning of pathname
+  if (pathname.startsWith(basePath)) {
+    return pathname.slice(basePath.length) || '/';
+  }
+  return pathname;
+}
+

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { removeBasePath } from '@/lib/utils';
 
 interface NavigationProps {
   className?: string;
@@ -28,6 +29,7 @@ export default function Navigation({
   variant = 'header',
 }: NavigationProps) {
   const pathname = usePathname();
+  const normalizedPathname = removeBasePath(pathname);
   const baseLinkClasses =
     variant === 'header'
       ? 'text-secondary-dark hover:text-primary-dark text-lg font-bold'
@@ -37,7 +39,7 @@ export default function Navigation({
     <nav className={className}>
       <div className="flex flex-row w-fill gap-8">
         {
-        pathname === "/login/prequalification/" || pathname === "/login/signin/" ? navigationItemsLogin.map((item) => (
+        normalizedPathname === "/login/prequalification/" || normalizedPathname === "/login/signin/" ? navigationItemsLogin.map((item) => (
           <Link
             key={item.href}
             href={item.href}

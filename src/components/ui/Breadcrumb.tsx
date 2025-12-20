@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { ChevronRight, ChevronDown } from "tabler-icons-react";
+import { ChevronDown } from "tabler-icons-react";
+import { removeBasePath } from "@/lib/utils";
 
 interface BreadcrumbItem {
   label: string;
@@ -14,7 +15,8 @@ interface BreadcrumbItem {
 
 export default function Breadcrumb() {
   const pathname = usePathname();
-  console.log(pathname);
+  const normalizedPathname = removeBasePath(pathname);
+  console.log('Breadcrumb - Original pathname:', pathname, 'Normalized:', normalizedPathname);
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>(
     {}
   );
@@ -37,16 +39,16 @@ export default function Breadcrumb() {
     };
     items.push(secondItem);
 
-    if (pathname === "/") {
+    if (normalizedPathname === "/") {
       return items;
     }
 
     // Don't show additional breadcrumbs for pages that are in the menu dropdown
-    if (pathname === "/select/books" || pathname === "/tracking") {
+    if (normalizedPathname === "/select/books" || normalizedPathname === "/tracking") {
       return items;
     }
 
-    const pathSegments = pathname.split("/").filter(Boolean);
+    const pathSegments = normalizedPathname.split("/").filter(Boolean);
 
     pathSegments.forEach((segment, index) => {
       const href = "/" + pathSegments.slice(0, index + 1).join("/");
@@ -104,7 +106,7 @@ export default function Breadcrumb() {
   const items = getBreadcrumbItems();
 
   // Don't show breadcrumb on home page
-  if (pathname === "/" || pathname === "/login/prequalification/" || pathname === "/login/signin/") {
+  if (normalizedPathname === "/" || normalizedPathname === "/login/prequalification/" || normalizedPathname === "/login/signin/") {
     return null;
   }
     return (

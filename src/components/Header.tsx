@@ -12,14 +12,14 @@ export default function Header() {
   const [buttonText, setButtonText] = useState('Sign In');
   const [buttonHref, setButtonHref] = useState('/login/prequalification');
   
-  // Pages where Sign In should become Logout
-  const logoutPages = [
-    '/confirm/declaration',
-    '/select/books',
-    '/orderbooks'
-  ];
-  
   useEffect(() => {
+    // Pages where Sign In should become Logout
+    const logoutPages = [
+      '/confirm/declaration',
+      '/select/books',
+      '/orderbooks'
+    ];
+    
     // Normalize pathname (remove trailing slash if present)
     const normalizedPathname = pathname?.replace(/\/$/, '') || '';
     

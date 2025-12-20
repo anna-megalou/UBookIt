@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { ChevronRight, ChevronDown } from "tabler-icons-react";
+import { ChevronDown } from "tabler-icons-react";
 
 interface BreadcrumbItem {
   label: string;

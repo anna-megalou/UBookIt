@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation"; // Χρησιμοποιούμε useRouter για navigation μετά την αποθήκευση
 
 // Ορισμός των τύπων δεδομένων
 interface BookData {
@@ -19,7 +18,6 @@ export default function Home() {
   const [publishers, setPublishers] = useState<PublisherGroup[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchBooks = async () => {

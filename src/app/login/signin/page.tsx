@@ -9,11 +9,6 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
 
-interface University {
-  value: string;
-  label: string;
-}
-
 function LoginForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -25,7 +20,6 @@ function LoginForm() {
   const [rememberMeValue, setRememberMeValue] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [apiError, setApiError] = useState<string | null>(null);
-  const [universities, setUniversities] = useState<University[]>([]);
   const [errors, setErrors] = useState<{
     university?: string;
     username?: string;
@@ -37,7 +31,7 @@ function LoginForm() {
     // Fetch universities to map labels to IDs
     const fetchUniversities = async () => {
       try {
-        let requestBody = {
+        const requestBody = {
           "username": usernameValue,
           "password": passwordValue,
           "universityId": universityId,
@@ -73,7 +67,7 @@ function LoginForm() {
     if (universityIdParam) {
       setUniversityId(decodeURIComponent(universityIdParam));
     }
-  }, [searchParams]);
+  }, [searchParams, usernameValue, passwordValue, universityId]);
 
   const handleUniversityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!isReadOnly) {
@@ -107,15 +101,7 @@ function LoginForm() {
 
   // Map university label to universityId
   const getUniversityId = (universityLabel: string): string => {
-    // First, try to find the university in the fetched list
-    const foundUniversity = universities.find(
-      uni => uni.label.toLowerCase() === universityLabel.toLowerCase()
-    );
-    if (foundUniversity) {
-      return foundUniversity.value;
-    }
-    
-    // Fallback: Map common university labels to IDs
+    // Map common university labels to IDs
     const lowerLabel = universityLabel.toLowerCase();
     if (lowerLabel.includes('οικονομικό') || lowerLabel.includes('economics')) {
       return 'aueb';

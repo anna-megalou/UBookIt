@@ -28,7 +28,7 @@ export default function SelectBooks() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [allBooks, setAllBooks] = useState<Book[]>([]); 
-  const [selectedBooks, setSelectedBooks] = useState<Book[]>([]);
+  const [selectedPublishers, setSelectedPublishers] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -78,18 +78,17 @@ export default function SelectBooks() {
     return Object.values(groups);
   }, [allBooks]);
 
-  const toggleBook = (book: Book) => {
-    if (selectedBooks.some(b => b.bookId === book.bookId)) {
-      setSelectedBooks(selectedBooks.filter(b => b.bookId !== book.bookId));
-    } else {
-      setSelectedBooks([...selectedBooks, book]);
-    }
+  const togglePublisher = (publisherName: string) => {
+    setSelectedPublishers(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(publisherName)) {
+        newSet.delete(publisherName);
+      } else {
+        newSet.add(publisherName);
+      }
+      return newSet;
+    });
   };
-
-  const storeTotals = selectedBooks.reduce((acc: Record<string, number>, book) => {
-    acc[book.store] = (acc[book.store] || 0) + book.price;
-    return acc;
-  }, {});
 
   const formatPrice = (price: number): string => {
     return new Intl.NumberFormat('el-GR', {
@@ -97,10 +96,36 @@ export default function SelectBooks() {
         currency: 'EUR',
         minimumFractionDigits: 2, 
     }).format(price);
-};
+  };
+
+  // Calculate totals for selected publishers
+  const selectedBooks = useMemo(() => {
+    return allBooks.filter(book => selectedPublishers.has(book.store));
+  }, [allBooks, selectedPublishers]);
+
+  const storeTotals = useMemo(() => {
+    return selectedBooks.reduce((acc: Record<string, number>, book) => {
+      acc[book.store] = (acc[book.store] || 0) + book.price;
+      return acc;
+    }, {});
+  }, [selectedBooks]);
   
-  const totalPrice = selectedBooks.reduce((sum, book) => sum + book.price, 0);
-  const uniqueStores = [...new Set(selectedBooks.map(b => b.store))];
+  const totalPrice = useMemo(() => {
+    return selectedBooks.reduce((sum, book) => sum + book.price, 0);
+  }, [selectedBooks]);
+
+  const uniqueStores = useMemo(() => {
+    return [...new Set(selectedBooks.map(b => b.store))];
+  }, [selectedBooks]);
+
+  // Calculate publisher totals
+  const getPublisherTotal = (publisherGroup: PublisherGroup): number => {
+    return publisherGroup.books.reduce((sum, book) => sum + book.price, 0);
+  };
+
+  const hasUnavailableBooks = (publisherGroup: PublisherGroup): boolean => {
+    return publisherGroup.books.some(book => !book.available);
+  };
 
   if (loading) {
     return <p className="text-center mt-10">Προετοιμασία επιλογών...</p>;
@@ -121,74 +146,94 @@ export default function SelectBooks() {
         {/* Αριστερή στήλη: ΔΥΝΑΜΙΚΑ Cards */}
         <div className="flex-1 grid auto-rows-auto gap-y-5 pb-20">
           
-          {groupedPublishers.map((publisherGroup, index) => (
-            <div
-              key={index}
-              className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl w-full"
-            >
-              {/* Εκδότης και Χρόνος Παράδοσης */}
-              <div className="flex justify-between items-start mb-4">
-                <h4 className="text-xl font-semibold text-primary-dark">
-                  {publisherGroup.publisherName}
-                </h4>
-                <span className="text-md text-gray-500">
-                  {publisherGroup.deliveryDays}
-                </span>
-              </div>
+          {groupedPublishers.map((publisherGroup, index) => {
+            const isPublisherSelected = selectedPublishers.has(publisherGroup.publisherName);
+            const publisherHasUnavailable = hasUnavailableBooks(publisherGroup);
+            const publisherTotal = getPublisherTotal(publisherGroup);
+            const showWarning = isPublisherSelected && publisherHasUnavailable;
 
-              {/* Λίστα Βιβλίων για αυτόν τον Εκδότη */}
-              <div className="flex flex-col gap-2">
-                {publisherGroup.books.map((book) => {
-                    const isSelected = selectedBooks.some(b => b.bookId === book.bookId);
-                    const isUnavailable = !book.available;
-                    const bgColor = isUnavailable ? "bg-red-400" : "bg-green-500";
-                    
-                    return (
-                        <label key={book.bookId} className="flex justify-between items-center py-2 border-b last:border-b-0 border-gray-200 cursor-pointer">
-                            <div className="flex items-center gap-5 flex-1">
-                                <input
-                                    type="checkbox"
-                                    checked={isSelected}
-                                    disabled={isUnavailable}
-                                    onChange={() => toggleBook(book)}
-                                    className="w-5 h-5 accent-primary-dark"
-                                />
-                                <span className="text-primary-dark font-medium text-lg flex-1">
-                                    {book.bookTitle}
-                                </span>
-                            </div>
-                            
-                            <div className="flex items-center gap-4 ml-4 flex-shrink-0">
-                                <span className={`text-white font-medium text-md px-4 py-1 rounded-full whitespace-nowrap ${bgColor}`}>
-                                    {book.available ? "Available" : "Unavailable"}
-                                </span>
-                                {book.price > 0 && (
-                                    <span className="text-primary-dark font-semibold text-xl whitespace-nowrap">
-                                        {formatPrice(book.price)} 
-                                    </span>
-                                )}
-                            </div>
-                        </label>
-                    );
-                })}
-              </div>
+            return (
+              <div
+                key={index}
+                className="border-3 border-secondary-border shadow-sm bg-white-light px-6 py-6 rounded-3xl w-full"
+              >
+                <div className="flex gap-4">
+                  {/* Checkbox for the entire card */}
+                  <div className="flex-shrink-0 pt-1">
+                    <input
+                      type="checkbox"
+                      checked={isPublisherSelected}
+                      onChange={() => togglePublisher(publisherGroup.publisherName)}
+                      className="w-5 h-5 accent-primary-dark cursor-pointer"
+                    />
+                  </div>
 
-              {/* Ειδικό μήνυμα για μη διαθέσιμα βιβλία (αν υπάρχει έστω ένα) */}
-              {publisherGroup.books.some(b => !b.available) && (
-                <div className="container bg-primary-light rounded-3xl mx-auto px-4 py-4 mt-4">
-                    <div className="flex items-center gap-3">
-                        <span className="text-yellow-500 text-2xl">⚠️</span>
-                        <p className="text-primary-dark font-medium text-base m-0 flex-1">
-                            You won&apos;t receive the books that are not available for delivery. Consider placing your order once all the books are available in the bookstore.
-                        </p>
-                        <button className="bg-primary-dark text-white px-7 py-2 rounded-3xl font-semibold hover:bg-secondary-light transition-colors whitespace-nowrap">
-                            Notify Me
-                        </button>
+                  {/* Content */}
+                  <div className="flex-1">
+                    {/* Publisher Name */}
+                    <h4 className="text-xl font-semibold text-primary-dark mb-3">
+                      {publisherGroup.publisherName}
+                    </h4>
+
+                    {/* Book Titles */}
+                    <div className="flex flex-col gap-2 mb-4">
+                      {publisherGroup.books.map((book) => (
+                        <div key={book.bookId} className="text-primary-dark font-medium text-lg">
+                          {book.bookTitle}
+                        </div>
+                      ))}
                     </div>
+
+                    {/* Warning Message - Only show when card is selected AND has unavailable books */}
+                    {showWarning && (
+                      <div className="bg-primary-light rounded-3xl px-4 py-4 mt-10 mb-4">
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-3 flex-1 min-w-0">
+                            <span className="text-yellow-500 text-2xl flex-shrink-0">⚠️</span>
+                            <p className="text-primary-dark font-medium text-base m-0">
+                              You won&apos;t receive the books that are not available for delivery, consider placing your order once all the books are available in the bookstore.
+                            </p>
+                          </div>
+                          <button className="bg-primary-dark text-white px-7 py-2 rounded-3xl font-semibold hover:bg-secondary-light transition-colors whitespace-nowrap flex items-center gap-2 flex-shrink-0">
+                            <span>🔔</span>
+                            Notify me
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Right Side: Delivery Time, Availability Badges, and Price */}
+                  <div className="flex flex-col items-end gap-3 flex-shrink-0 ml-4">
+                    {/* Delivery Time */}
+                    <span className="text-md text-gray-500">
+                      {publisherGroup.deliveryDays}
+                    </span>
+
+                    {/* Availability Badges */}
+                    <div className="flex flex-col gap-2 items-end">
+                      {publisherGroup.books.map((book) => {
+                        const bgColor = book.available ? "bg-green-500" : "bg-red-500";
+                        return (
+                          <span
+                            key={book.bookId}
+                            className={`text-white font-semibold text-sm px-4 py-1.5 rounded-3xl whitespace-nowrap w-[120px] text-center ${bgColor}`}
+                          >
+                            {book.available ? "Available" : "Unavailable"}
+                          </span>
+                        );
+                      })}
+                    </div>
+
+                    {/* Total Price */}
+                    <span className="text-primary-dark font-semibold text-xl mt-2">
+                      {formatPrice(publisherTotal)}
+                    </span>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
 
         {/* Δεξιά στήλη: Summary */}
@@ -225,8 +270,8 @@ export default function SelectBooks() {
               ))}
             <button
               type="submit"
-              className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors"
-              disabled={selectedBooks.length === 0}
+              className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={selectedPublishers.size === 0}
             >
               Continue
             </button>

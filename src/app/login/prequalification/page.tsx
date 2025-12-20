@@ -22,7 +22,8 @@ export default function LoginPage() {
     if (!selectedUniversity) return "/login/signin";
     const selectedUni = universities.find(uni => uni.value === selectedUniversity);
     const universityName = selectedUni?.label || selectedUniversity;
-    return `/login/signin?university=${encodeURIComponent(universityName)}`;
+    const universityId = selectedUni?.value || selectedUniversity;
+    return `/login/signin?university=${encodeURIComponent(universityName)}&universityId=${encodeURIComponent(universityId)}`;
   };
 
   useEffect(() => {
@@ -40,9 +41,6 @@ export default function LoginPage() {
         
         const data = await response.json();
         
-        // Transform the API response to match the SelectOption interface
-        // Assuming the API returns an array of university objects
-        // Adjust the mapping based on the actual API response structure
         const formattedUniversities = Array.isArray(data) 
           ? data.map((uni: any) => ({
               value: uni.value || uni.id || String(uni),

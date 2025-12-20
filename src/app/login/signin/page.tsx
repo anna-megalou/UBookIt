@@ -9,14 +9,23 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
 
+interface University {
+  value: string;
+  label: string;
+}
+
 function LoginForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [universityValue, setUniversityValue] = useState<string>('');
+  const [universityId, setUniversityId] = useState<string>('');
   const [isReadOnly, setIsReadOnly] = useState<boolean>(false);
   const [usernameValue, setUsernameValue] = useState<string>('');
   const [passwordValue, setPasswordValue] = useState<string>('');
   const [rememberMeValue, setRememberMeValue] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [apiError, setApiError] = useState<string | null>(null);
+  const [universities, setUniversities] = useState<University[]>([]);
   const [errors, setErrors] = useState<{
     university?: string;
     username?: string;
@@ -25,10 +34,44 @@ function LoginForm() {
   }>({});
 
   useEffect(() => {
+    // Fetch universities to map labels to IDs
+    const fetchUniversities = async () => {
+      try {
+        let requestBody = {
+          "username": usernameValue,
+          "password": passwordValue,
+          "universityId": universityId,
+        };
+        const response = await fetch(
+          'https://81c8a33d-0c36-41ac-9406-426fd061bb05.mock.pstmn.io/api/eudoxus/statement',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
+          }
+        );
+        const data = await response.json();
+        console.log("QQQQ");
+
+        console.log(data);
+      } catch (err) {
+        console.error('Error fetching universities:', err);
+      }
+    };
+
+    fetchUniversities();
+
     const university = searchParams.get('university');
+    const universityIdParam = searchParams.get('universityId');
     if (university) {
-      setUniversityValue(decodeURIComponent(university));
+      const decodedUniversity = decodeURIComponent(university);
+      setUniversityValue(decodedUniversity);
       setIsReadOnly(true);
+    }
+    if (universityIdParam) {
+      setUniversityId(decodeURIComponent(universityIdParam));
     }
   }, [searchParams]);
 
@@ -62,9 +105,31 @@ function LoginForm() {
     }
   };
 
-  function handleSignIn(event: React.FormEvent<HTMLFormElement>): void {
+  // Map university label to universityId
+  const getUniversityId = (universityLabel: string): string => {
+    // First, try to find the university in the fetched list
+    const foundUniversity = universities.find(
+      uni => uni.label.toLowerCase() === universityLabel.toLowerCase()
+    );
+    if (foundUniversity) {
+      return foundUniversity.value;
+    }
+    
+    // Fallback: Map common university labels to IDs
+    const lowerLabel = universityLabel.toLowerCase();
+    if (lowerLabel.includes('οικονομικό') || lowerLabel.includes('economics')) {
+      return 'aueb';
+    }
+    
+    // If no match found, use the label as-is (assuming it might already be an ID)
+    // or return a sanitized version
+    return universityLabel.toLowerCase().replace(/\s+/g, '');
+  };
+
+  async function handleSignIn(event: React.FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
     const newErrors: typeof errors = {};
+    setApiError(null);
 
     // Validate all fields
     if (!universityValue || universityValue.trim() === '') {
@@ -80,14 +145,62 @@ function LoginForm() {
       newErrors.rememberMe = 'Please accept the remember me option';
     }
 
-    // If there are errors, show warnings and don't redirect
+    // If there are errors, show warnings and don't proceed
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    // All fields are complete, redirect
-    router.push('/confirm/declaration');
+    // Start authentication
+    setIsLoading(true);
+    try {
+      // Use universityId from query param if available, otherwise map from label
+      const id = universityId || getUniversityId(universityValue);
+      
+      const response = await fetch(
+        'https://81c8a33d-0c36-41ac-9406-426fd061bb05.mock.pstmn.io/api/eudoxus/statement',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: usernameValue.trim(),
+            password: passwordValue,
+            universityId: id,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || data.code !== '0') {
+        // Handle error response
+        const errorMessage = data.messege || data.message || 'Authentication failed. Please check your credentials.';
+        setApiError(errorMessage);
+        setIsLoading(false);
+        return;
+      }
+
+      // Authentication successful
+      // Store authentication state if "remember me" is checked
+      if (rememberMeValue) {
+        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('username', usernameValue.trim());
+        localStorage.setItem('universityId', id);
+      } else {
+        sessionStorage.setItem('isAuthenticated', 'true');
+        sessionStorage.setItem('username', usernameValue.trim());
+        sessionStorage.setItem('universityId', id);
+      }
+
+      // Redirect to confirmation page
+      router.push('/confirm/declaration');
+    } catch (error) {
+      console.error('Authentication error:', error);
+      setApiError('An error occurred during authentication. Please try again.');
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -160,9 +273,15 @@ function LoginForm() {
                 <span className="text-accents-red text-sm mt-1">{errors.rememberMe}</span>
               )}
               
+              {apiError && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded text-sm">
+                  {apiError}
+                </div>
+              )}
+              
               <div className="flex flex-col gap-2 w-full">
-                <Button type="submit" fullWidth size="lg">
-                  sign in
+                <Button type="submit" fullWidth size="lg" disabled={isLoading}>
+                  {isLoading ? 'Signing in...' : 'sign in'}
                 </Button>
                 <p className="text-sm text-secondary-typography text-center w-full font-medium">
                   by signing in you accept the{" "}

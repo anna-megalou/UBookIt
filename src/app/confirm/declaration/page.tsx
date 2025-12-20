@@ -31,28 +31,29 @@ export default function Home() {
         }
 
         const data = await response.json();
-        
+
         // Παίρνουμε ΜΟΝΟ αυτό που χρειαζόμαστε
         const fetchedPublishers: PublisherGroup[] = data.publishers.publishers;
         setPublishers(fetchedPublishers);
-        
+
         // *** 💡 Βήμα 1: Προετοιμασία δεδομένων για την επόμενη σελίδα ***
         // Μετατρέπουμε τη δομή σε μια επίπεδη λίστα βιβλίων
         const allBooks: BookData[] = [];
-        fetchedPublishers.forEach(group => {
-            group.books.forEach(book => {
-                allBooks.push({
-                    bookId: book.bookId,
-                    bookTitle: book.bookTitle,
-                    publisher: group.publisher, // Προσθέτουμε τον εκδότη
-                });
+        fetchedPublishers.forEach((group) => {
+          group.books.forEach((book) => {
+            allBooks.push({
+              bookId: book.bookId,
+              bookTitle: book.bookTitle,
+              publisher: group.publisher, // Προσθέτουμε τον εκδότη
             });
+          });
         });
-        
+
         // Αποθήκευση στο Session Storage για χρήση στην επόμενη σελίδα
-        sessionStorage.setItem('eleyth-declared-books', JSON.stringify(allBooks));
-
-
+        sessionStorage.setItem(
+          "eleyth-declared-books",
+          JSON.stringify(allBooks)
+        );
       } catch (err) {
         setError(err instanceof Error ? err.message : "Ένα σφάλμα προέκυψε");
       } finally {
@@ -73,18 +74,14 @@ export default function Home() {
 
   return (
     <div className="container bg-white rounded-4xl mx-auto px-auto">
+      {/* Τίτλος */}
+      <h1 className="text-4xl font-bold text-primary-dark pl-40 py-15">
+          Επιβεβαίωσε τα συγγράμματα που έχεις δηλώσει στον Εύδοξο
+        </h1>
       <div className="flex flex-col items-center w-full">
-
-        {/* Τίτλος */}
-        <div className="px-25 pt-20 pb-14">
-          <h1 className="text-4xl font-bold text-primary-dark">
-            Επιβεβαίωσε τα συγγράμματα που έχεις δηλώσει στον Εύδοξο
-          </h1>
-        </div>
 
         {/* Cards */}
         <div className="grid gap-10 w-full max-w-7xl mx-auto px-6">
-
           {publishers.map((publisherItem, index) => (
             <div
               key={index}
@@ -117,7 +114,6 @@ export default function Home() {
               Continue
             </Link>
           </div>
-
         </div>
       </div>
     </div>

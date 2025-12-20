@@ -2,6 +2,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { ReceiptText } from "lucide-react";
+import { AlertTriangle, Bell } from "@tabler/icons-react";
 
 // Τύποι Δεδομένων
 interface DeclaredBook {
@@ -183,24 +184,6 @@ export default function SelectBooks() {
                         </div>
                       ))}
                     </div>
-
-                    {/* Warning Message - Only show when card is selected AND has unavailable books */}
-                    {showWarning && (
-                      <div className="bg-primary-light rounded-3xl px-4 py-4 mt-10 mb-4">
-                        <div className="flex items-center justify-between gap-3">
-                          <div className="flex items-center gap-3 flex-1 min-w-0">
-                            <span className="text-yellow-500 text-2xl flex-shrink-0">⚠️</span>
-                            <p className="text-primary-dark font-medium text-base m-0">
-                              You won&apos;t receive the books that are not available for delivery, consider placing your order once all the books are available in the bookstore.
-                            </p>
-                          </div>
-                          <button className="bg-primary-dark text-white px-7 py-2 rounded-3xl font-semibold hover:bg-secondary-light transition-colors whitespace-nowrap flex items-center gap-2 flex-shrink-0">
-                            <span>🔔</span>
-                            Notify me
-                          </button>
-                        </div>
-                      </div>
-                    )}
                   </div>
 
                   {/* Right Side: Delivery Time, Availability Badges, and Price */}
@@ -210,27 +193,48 @@ export default function SelectBooks() {
                       {publisherGroup.deliveryDays}
                     </span>
 
-                    {/* Availability Badges */}
-                    <div className="flex flex-col gap-2 items-end">
-                      {publisherGroup.books.map((book) => {
-                        const bgColor = book.available ? "bg-green-500" : "bg-red-500";
-                        return (
-                          <span
-                            key={book.bookId}
-                            className={`text-white font-semibold text-sm px-4 py-1.5 rounded-3xl whitespace-nowrap w-[120px] text-center ${bgColor}`}
-                          >
-                            {book.available ? "Available" : "Unavailable"}
-                          </span>
-                        );
-                      })}
-                    </div>
+                    {/* Availability Badges and Price - Horizontal Layout */}
+                    <div className="flex items-center gap-4">
+                      {/* Availability Badges */}
+                      <div className="flex flex-col gap-2">
+                        {publisherGroup.books.map((book) => {
+                          const bgColor = book.available ? "bg-green-500" : "bg-red-500";
+                          return (
+                            <span
+                              key={book.bookId}
+                              className={`text-white font-semibold text-sm px-4 py-1.5 rounded-3xl whitespace-nowrap w-[120px] text-center ${bgColor}`}
+                            >
+                              {book.available ? "Available" : "Unavailable"}
+                            </span>
+                          );
+                        })}
+                      </div>
 
-                    {/* Total Price */}
-                    <span className="text-primary-dark font-semibold text-xl mt-2">
-                      {formatPrice(publisherTotal)}
-                    </span>
+                      {/* Total Price */}
+                      <span className="text-primary-dark font-semibold text-xl">
+                        {formatPrice(publisherTotal)}
+                      </span>
+                    </div>
                   </div>
                 </div>
+
+                {/* Warning Message - Only show when card is selected AND has unavailable books */}
+                {showWarning && (
+                  <div className="bg-primary-light rounded-3xl px-4 py-4 mt-10 mb-4 w-full">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 flex-1 min-w-0">
+                        <span className="text-yellow-500 text-2xl flex-shrink-0">⚠️</span>
+                        <p className="text-primary-dark font-medium text-base m-0">
+                          You won&apos;t receive the books that are not available for delivery, consider placing your order once all the books are available in the bookstore.
+                        </p>
+                      </div>
+                      <button className="bg-primary-dark text-white px-7 py-2 rounded-3xl font-semibold hover:bg-secondary-light transition-colors whitespace-nowrap flex items-center gap-2 flex-shrink-0">
+                        <span>🔔</span>
+                        Notify me
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}

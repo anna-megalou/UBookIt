@@ -14,6 +14,9 @@ public class Payment {
     private double totalAmount;
     private Timestamp paymentDate;
 
+    public Payment() {}
+
+    // Constructor για πληρωμή με κάρτα
     public Payment(int userId, int declarationId, String shippingMethod, String paymentMethod,
                    String cardLast4, String cardHolderName, double extraFee, double totalAmount) {
         this.userId = userId;
@@ -24,6 +27,19 @@ public class Payment {
         this.cardHolderName = cardHolderName;
         this.extraFee = extraFee;
         this.totalAmount = totalAmount;
+    }
+
+    // Constructor για πληρωμή χωρίς κάρτα (π.χ. Cash on Delivery)
+    public Payment(int userId, int declarationId, String shippingMethod, String paymentMethod,
+                   double extraFee, double totalAmount) {
+        this.userId = userId;
+        this.declarationId = declarationId;
+        this.shippingMethod = shippingMethod;
+        this.paymentMethod = paymentMethod;
+        this.extraFee = extraFee;
+        this.totalAmount = totalAmount;
+        this.cardLast4 = null;
+        this.cardHolderName = null;
     }
 
     public int getPaymentId() { 
@@ -106,3 +122,4 @@ public class Payment {
         this.paymentDate = paymentDate; 
     }
 }
+

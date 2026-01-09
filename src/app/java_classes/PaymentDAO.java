@@ -4,49 +4,52 @@ import java.sql.*;
 
 public class PaymentDAO {
 
-    public boolean insertPayment(Payment payment) throws Exception {
+    // Μέθοδος για εισαγωγή πληρωμής
+    public void insertPayment(Payment payment) throws Exception {
+        Connection con = null;
+
+        // SQL statement με paymentDate = CURRENT_TIMESTAMP
+        String sql = "INSERT INTO payments "
+                   + "(user_id, declaration_id, shipping_method, payment_method, "
+                   + "card_last4, card_holder_name, extra_fee, total_amount, payment_date) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+
         DB db = new DB();
-        Connection con = db.getConnection();
-        PreparedStatement pstm = null;
-        String query = "INSERT INTO payment (user_id, declaration_id, shipping_method, payment_method, card_last4, card_holder_name, extra_fee, total_amount) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            pstm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            pstm.setInt(1, payment.getUserId());
-            pstm.setInt(2, payment.getDeclarationId());
-            pstm.setString(3, payment.getShippingMethod());
-            pstm.setString(4, payment.getPaymentMethod());
-            pstm.setString(5, payment.getCardLast4());
-            pstm.setString(6, payment.getCardHolderName());
-            pstm.setDouble(7, payment.getExtraFee());
-            pstm.setDouble(8, payment.getTotalAmount()); 
-             
-            int affectedRows = pstm.executeUpdate();
+            // Ανοίγουμε σύνδεση
+            con = db.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql);
 
-            if (affectedRows > 0) {
-                try (ResultSet rs = pstm.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        payment.setPaymentId(rs.getInt(1));
-                    }
-                }
+            stmt.setInt(1, payment.getUserId());
+            stmt.setInt(2, payment.getDeclarationId());
+            stmt.setString(3, payment.getShippingMethod());
+            stmt.setString(4, payment.getPaymentMethod());
+
+            // Αν είναι πληρωμή με κάρτα, βάζουμε τα στοιχεία, αλλιώς null
+            if ("card".equalsIgnoreCase(payment.getPaymentMethod())) {
+                stmt.setString(5, payment.getCardLast4());
+                stmt.setString(6, payment.getCardHolderName());
+            } else {
+                stmt.setString(5, null);
+                stmt.setString(6, null);
             }
 
-            pstm.executeUpdate();
-            pstm.close();
-			db.close();
+            stmt.setDouble(7, payment.getExtraFee());
+            stmt.setDouble(8, payment.getTotalAmount());
 
-            return true;
+            // Εκτέλεση
+            stmt.executeUpdate();
 
+            stmt.close();
+            db.close();
         } catch (Exception e) {
-            throw new Exception(e.getMessage());
-
+            throw new Exception("Error inserting payment: " + e.getMessage(), e);
         } finally {
-			try {
-				db.close();
-			} catch (Exception e) {
-
-			}
-		}
+            try {
+                db.close(); 
+            } catch (Exception e) {}
+        }
     }
 }
+

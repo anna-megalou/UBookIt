@@ -100,8 +100,11 @@ export default function SelectBooks() {
 
   // Calculate totals for selected publishers
   const selectedBooks = useMemo(() => {
-    return allBooks.filter(book => selectedPublishers.has(book.store));
+    return allBooks.filter(
+      book => selectedPublishers.has(book.store) && book.available
+    );
   }, [allBooks, selectedPublishers]);
+
 
   const storeTotals = useMemo(() => {
     return selectedBooks.reduce((acc: Record<string, number>, book) => {
@@ -126,6 +129,8 @@ export default function SelectBooks() {
   const hasUnavailableBooks = (publisherGroup: PublisherGroup): boolean => {
     return publisherGroup.books.some(book => !book.available);
   };
+
+  const hasAvailableBooksSelected = selectedBooks.some(book => book.available);
 
   if (loading) {
     return <p className="text-center mt-10">Προετοιμασία επιλογών...</p>;
@@ -274,7 +279,7 @@ export default function SelectBooks() {
             <button
               type="submit"
               className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={selectedPublishers.size === 0}
+              disabled={selectedPublishers.size === 0 || !hasAvailableBooksSelected}
             >
               Continue
             </button>

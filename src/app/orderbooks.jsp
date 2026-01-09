@@ -220,111 +220,111 @@ request.setCharacterEncoding("UTF-8");
         <%@ include file="header.jsp" %>
         <h1>Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου</h1>
 
-        <div class="flex gap-4">
+        <form action="paymentController.jsp" method="post"></form>
+            <div class="flex gap-4">
 
-            <!-- LEFT SIDE FORM -->
-            <div style="flex: 3; display: flex; flex-direction: column; gap: 1rem;">
-                <!-- Payment method -->
-                <div class="card1">
-                    <h2>Personal Details</h2>
-                    <div class="personal-fields">
-                        <label for="AM">AM</label>
-                        <input type="text" id="AM" class="input-base" placeholder="academic id">
-                        <label for="identity">Identity</label>
-                        <input type="text" id="identity" class="input-base" placeholder="identity id">
+                <!-- LEFT SIDE FORM -->
+                <div style="flex: 3; display: flex; flex-direction: column; gap: 1rem;">
+                    <!-- Payment method -->
+                    <div class="card1">
+                        <h2>Personal Details</h2>
+                        <div class="personal-fields">
+                            <label for="AM">AM</label>
+                            <input type="text" id="AM" class="input-base" placeholder="academic id">
+                            <label for="identity">Identity</label>
+                            <input type="text" id="identity" class="input-base" placeholder="identity id">
+                            
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="input-base" placeholder="name">
+                            <label for="surname">Surname</label>
+                            <input type="text" id="surname" class="input-base" placeholder="surname">
                         
-                        <label for="name">Name</label>
-                        <input type="text" id="name" class="input-base" placeholder="name">
-                        <label for="surname">Surname</label>
-                        <input type="text" id="surname" class="input-base" placeholder="surname">
-                        
-                        <label for="email">Email</label>
-                        <input type="text" id="email" class="input-base" placeholder="email">
-                        <label for="phone">Phone</label>
-                        <input type="text" id="phone" class="input-base" placeholder="phone">
-                    </div>
-                </div>
-                
-                
-                <!-- Location details -->
-                <div class="card2">
-                    <h2>Location details</h2>
-                    <div class="personal-fields">
-                        <label for="city">City</label>
-                        <input type="text" id="city" class="input-base" placeholder="city">
-                        <label for="prefecture">Prefecture</label>
-                        <input type="text" id="prefecture" class="input-base" placeholder="prefecture">
-                        
-                        <label for="street">Street</label>
-                        <input type="text" id="street" class="input-base" placeholder="street name">
-                        <label for="streetId">Street Id</label>
-                        <input type="text" id="streetId" class="input-base" placeholder="street id">
-                    </div>
-                </div>
-            </div>
-
-            <!-- RIGHT SIDE -->
-            <div class="side-right" style="flex: 1; text-align:center;">
-                <div class="image-container">
-                    <img src="images/kid_with_card.png" alt="Kid with card">
-                </div>
-
-                <div class="card3">
-                    <h3 style="font-size: 1.2rem; font-weight: bold; color:#04235C;">Proceed your payment</h3>
-                    <% String pr = request.getParameter("totalPrice");
-                    double price = 0;
-                    if (pr != null && !pr.isEmpty()) {
-                        try {
-                            price = Double.parseDouble(pr);
-                        } catch (NumberFormatException e) {
-                            price = 0; // fallback
-                        }
-                    }
-                    session.setAttribute("price", price);
-                    String[] storeNames = request.getParameterValues("storeName");
-                    String[] storePrices = request.getParameterValues("storePrice");
-
-                    session.setAttribute("storeNames", storeNames);
-                    session.setAttribute("storePrices", storePrices);
-                    DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-                    symbols.setDecimalSeparator(',');
-                    symbols.setGroupingSeparator('.');
-                    DecimalFormat euroFormat = new DecimalFormat("0.00", symbols);
-                    %>
-
-                    <div class="amount-row">
-                        <span>Amount</span>
-                        <span><%= euroFormat.format(price) %> €</span>
+                            <label for="email">Email</label>
+                            <input type="text" id="email" class="input-base" placeholder="email">
+                            <label for="phone">Phone</label>
+                            <input type="text" id="phone" class="input-base" placeholder="phone">
+                        </div>
                     </div>
 
-                    <ul class="store-list">
-                        <%
-                        if (storeNames != null && storePrices != null) {
-                            for (int i = 0; i < storeNames.length; i++) {
-                                double sp = 0;
-                                try {
-                                    sp = Double.parseDouble(storePrices[i]);
-                                } catch (NumberFormatException e) {
-                                    sp = 0;
-                                }
-                        %>
-                                 <li class="store-row">
-                                    <span class="store-name">• <%= storeNames[i] %></span>
-                                    <span class="store-price"><%= euroFormat.format(sp) %> €</span>
-                                </li>
-                        <%
+                    <!-- Location details -->
+                    <div class="card2">
+                        <h2>Location details</h2>
+                        <div class="personal-fields">
+                            <label for="city">City</label>
+                            <input type="text" id="city" class="input-base" placeholder="city">
+                            <label for="prefecture">Prefecture</label>
+                            <input type="text" id="prefecture" class="input-base" placeholder="prefecture">
+
+                            <label for="address">Address</label>
+                            <input type="text" id="address" class="input-base" placeholder="address">
+                            <label for="postalCode">Postal Code</label>
+                            <input type="text" id="postalCode" class="input-base" placeholder="postal code">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="side-right" style="flex: 1; text-align:center;">
+                    <div class="image-container">
+                        <img src="images/kid_with_card.png" alt="Kid with card">
+                    </div>
+
+                    <div class="card3">
+                        <h3 style="font-size: 1.2rem; font-weight: bold; color:#04235C;">Proceed your payment</h3>
+                        <% String pr = request.getParameter("totalPrice");
+                        double price = 0;
+                        if (pr != null && !pr.isEmpty()) {
+                            try {
+                                price = Double.parseDouble(pr);
+                            } catch (NumberFormatException e) {
+                                price = 0; // fallback
                             }
                         }
-                        %>
-                    </ul>
+                        session.setAttribute("price", price);
+                        String[] storeNames = request.getParameterValues("storeName");
+                        String[] storePrices = request.getParameterValues("storePrice");
 
-                    <button class="button" onclick="window.location.href='payment.jsp'">
-                        Continue →
-                    </button>
+                        session.setAttribute("storeNames", storeNames);
+                        session.setAttribute("storePrices", storePrices);
+                        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+                        symbols.setDecimalSeparator(',');
+                        symbols.setGroupingSeparator('.');
+                        DecimalFormat euroFormat = new DecimalFormat("0.00", symbols);
+                        %>
+
+                        <div class="amount-row">
+                            <span>Amount</span>
+                            <span><%= euroFormat.format(price) %> €</span>
+                        </div>
+
+                        <ul class="store-list">
+                            <%
+                            if (storeNames != null && storePrices != null) {
+                                for (int i = 0; i < storeNames.length; i++) {
+                                    double sp = 0;
+                                    try {
+                                        sp = Double.parseDouble(storePrices[i]);
+                                    } catch (NumberFormatException e) {
+                                        sp = 0;
+                                    }
+                            %>
+                                     <li class="store-row">
+                                        <span class="store-name">• <%= storeNames[i] %></span>
+                                        <span class="store-price"><%= euroFormat.format(sp) %> €</span>
+                                    </li>
+                            <%
+                                }
+                            }
+                            %>
+                        </ul>
+
+                        <button class="button" onclick="window.location.href='payment.jsp'">
+                            Continue →
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        </form>
     </div>
 
     <%@ include file="footer.jsp" %>

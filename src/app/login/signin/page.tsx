@@ -28,35 +28,6 @@ function LoginForm() {
   }>({});
 
   useEffect(() => {
-    // Fetch universities to map labels to IDs
-    const fetchUniversities = async () => {
-      try {
-        const requestBody = {
-          "username": usernameValue,
-          "password": passwordValue,
-          "universityId": universityId,
-        };
-        const response = await fetch(
-          'https://81c8a33d-0c36-41ac-9406-426fd061bb05.mock.pstmn.io/api/eudoxus/statement',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
-          }
-        );
-        const data = await response.json();
-        console.log("QQQQ");
-
-        console.log(data);
-      } catch (err) {
-        console.error('Error fetching universities:', err);
-      }
-    };
-
-    fetchUniversities();
-
     const university = searchParams.get('university');
     const universityIdParam = searchParams.get('universityId');
     if (university) {
@@ -67,7 +38,7 @@ function LoginForm() {
     if (universityIdParam) {
       setUniversityId(decodeURIComponent(universityIdParam));
     }
-  }, [searchParams, usernameValue, passwordValue, universityId]);
+  }, [searchParams]);
 
   const handleUniversityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!isReadOnly) {
@@ -144,7 +115,7 @@ function LoginForm() {
       const id = universityId || getUniversityId(universityValue);
       
       const response = await fetch(
-        'https://81c8a33d-0c36-41ac-9406-426fd061bb05.mock.pstmn.io/api/eudoxus/statement',
+        'https://ubookit-ja0e.onrender.com/user/me',
         {
           method: 'POST',
           headers: {
@@ -160,23 +131,29 @@ function LoginForm() {
 
       const data = await response.json();
 
-      if (!response.ok || data.code !== '0') {
+      if (!response.ok || data.code !== 0) {
         // Handle error response
-        const errorMessage = data.messege || data.message || 'Authentication failed. Please check your credentials.';
+        const errorMessage = data.message || data.description || 'Authentication failed. Please check your credentials.';
         setApiError(errorMessage);
         setIsLoading(false);
         return;
       }
 
       // Authentication successful
+      // Extract userId from response
+      const userId = data.user?.userId;
+      const userName = data.user?.userName || usernameValue.trim();
+
       // Store authentication state if "remember me" is checked
       if (rememberMeValue) {
         localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('username', usernameValue.trim());
+        localStorage.setItem('username', userName);
+        localStorage.setItem('userId', userId);
         localStorage.setItem('universityId', id);
       } else {
         sessionStorage.setItem('isAuthenticated', 'true');
-        sessionStorage.setItem('username', usernameValue.trim());
+        sessionStorage.setItem('username', userName);
+        sessionStorage.setItem('userId', userId);
         sessionStorage.setItem('universityId', id);
       }
 

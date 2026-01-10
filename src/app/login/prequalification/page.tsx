@@ -32,26 +32,33 @@ export default function LoginPage() {
         setLoading(true);
         setError(null);
         const response = await fetch(
-          'https://81c8a33d-0c36-41ac-9406-426fd061bb05.mock.pstmn.io/retrive/uni'
+          'https://ubookit-ja0e.onrender.com/retrieve/universities',
+          {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            mode: 'cors',
+            credentials: 'omit',
+          }
         );
         
         if (!response.ok) {
-          throw new Error('Failed to fetch universities');
+          const errorText = await response.text();
+          console.error('API Error:', response.status, errorText);
+          throw new Error(`Failed to fetch universities (${response.status} ${response.statusText})`);
         }
         
         const data = await response.json();
         
-        const formattedUniversities = Array.isArray(data) 
-          ? data.map((uni: { value?: string; id?: string; label?: string; name?: string } | string) => {
-              if (typeof uni === 'string') {
-                return { value: uni, label: uni };
-              }
-              return {
-                value: uni.value || uni.id || String(uni),
-                label: uni.label || uni.name || String(uni),
-              };
-            })
-          : [];
+        // Handle the new response format with universities array
+        const universitiesArray = data?.universities || [];
+        
+        const formattedUniversities = universitiesArray.map((uni: { universityId: string; universityName: string }) => ({
+          value: uni.universityId,
+          label: uni.universityName,
+        }));
         
         // Add placeholder option at the beginning
         setUniversities([

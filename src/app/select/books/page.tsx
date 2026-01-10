@@ -31,33 +31,96 @@ export default function SelectBooks() {
   const [selectedPublishers, setSelectedPublishers] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedData = sessionStorage.getItem('eleyth-declared-books');
-      if (storedData) {
-        const declaredBooks: DeclaredBook[] = JSON.parse(storedData);
-        
-        const enrichedBooks = declaredBooks.map((declaredBook, index) => {
-          const isAvailable = index % 3 !== 0; // Κάθε τρίτο βιβλίο είναι Unavailable
-          const price = isAvailable ? (index % 2 === 0 ? 2.0 : 1.5) : 0;
-          const days = declaredBook.publisher.includes('Broken') ? "2-4 Days" : "1-3 Days";
+    const fetchBooks = async () => {
+      if (typeof window !== 'undefined') {
+        try {
+          // Get userId from localStorage or sessionStorage
+          const userId = localStorage.getItem('userId') || sessionStorage.getItem('userId');
           
-          return {
-            ...declaredBook,
-            id: index + 1,
-            price: price,
-            store: declaredBook.publisher, // Υποθέτουμε ότι ο εκδότης είναι το βιβλιοπωλείο
-            available: isAvailable,
-            days: days,
-          } as Book;
-        });
+          if (!userId) {
+            router.push('/login/signin');
+            return;
+          }
 
-        setAllBooks(enrichedBooks);
-      } else {
-        // Εάν δεν υπάρχουν δεδομένα, ανακατευθύνσου στην αρχική σελίδα
-        router.push('/'); 
+          // Fetch books from API
+          const response = await fetch(
+            `https://ubookit-ja0e.onrender.com/user/books/grouped?userId=${userId}`
+          );
+
+          if (!response.ok) {
+            throw new Error("Αποτυχία φόρτωσης δεδομένων");
+          }
+
+          const data = await response.json();
+
+          // Check if the response is successful
+          if (data.code !== 0) {
+            throw new Error(data.message || "Αποτυχία φόρτωσης δεδομένων");
+          }
+
+          // Convert API response to DeclaredBook format
+          const declaredBooks: DeclaredBook[] = [];
+          data.publishers.publishers.forEach((group: { publisher: string; books: Array<{ bookId: string; bookTitle: string }> }) => {
+            group.books.forEach((book) => {
+              declaredBooks.push({
+                bookId: book.bookId,
+                bookTitle: book.bookTitle,
+                publisher: group.publisher,
+              });
+            });
+          });
+
+          // Enrich books with additional data (price, availability, etc.)
+          const enrichedBooks = declaredBooks.map((declaredBook, index) => {
+            const isAvailable = index % 3 !== 0; // Κάθε τρίτο βιβλίο είναι Unavailable
+            const price = isAvailable ? (index % 2 === 0 ? 2.0 : 1.5) : 0;
+            const days = declaredBook.publisher.includes('Broken') ? "2-4 Days" : "1-3 Days";
+            
+            return {
+              ...declaredBook,
+              id: index + 1,
+              price: price,
+              store: declaredBook.publisher, // Υποθέτουμε ότι ο εκδότης είναι το βιβλιοπωλείο
+              available: isAvailable,
+              days: days,
+            } as Book;
+          });
+
+          setAllBooks(enrichedBooks);
+        } catch (err) {
+          console.error('Error fetching books:', err);
+          // Fallback to sessionStorage if API call fails
+          const storedData = sessionStorage.getItem('eleyth-declared-books');
+          if (storedData) {
+            const declaredBooks: DeclaredBook[] = JSON.parse(storedData);
+            
+            const enrichedBooks = declaredBooks.map((declaredBook, index) => {
+              const isAvailable = index % 3 !== 0;
+              const price = isAvailable ? (index % 2 === 0 ? 2.0 : 1.5) : 0;
+              const days = declaredBook.publisher.includes('Broken') ? "2-4 Days" : "1-3 Days";
+              
+              return {
+                ...declaredBook,
+                id: index + 1,
+                price: price,
+                store: declaredBook.publisher,
+                available: isAvailable,
+                days: days,
+              } as Book;
+            });
+
+            setAllBooks(enrichedBooks);
+          } else {
+            // Εάν δεν υπάρχουν δεδομένα, ανακατευθύνσου στην αρχική σελίδα
+            router.push('/');
+          }
+        } finally {
+          setLoading(false);
+        }
       }
-      setLoading(false);
-    }
+    };
+
+    fetchBooks();
   }, [router]);
   
   const groupedPublishers: PublisherGroup[] = useMemo(() => {

@@ -22,8 +22,15 @@ export default function Home() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
+        // Get userId from localStorage or sessionStorage
+        const userId = localStorage.getItem('userId') || sessionStorage.getItem('userId');
+        
+        if (!userId) {
+          throw new Error("User ID not found. Please sign in again.");
+        }
+
         const response = await fetch(
-          "https://96db88d3-420a-470b-b0e4-32ca112bcde6.mock.pstmn.io"
+          `https://ubookit-ja0e.onrender.com/user/books/grouped?userId=${userId}`
         );
 
         if (!response.ok) {
@@ -31,6 +38,11 @@ export default function Home() {
         }
 
         const data = await response.json();
+
+        // Check if the response is successful
+        if (data.code !== 0) {
+          throw new Error(data.message || "Αποτυχία φόρτωσης δεδομένων");
+        }
 
         // Παίρνουμε ΜΟΝΟ αυτό που χρειαζόμαστε
         const fetchedPublishers: PublisherGroup[] = data.publishers.publishers;

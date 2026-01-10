@@ -7,8 +7,7 @@ public class Order {
     private int orderId;
     private String userId;
     private Timestamp orderDate;
-    private String status;
-    private List<Book> selectedBooks;
+    private List<OrderItems> items;
     private double totalPrice;
 
     // Default constructor
@@ -16,21 +15,19 @@ public class Order {
     }
 
     // Constructor με όλα τα πεδία (εκτός orderId αν auto-increment)
-    public Order(int orderId, String userId, Timestamp orderDate, String status, List<Book> selectedBooks, double totalPrice) {
+    public Order(int orderId, String userId, Timestamp orderDate, List<OrderItems> items, double totalPrice) {
         this.orderId = orderId;
         this.userId = userId;
         this.orderDate = orderDate;
-        this.status = status;
-        this.selectedBooks = selectedBooks;
+        this.items = items;
         this.totalPrice = totalPrice;
     }
 
     // Constructor χωρίς orderId (για νέα παραγγελία)
-    public Order(String userId, Timestamp orderDate, String status, List<Book> selectedBooks, double totalPrice) {
+    public Order(String userId, Timestamp orderDate, List<OrderItems> items, double totalPrice) {
         this.userId = userId;
         this.orderDate = orderDate;
-        this.status = status;
-        this.selectedBooks = selectedBooks;
+        this.items = items;
         this.totalPrice = totalPrice;
     }
 
@@ -59,20 +56,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public String getStatus() {
-        return status;
+    public List<OrderItems> getItems() {
+        return items;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public List<Book> getSelectedBooks() {
-        return selectedBooks;
-    }
-
-    public void setSelectedBooks(List<Book> selectedBooks) {
-        this.selectedBooks = selectedBooks;
+    public void setItems(List<OrderItems> items) {
+        this.items = items;
     }
 
     public double getTotalPrice() {

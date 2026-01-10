@@ -4,45 +4,65 @@ import java.sql.*;
 
 public class OrderDAO {
 
-    // Μέθοδος για εισαγωγή παραγγελίας
     public void insertOrder(Order order) throws Exception {
-        Connection con = null;
-
-        // Δεν βάζουμε το order_id στο INSERT, γιατί είναι auto-increment
-        String sql = "INSERT INTO orders (USER_ID, ORDER_DATE, STATUS, TOTAL_PRICE) "
-                   + "VALUES (?, ?, ?, ?)";
 
         DB db = new DB();
+        Connection con = null;
+
+        String orderSql =
+            "INSERT INTO orders (user_id, order_date, total_price) " +
+            "VALUES (?, ?, ?)";
+
+        String itemSql =
+            "INSERT INTO order_items (order_id, book_id) " +
+            "VALUES (?, ?)";
 
         try {
             con = db.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            con.setAutoCommit(false); 
 
-            stmt.setString(1, order.getUserId());
-            stmt.setTimestamp(2, order.getOrderDate());
-            stmt.setString(3, order.getStatus());
-            stmt.setDouble(4, order.getTotalPrice());
+            PreparedStatement orderStmt =
+                con.prepareStatement(orderSql, Statement.RETURN_GENERATED_KEYS);
 
-            stmt.executeUpdate();
+            orderStmt.setString(1, order.getUserId());
+            orderStmt.setTimestamp(2, order.getOrderDate());
+            orderStmt.setDouble(3, order.getTotalPrice());
 
-            // Παίρνουμε το auto-generated order_id
-            ResultSet rs = stmt.getGeneratedKeys();
+            orderStmt.executeUpdate();
+
+            ResultSet rs = orderStmt.getGeneratedKeys();
             if (rs.next()) {
                 order.setOrderId(rs.getInt(1));
+            } else {
+                throw new Exception("Order ID was not generated");
             }
 
             rs.close();
-            stmt.close();
-            db.close();
+            orderStmt.close();
 
+            PreparedStatement itemStmt = con.prepareStatement(itemSql);
+
+            for (OrderItems item : order.getItems()) {
+                itemStmt.setInt(1, order.getOrderId());
+                itemStmt.setInt(2, item.getBookId());
+                itemStmt.addBatch();
+            }
+
+            itemStmt.executeBatch();
+            itemStmt.close();
+
+            con.commit();
+
+            db.close();
         } catch (Exception e) {
-            throw new Exception("Error inserting order: " + e.getMessage(), e);
+            if (con != null) con.rollback(); 
+            throw new Exception("Error inserting order with items: " + e.getMessage(), e);
+
         } finally {
             try {
+                if (con != null) con.setAutoCommit(true);
                 db.close();
-            } catch (Exception e) {
-                // ignore
-            }
+            } catch (Exception e) {}
         }
     }
 }

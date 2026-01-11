@@ -122,7 +122,7 @@ function LoginForm() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            username: usernameValue.trim(),
+            username: usernameValue,
             password: passwordValue,
             universityId: id,
           }),
@@ -141,20 +141,34 @@ function LoginForm() {
 
       // Authentication successful
       // Extract userId from response
-      const userId = data.user?.userId;
-      const userName = data.user?.userName || usernameValue.trim();
+      const userId = data.user?.userId || data.userId || data.user?.id;
+      const userName = data.user?.userName || data.userName || usernameValue.trim();
+
+      console.log('Authentication response:', data);
+      console.log('Extracted userId:', userId);
+      console.log('Extracted userName:', userName);
+
+      // Validate that userId exists
+      if (!userId) {
+        console.error('UserId not found in response:', data);
+        setApiError('User ID not found in response. Please try again.');
+        setIsLoading(false);
+        return;
+      }
 
       // Store authentication state if "remember me" is checked
       if (rememberMeValue) {
         localStorage.setItem('isAuthenticated', 'true');
         localStorage.setItem('username', userName);
-        localStorage.setItem('userId', userId);
+        localStorage.setItem('userId', String(userId));
         localStorage.setItem('universityId', id);
+        console.log('Stored userId to localStorage:', userId);
       } else {
         sessionStorage.setItem('isAuthenticated', 'true');
         sessionStorage.setItem('username', userName);
-        sessionStorage.setItem('userId', userId);
+        sessionStorage.setItem('userId', String(userId));
         sessionStorage.setItem('universityId', id);
+        console.log('Stored userId to sessionStorage:', userId);
       }
 
       // Redirect to confirmation page

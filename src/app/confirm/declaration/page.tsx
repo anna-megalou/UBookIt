@@ -4,14 +4,19 @@ import Link from "next/link";
 
 // Ορισμός των τύπων δεδομένων
 interface BookData {
-  bookId: string;
+  courseTitle: string;
+  semester: number;
   bookTitle: string;
-  publisher: string; // Προσθέτουμε τον εκδότη εδώ για ευκολία
+  isbn: string;
+  authors: string;
+  publisher: string;
+  bookId: string;
+  price: number;
 }
 
 interface PublisherGroup {
   publisher: string;
-  books: Array<{ bookId: string; bookTitle: string }>;
+  books: BookData[];
 }
 
 export default function Home() {
@@ -22,42 +27,76 @@ export default function Home() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
+        // Wait a bit to ensure storage is ready (in case of race condition)
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
         // Get userId from localStorage or sessionStorage
         const userId = localStorage.getItem('userId') || sessionStorage.getItem('userId');
+        console.log('Confirmation page - User ID from storage:', userId);
+        console.log('localStorage userId:', localStorage.getItem('userId'));
+        console.log('sessionStorage userId:', sessionStorage.getItem('userId'));
         
-        if (!userId) {
+        if (!userId || userId === 'undefined' || userId === 'null') {
+          console.error('UserId is missing or invalid:', userId);
           throw new Error("User ID not found. Please sign in again.");
         }
 
-        const response = await fetch(
-          `https://ubookit-ja0e.onrender.com/user/books/grouped?userId=${userId}`
-        );
+        const url = `https://ubookit-ja0e.onrender.com/user/confirm/declaration?userId=${userId}`;
+        console.log('Confirmation page - Fetching from URL (GET):', url);
+
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        
+        console.log('Confirmation page - Response status:', response.status);
 
         if (!response.ok) {
-          throw new Error("Αποτυχία φόρτωσης δεδομένων");
+          const errorText = await response.text();
+          console.error('API Error:', response.status, errorText);
+          throw new Error(`Αποτυχία φόρτωσης δεδομένων (${response.status}): ${errorText || 'Unknown error'}`);
         }
 
         const data = await response.json();
+        console.log('API Response:', data);
 
         // Check if the response is successful
         if (data.code !== 0) {
           throw new Error(data.message || "Αποτυχία φόρτωσης δεδομένων");
         }
 
-        // Παίρνουμε ΜΟΝΟ αυτό που χρειαζόμαστε
-        const fetchedPublishers: PublisherGroup[] = data.publishers.publishers;
+        // Get books from the response
+        const books: BookData[] = data.books?.books || [];
+
+        // Group books by publisher
+        const publisherMap = new Map<string, BookData[]>();
+        books.forEach((book) => {
+          if (!publisherMap.has(book.publisher)) {
+            publisherMap.set(book.publisher, []);
+          }
+          publisherMap.get(book.publisher)!.push(book);
+        });
+
+        // Convert map to array
+        const fetchedPublishers: PublisherGroup[] = Array.from(publisherMap.entries()).map(
+          ([publisher, books]) => ({
+            publisher,
+            books,
+          })
+        );
+
         setPublishers(fetchedPublishers);
 
         // *** 💡 Βήμα 1: Προετοιμασία δεδομένων για την επόμενη σελίδα ***
         // Μετατρέπουμε τη δομή σε μια επίπεδη λίστα βιβλίων
-        const allBooks: BookData[] = [];
-        fetchedPublishers.forEach((group) => {
-          group.books.forEach((book) => {
-            allBooks.push({
-              bookId: book.bookId,
-              bookTitle: book.bookTitle,
-              publisher: group.publisher, // Προσθέτουμε τον εκδότη
-            });
+        const allBooks: Array<{ bookId: string; bookTitle: string; publisher: string }> = [];
+        books.forEach((book) => {
+          allBooks.push({
+            bookId: book.bookId,
+            bookTitle: book.bookTitle,
+            publisher: book.publisher,
           });
         });
 
@@ -67,6 +106,7 @@ export default function Home() {
           JSON.stringify(allBooks)
         );
       } catch (err) {
+        console.error('Error fetching books:', err);
         setError(err instanceof Error ? err.message : "Ένα σφάλμα προέκυψε");
       } finally {
         setLoading(false);
@@ -106,11 +146,15 @@ export default function Home() {
 
               {/* Βιβλία */}
               {publisherItem.books.map((book) => (
-                <div key={book.bookId} className="mb-2">
-                  <p className="text-lg">📘 {book.bookTitle}</p>
-                  <span className="text-sm text-gray-500">
-                    ISBN: {book.bookId}
-                  </span>
+                <div key={book.bookId} className="mb-4 pb-4 border-b border-gray-200 last:border-b-0">
+                  <p className="text-lg font-semibold text-primary-dark mb-1">
+                    📘 {book.bookTitle}
+                  </p>
+                  <div className="text-sm text-gray-600 space-y-1">
+                    <p><span className="font-medium">Μάθημα:</span> {book.courseTitle}</p>
+                    <p><span className="font-medium">Εξάμηνο:</span> {book.semester}</p>
+                    <p><span className="font-medium">Συγγραφείς:</span> {book.authors}</p>
+                  </div>
                 </div>
               ))}
             </div>

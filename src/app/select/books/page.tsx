@@ -44,7 +44,13 @@ export default function SelectBooks() {
 
           // Fetch books from API
           const response = await fetch(
-            `https://ubookit-ja0e.onrender.com/user/books/grouped?userId=${userId}`
+            `https://ubookit-ja0e.onrender.com/user/confirm/declaration?userId=${userId}`,
+            {
+              method: "GET",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
           );
 
           if (!response.ok) {
@@ -60,20 +66,21 @@ export default function SelectBooks() {
 
           // Convert API response to DeclaredBook format
           const declaredBooks: DeclaredBook[] = [];
-          data.publishers.publishers.forEach((group: { publisher: string; books: Array<{ bookId: string; bookTitle: string }> }) => {
-            group.books.forEach((book) => {
-              declaredBooks.push({
-                bookId: book.bookId,
-                bookTitle: book.bookTitle,
-                publisher: group.publisher,
-              });
+          const books = data.books?.books || [];
+          books.forEach((book: { bookId: string; bookTitle: string; publisher: string; price: number }) => {
+            declaredBooks.push({
+              bookId: book.bookId,
+              bookTitle: book.bookTitle,
+              publisher: book.publisher,
             });
           });
 
           // Enrich books with additional data (price, availability, etc.)
           const enrichedBooks = declaredBooks.map((declaredBook, index) => {
-            const isAvailable = index % 3 !== 0; // Κάθε τρίτο βιβλίο είναι Unavailable
-            const price = isAvailable ? (index % 2 === 0 ? 2.0 : 1.5) : 0;
+            // Find the corresponding book from API response to get the actual price
+            const apiBook = books.find((b: { bookId: string }) => b.bookId === declaredBook.bookId);
+            const price = apiBook?.price || 0;
+            const isAvailable = price > 0; // Available if price > 0
             const days = declaredBook.publisher.includes('Broken') ? "2-4 Days" : "1-3 Days";
             
             return {
@@ -310,7 +317,7 @@ export default function SelectBooks() {
           </h3>
           <div className="flex justify-between items-center text-gray-600 mb-4">
             <p>Total amount</p>
-            <span className="text-primary-dark font-semibold">{formatPrice(totalPrice)} </span>
+            <span className="text-primary-dark font-semibold">{formatPrice(totalPrice ?? 0)} </span>
           </div>
           <div className="flex justify-between items-center text-gray-600 font-medium mb-4">
             <p>Books selected</p>
@@ -327,7 +334,7 @@ export default function SelectBooks() {
             action="http://ism.dmst.aueb.gr/ismgroup17/orderbooks.jsp"
             className="flex justify-center mt-6"
           >
-            <input type="hidden" name="totalPrice" value={totalPrice.toFixed(2)} />
+            <input type="hidden" name="totalPrice" value={totalPrice != null ? totalPrice.toFixed(2) : '0.00'} />
             {Object.entries(storeTotals).map(([store, price]) => (
                 <div key={store}>
                   <input type="hidden" name="storeName" value={store} />
@@ -337,7 +344,7 @@ export default function SelectBooks() {
             <button
               type="submit"
               className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={selectedPublishers.size === 0}
+              disabled={selectedPublishers.size === 0 || totalPrice === null || totalPrice === undefined || totalPrice === 0}
             >
               Continue
             </button>

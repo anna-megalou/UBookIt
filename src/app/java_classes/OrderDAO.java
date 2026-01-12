@@ -24,7 +24,7 @@ public class OrderDAO {
             PreparedStatement orderStmt =
                 con.prepareStatement(orderSql, Statement.RETURN_GENERATED_KEYS);
 
-            orderStmt.setString(1, order.getUserId());
+            orderStmt.setInt(1, order.getUserId());
             orderStmt.setTimestamp(2, order.getOrderDate());
             orderStmt.setDouble(3, order.getTotalPrice());
 

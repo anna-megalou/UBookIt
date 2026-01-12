@@ -219,8 +219,12 @@ request.setCharacterEncoding("UTF-8");
     <div class="container">
         <%@ include file="header.jsp" %>
         <h1>Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου</h1>
-
-        <form action="paymentController.jsp" method="post"></form>
+        <% if (request.getAttribute("errorMessage") != null) { %>		
+            <div class="alert alert-danger text-center" style="color: #721c24; background-color: #f8d7da; padding: 10px; border-radius: 10px; border: 1px solid #f5c6cb; margin-bottom: 20px; margin-left: 0rem; width: 275px; "><%=(String)request.getAttribute("errorMessage") %></div>
+        <% 
+        } 
+        %>
+        <form action="orderbooksController.jsp" method="post">
             <div class="flex gap-4">
 
                 <!-- LEFT SIDE FORM -->
@@ -230,19 +234,19 @@ request.setCharacterEncoding("UTF-8");
                         <h2>Personal Details</h2>
                         <div class="personal-fields">
                             <label for="AM">AM</label>
-                            <input type="text" id="AM" class="input-base" placeholder="academic id">
+                            <input type="text" id="AM" name="AM" class="input-base" placeholder="academic id">
                             <label for="identity">Identity</label>
-                            <input type="text" id="identity" class="input-base" placeholder="identity id">
+                            <input type="text" id="identity" name="identity" class="input-base" placeholder="identity id">
                             
                             <label for="name">Name</label>
-                            <input type="text" id="name" class="input-base" placeholder="name">
+                            <input type="text" id="name" name="name" class="input-base" placeholder="name">
                             <label for="surname">Surname</label>
-                            <input type="text" id="surname" class="input-base" placeholder="surname">
-                        
+                            <input type="text" id="surname" name="surname" class="input-base" placeholder="surname">
+
                             <label for="email">Email</label>
-                            <input type="text" id="email" class="input-base" placeholder="email">
+                            <input type="text" id="email" name="email" class="input-base" placeholder="email">
                             <label for="phone">Phone</label>
-                            <input type="text" id="phone" class="input-base" placeholder="phone">
+                            <input type="text" id="phone" name="phone" class="input-base" placeholder="phone">
                         </div>
                     </div>
 
@@ -251,14 +255,14 @@ request.setCharacterEncoding("UTF-8");
                         <h2>Location details</h2>
                         <div class="personal-fields">
                             <label for="city">City</label>
-                            <input type="text" id="city" class="input-base" placeholder="city">
+                            <input type="text" id="city" name="city" class="input-base" placeholder="city">
                             <label for="prefecture">Prefecture</label>
-                            <input type="text" id="prefecture" class="input-base" placeholder="prefecture">
+                            <input type="text" id="prefecture" name="prefecture" class="input-base" placeholder="prefecture">
 
                             <label for="address">Address</label>
-                            <input type="text" id="address" class="input-base" placeholder="address">
+                            <input type="text" id="address" name="address" class="input-base" placeholder="address">
                             <label for="postalCode">Postal Code</label>
-                            <input type="text" id="postalCode" class="input-base" placeholder="postal code">
+                            <input type="text" id="postalCode" name="postalCode" class="input-base" placeholder="postal code">
                         </div>
                     </div>
                 </div>
@@ -271,21 +275,31 @@ request.setCharacterEncoding("UTF-8");
 
                     <div class="card3">
                         <h3 style="font-size: 1.2rem; font-weight: bold; color:#04235C;">Proceed your payment</h3>
-                        <% String pr = request.getParameter("totalPrice");
+                        <% 
+                        String pr = request.getParameter("totalPrice");
                         double price = 0;
+    
                         if (pr != null && !pr.isEmpty()) {
                             try {
                                 price = Double.parseDouble(pr);
+                                session.setAttribute("price", price); // Αποθήκευση στο session
                             } catch (NumberFormatException e) {
-                                price = 0; // fallback
+                                price = 0;
                             }
+                        } else if (session.getAttribute("price") != null) {
+                            price = (Double) session.getAttribute("price");
                         }
-                        session.setAttribute("price", price);
+
                         String[] storeNames = request.getParameterValues("storeName");
                         String[] storePrices = request.getParameterValues("storePrice");
+                        if (storeNames != null && storePrices != null) {
+                            session.setAttribute("storeNames", storeNames);
+                            session.setAttribute("storePrices", storePrices);
+                        } else {
+                            storeNames = (String[]) session.getAttribute("storeNames");
+                            storePrices = (String[]) session.getAttribute("storePrices");
+                        }
 
-                        session.setAttribute("storeNames", storeNames);
-                        session.setAttribute("storePrices", storePrices);
                         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
                         symbols.setDecimalSeparator(',');
                         symbols.setGroupingSeparator('.');
@@ -298,29 +312,32 @@ request.setCharacterEncoding("UTF-8");
                         </div>
 
                         <ul class="store-list">
-                            <%
-                            if (storeNames != null && storePrices != null) {
-                                for (int i = 0; i < storeNames.length; i++) {
-                                    double sp = 0;
-                                    try {
-                                        sp = Double.parseDouble(storePrices[i]);
-                                    } catch (NumberFormatException e) {
-                                        sp = 0;
-                                    }
-                            %>
-                                     <li class="store-row">
-                                        <span class="store-name">• <%= storeNames[i] %></span>
-                                        <span class="store-price"><%= euroFormat.format(sp) %> €</span>
-                                    </li>
-                            <%
+                        <%
+                        if (storeNames != null && storePrices != null) {
+                            for (int i = 0; i < storeNames.length; i++) {
+                                double sp = 0;
+                                try {
+                                    sp = Double.parseDouble(storePrices[i]);
+                                } catch (Exception e) {
+                                    sp = 0;
                                 }
+                        %>
+                            <li class="store-row">
+                                <span class="store-name">• <%= storeNames[i] %></span>
+                                <span class="store-price"><%= euroFormat.format(sp) %> €</span>
+                            </li>
+                        <%
                             }
-                            %>
+                        } else {
+                        %>
+                            <li class="store-row">Δεν βρέθηκαν στοιχεία παραγγελίας.</li>
+                        <% } %>
                         </ul>
 
-                        <button class="button" onclick="window.location.href='payment.jsp'">
+                        <button type="submit" class="button">
                             Continue →
                         </button>
+
                     </div>
                 </div>
             </div>

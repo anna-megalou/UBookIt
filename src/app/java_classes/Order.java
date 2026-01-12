@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Order {
     private int orderId;
-    private String userId;
+    private int userId;
     private Timestamp orderDate;
     private List<OrderItems> items;
     private double totalPrice;
@@ -15,7 +15,7 @@ public class Order {
     }
 
     // Constructor με όλα τα πεδία (εκτός orderId αν auto-increment)
-    public Order(int orderId, String userId, Timestamp orderDate, List<OrderItems> items, double totalPrice) {
+    public Order(int orderId, int userId, Timestamp orderDate, List<OrderItems> items, double totalPrice) {
         this.orderId = orderId;
         this.userId = userId;
         this.orderDate = orderDate;
@@ -24,7 +24,7 @@ public class Order {
     }
 
     // Constructor χωρίς orderId (για νέα παραγγελία)
-    public Order(String userId, Timestamp orderDate, List<OrderItems> items, double totalPrice) {
+    public Order(int userId, Timestamp orderDate, List<OrderItems> items, double totalPrice) {
         this.userId = userId;
         this.orderDate = orderDate;
         this.items = items;
@@ -40,11 +40,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

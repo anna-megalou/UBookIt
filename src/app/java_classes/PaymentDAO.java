@@ -9,7 +9,7 @@ public class PaymentDAO {
         Connection con = null;
 
         // SQL statement με paymentDate = CURRENT_TIMESTAMP
-        String sql = "INSERT INTO payments "
+        String sql = "INSERT INTO payment "
                    + "(user_id, declaration_id, shipping_method, payment_method, "
                    + "card_last4, card_holder_name, extra_fee, total_amount, payment_date) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";

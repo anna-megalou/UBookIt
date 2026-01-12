@@ -2,6 +2,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { ReceiptText } from "lucide-react";
+import React from "react";
 
 // Τύποι Δεδομένων
 interface DeclaredBook {
@@ -265,25 +266,33 @@ export default function SelectBooks() {
 
           {/* FORM POST προς JSP */}
           <form
-            method="POST"
-            action="http://ism.dmst.aueb.gr/ismgroup17/orderbooks.jsp"
-            className="flex justify-center mt-6"
-          >
-            <input type="hidden" name="totalPrice" value={totalPrice.toFixed(2)} />
-            {Object.entries(storeTotals).map(([store, price]) => (
-                <div key={store}>
-                  <input type="hidden" name="storeName" value={store} />
-                  <input type="hidden" name="storePrice" value={price.toFixed(2)} />
-                </div>
-              ))}
-            <button
-              type="submit"
-              className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={selectedPublishers.size === 0 || !hasAvailableBooksSelected}
-            >
-              Continue
-            </button>
-          </form>
+  method="POST"
+  action="http://ism.dmst.aueb.gr/ismgroup17/selectbooksController.jsp"
+  className="flex justify-center mt-6"
+>
+  <input type="hidden" name="totalPrice" value={totalPrice.toFixed(2)} />
+  
+  {selectedBooks.map((book) => (
+    <React.Fragment key={book.id}>
+      {/* 1. Το ID του βιβλίου */}
+      <input type="hidden" name="selectedBookIds" value={book.id} />
+      
+      {/* 2. Το όνομα του εκδότη (που εσύ ονομάζεις storeName στον Controller) */}
+      <input type="hidden" name="storeName" value={book.publisher} />
+      
+      {/* 3. Η τιμή του βιβλίου (που εσύ ονομάζεις storePrice στον Controller) */}
+      <input type="hidden" name="storePrice" value={book.price} />
+    </React.Fragment>
+  ))}
+
+  <button
+    type="submit"
+    className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+    disabled={selectedPublishers.size === 0 || !hasAvailableBooksSelected}
+  >
+    Continue
+  </button>
+</form>
         </div>
       </div>
     </div>

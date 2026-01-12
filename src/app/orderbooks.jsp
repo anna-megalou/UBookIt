@@ -274,69 +274,55 @@ request.setCharacterEncoding("UTF-8");
                     </div>
 
                     <div class="card3">
-                        <h3 style="font-size: 1.2rem; font-weight: bold; color:#04235C;">Proceed your payment</h3>
-                        <% 
-                        String pr = request.getParameter("totalPrice");
-                        double price = 0;
+    <h3 style="font-size: 1.2rem; font-weight: bold; color:#04235C;">Proceed your payment</h3>
     
-                        if (pr != null && !pr.isEmpty()) {
-                            try {
-                                price = Double.parseDouble(pr);
-                                session.setAttribute("price", price); // Αποθήκευση στο session
-                            } catch (NumberFormatException e) {
-                                price = 0;
-                            }
-                        } else if (session.getAttribute("price") != null) {
-                            price = (Double) session.getAttribute("price");
-                        }
+    <% 
+        // 1. Διαβάζουμε ΜΟΝΟ από το session
+        Double priceObj = (Double) session.getAttribute("totalPrice");
+        double price = (priceObj != null) ? priceObj : 0.0;
 
-                        String[] storeNames = request.getParameterValues("storeName");
-                        String[] storePrices = request.getParameterValues("storePrice");
-                        if (storeNames != null && storePrices != null) {
-                            session.setAttribute("storeNames", storeNames);
-                            session.setAttribute("storePrices", storePrices);
-                        } else {
-                            storeNames = (String[]) session.getAttribute("storeNames");
-                            storePrices = (String[]) session.getAttribute("storePrices");
-                        }
+        String[] storeNames = (String[]) session.getAttribute("storeNames");
+        String[] storePrices = (String[]) session.getAttribute("storePrices");
 
-                        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-                        symbols.setDecimalSeparator(',');
-                        symbols.setGroupingSeparator('.');
-                        DecimalFormat euroFormat = new DecimalFormat("0.00", symbols);
-                        %>
+        // Format για το Ευρώ
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setDecimalSeparator(',');
+        symbols.setGroupingSeparator('.');
+        DecimalFormat euroFormat = new DecimalFormat("0.00", symbols);
+    %>
 
-                        <div class="amount-row">
-                            <span>Amount</span>
-                            <span><%= euroFormat.format(price) %> €</span>
-                        </div>
+    <div class="amount-row">
+        <span>Amount</span>
+        <span><%= euroFormat.format(price) %> €</span>
+    </div>
 
-                        <ul class="store-list">
-                        <%
-                        if (storeNames != null && storePrices != null) {
-                            for (int i = 0; i < storeNames.length; i++) {
-                                double sp = 0;
-                                try {
-                                    sp = Double.parseDouble(storePrices[i]);
-                                } catch (Exception e) {
-                                    sp = 0;
-                                }
-                        %>
-                            <li class="store-row">
-                                <span class="store-name">• <%= storeNames[i] %></span>
-                                <span class="store-price"><%= euroFormat.format(sp) %> €</span>
-                            </li>
-                        <%
-                            }
-                        } else {
-                        %>
-                            <li class="store-row">Δεν βρέθηκαν στοιχεία παραγγελίας.</li>
-                        <% } %>
-                        </ul>
+    <ul class="store-list">
+    <%
+        if (storeNames != null && storePrices != null) {
+            for (int i = 0; i < storeNames.length; i++) {
+                double sp = 0;
+                try {
+                    sp = Double.parseDouble(storePrices[i]);
+                } catch (Exception e) {
+                    sp = 0;
+                }
+    %>
+        <li class="store-row">
+            <span class="store-name">• <%= storeNames[i] %></span>
+            <span class="store-price"><%= euroFormat.format(sp) %> €</span>
+        </li>
+    <%
+            }
+        } else {
+    %>
+        <li class="store-row">Δεν βρέθηκαν στοιχεία παραγγελίας στο session.</li>
+    <% } %>
+    </ul>
 
-                        <button type="submit" class="button">
-                            Continue →
-                        </button>
+    <button type="submit" class="button">
+        Continue →
+    </button>
+</div>
 
                     </div>
                 </div>

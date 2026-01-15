@@ -1,37 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="app.java_classes.*" %>
 <%
+    String am = request.getParameter("AM");
+    String identityIdStr = request.getParameter("identity");
+    String name = request.getParameter("name");
+    String surname = request.getParameter("surname");
+    String email = request.getParameter("email");
+    String phoneStr = request.getParameter("phone");
 
     String city = request.getParameter("city");
     String address = request.getParameter("address");
     String prefecture = request.getParameter("prefecture");
     String postalStr = request.getParameter("postalCode");
 
-    String totalPrice = request.getParameter("totalPrice");
     String[] storeNames = request.getParameterValues("storeName");
     String[] storePrices = request.getParameterValues("storePrice");
 
-    if (totalPrice != null) session.setAttribute("price", Double.parseDouble(totalPrice));
+    Double price = (Double) session.getAttribute("totalPrice");
+    session.setAttribute("price", price);
+
     if (storeNames != null) session.setAttribute("storeNames", storeNames);
     if (storePrices != null) session.setAttribute("storePrices", storePrices);
 
-    if(city == null || city.trim().isEmpty() || address == null || address.trim().isEmpty() || 
-       prefecture == null || prefecture.trim().isEmpty() || postalStr == null || postalStr.trim().isEmpty()) {
+    if(city == null || city.trim().isEmpty() || 
+       address == null || address.trim().isEmpty() || 
+       prefecture == null || prefecture.trim().isEmpty() ||
+       postalStr == null || postalStr.trim().isEmpty() ||
+       am == null || am.trim().isEmpty() || 
+       identityIdStr == null || identityIdStr.trim().isEmpty() ||
+       name == null || name.trim().isEmpty() || 
+       surname == null || surname.trim().isEmpty() || 
+       email == null || email.trim().isEmpty() ||
+       phoneStr == null || phoneStr.trim().isEmpty()) {
         
-        request.setAttribute("errorMessage", "You have to complete all the fields");
+        request.setAttribute("errorMessage", "Some fields are missing");
         request.getRequestDispatcher("orderbooks.jsp").forward(request, response);
         return; 
     }
 
     int postalCode = 0;
+    long identityId = 0L;
+    long phone = 0L;
+
     try {
         postalCode = Integer.parseInt(postalStr);
-    } catch(Exception e) {
-        postalCode = 0;
+    } catch(Exception e) { 
+        postalCode = 0; 
     }
 
     try {
-        Location location = new Location(30, city, address, prefecture, postalCode);
+        identityId = Long.parseLong(identityIdStr); 
+    } catch(Exception e) { 
+        identityId = 0L; 
+    }
+
+    try {
+        phone = Long.parseLong(phoneStr);
+    } catch(Exception e) { 
+        phone = 0L; 
+    }
+
+    try {
+
+        String universityId = "aueb";
+        int  userId = 2; 
+
+        Student student = new Student(am, identityId, name, surname, email, phone, universityId, userId);
+        StudentDAO studentdao = new StudentDAO();
+        studentdao.insertStudent(student);
+
+        Location location = new Location(userId, city, address, prefecture, postalCode);
         LocationDAO locationdao = new LocationDAO();
         locationdao.insertLocation(location);
         

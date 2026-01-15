@@ -9,7 +9,7 @@ public class LocationDAO {
         Connection con = null;
 
         // Δεν περιλαμβάνουμε το location_id στο INSERT
-        String sql = "INSERT INTO location (USER_ID, CITY, ADDRESS, PREFECTURE, POSTAL_CODE) "
+        String sql = "INSERT INTO location (user_id, city, address, prefecture, postal_code) "
                    + "VALUES (?, ?, ?, ?, ?)";
 
         DB db = new DB();

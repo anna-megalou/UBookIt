@@ -23,7 +23,7 @@ try {
     double totalAmount = priceObj;
 
     // dummies
-    int userId = 30;
+    int userId = 2;
     int declarationId = 1;
 
     double extraFee = 0.0;

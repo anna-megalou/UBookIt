@@ -220,7 +220,7 @@ request.setCharacterEncoding("UTF-8");
         <%@ include file="header.jsp" %>
         <h1>Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου</h1>
         <% if (request.getAttribute("errorMessage") != null) { %>		
-            <div class="alert alert-danger text-center" style="color: #721c24; background-color: #f8d7da; padding: 10px; border-radius: 10px; border: 1px solid #f5c6cb; margin-bottom: 20px; margin-left: 0rem; width: 275px; "><%=(String)request.getAttribute("errorMessage") %></div>
+            <div class="alert alert-danger text-center" style="color: #721c24; background-color: #f8d7da; padding: 10px; border-radius: 10px; border: 1px solid #f5c6cb; margin-bottom: 20px; margin-left: 0rem; width: 250px; "><%=(String)request.getAttribute("errorMessage") %></div>
         <% 
         } 
         %>

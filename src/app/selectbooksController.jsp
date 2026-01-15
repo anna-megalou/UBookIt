@@ -20,7 +20,7 @@
 
     try {
         double totalPrice = Double.parseDouble(totalPriceStr);
-        int userId = 30; // Dummy User ID (όπως στο παράδειγμά σου)
+        int userId = 2; // Dummy User ID (όπως στο παράδειγμά σου)
         Timestamp now = new Timestamp(System.currentTimeMillis());
 
         // 2. Δημιουργία λίστας OrderItems

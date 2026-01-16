@@ -28,35 +28,6 @@ function LoginForm() {
   }>({});
 
   useEffect(() => {
-    // Fetch universities to map labels to IDs
-    const fetchUniversities = async () => {
-      try {
-        const requestBody = {
-          "username": usernameValue,
-          "password": passwordValue,
-          "universityId": universityId,
-        };
-        const response = await fetch(
-          'https://81c8a33d-0c36-41ac-9406-426fd061bb05.mock.pstmn.io/api/eudoxus/statement',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
-          }
-        );
-        const data = await response.json();
-        console.log("QQQQ");
-
-        console.log(data);
-      } catch (err) {
-        console.error('Error fetching universities:', err);
-      }
-    };
-
-    fetchUniversities();
-
     const university = searchParams.get('university');
     const universityIdParam = searchParams.get('universityId');
     if (university) {
@@ -67,7 +38,7 @@ function LoginForm() {
     if (universityIdParam) {
       setUniversityId(decodeURIComponent(universityIdParam));
     }
-  }, [searchParams, usernameValue, passwordValue, universityId]);
+  }, [searchParams]);
 
   const handleUniversityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!isReadOnly) {
@@ -144,14 +115,14 @@ function LoginForm() {
       const id = universityId || getUniversityId(universityValue);
       
       const response = await fetch(
-        'https://81c8a33d-0c36-41ac-9406-426fd061bb05.mock.pstmn.io/api/eudoxus/statement',
+        'https://ubookit-ja0e.onrender.com/user/me',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            username: usernameValue.trim(),
+            username: usernameValue,
             password: passwordValue,
             universityId: id,
           }),
@@ -160,24 +131,44 @@ function LoginForm() {
 
       const data = await response.json();
 
-      if (!response.ok || data.code !== '0') {
+      if (!response.ok || data.code !== 0) {
         // Handle error response
-        const errorMessage = data.messege || data.message || 'Authentication failed. Please check your credentials.';
+        const errorMessage = data.message || data.description || 'Authentication failed. Please check your credentials.';
         setApiError(errorMessage);
         setIsLoading(false);
         return;
       }
 
       // Authentication successful
+      // Extract userId from response
+      const userId = data.user?.userId || data.userId || data.user?.id;
+      const userName = data.user?.userName || data.userName || usernameValue.trim();
+
+      console.log('Authentication response:', data);
+      console.log('Extracted userId:', userId);
+      console.log('Extracted userName:', userName);
+
+      // Validate that userId exists
+      if (!userId) {
+        console.error('UserId not found in response:', data);
+        setApiError('User ID not found in response. Please try again.');
+        setIsLoading(false);
+        return;
+      }
+
       // Store authentication state if "remember me" is checked
       if (rememberMeValue) {
         localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('username', usernameValue.trim());
+        localStorage.setItem('username', userName);
+        localStorage.setItem('userId', String(userId));
         localStorage.setItem('universityId', id);
+        console.log('Stored userId to localStorage:', userId);
       } else {
         sessionStorage.setItem('isAuthenticated', 'true');
-        sessionStorage.setItem('username', usernameValue.trim());
+        sessionStorage.setItem('username', userName);
+        sessionStorage.setItem('userId', String(userId));
         sessionStorage.setItem('universityId', id);
+        console.log('Stored userId to sessionStorage:', userId);
       }
 
       // Redirect to confirmation page

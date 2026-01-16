@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "clean": "rm -rf dist .next",
+    "clean:build": "npm run clean && npm run build",
     "export": "node scripts/build-static.js",
     "start": "next start",
     "lint": "eslint",

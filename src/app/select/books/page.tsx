@@ -32,33 +32,103 @@ export default function SelectBooks() {
   const [selectedPublishers, setSelectedPublishers] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedData = sessionStorage.getItem('eleyth-declared-books');
-      if (storedData) {
-        const declaredBooks: DeclaredBook[] = JSON.parse(storedData);
-        
-        const enrichedBooks = declaredBooks.map((declaredBook, index) => {
-          const isAvailable = index % 3 !== 0; // Κάθε τρίτο βιβλίο είναι Unavailable
-          const price = isAvailable ? (index % 2 === 0 ? 2.0 : 1.5) : 0;
-          const days = declaredBook.publisher.includes('Broken') ? "2-4 Days" : "1-3 Days";
+    const fetchBooks = async () => {
+      if (typeof window !== 'undefined') {
+        try {
+          // Get userId from localStorage or sessionStorage
+          const userId = localStorage.getItem('userId') || sessionStorage.getItem('userId');
           
-          return {
-            ...declaredBook,
-            id: index + 1,
-            price: price,
-            store: declaredBook.publisher, // Υποθέτουμε ότι ο εκδότης είναι το βιβλιοπωλείο
-            available: isAvailable,
-            days: days,
-          } as Book;
-        });
+          if (!userId) {
+            router.push('/login/signin');
+            return;
+          }
 
-        setAllBooks(enrichedBooks);
-      } else {
-        // Εάν δεν υπάρχουν δεδομένα, ανακατευθύνσου στην αρχική σελίδα
-        router.push('/'); 
+          // Fetch books from API
+          const response = await fetch(
+            `https://ubookit-ja0e.onrender.com/user/confirm/declaration?userId=${userId}`,
+            {
+              method: "GET",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Αποτυχία φόρτωσης δεδομένων");
+          }
+
+          const data = await response.json();
+
+          // Check if the response is successful
+          if (data.code !== 0) {
+            throw new Error(data.message || "Αποτυχία φόρτωσης δεδομένων");
+          }
+
+          // Convert API response to DeclaredBook format
+          const declaredBooks: DeclaredBook[] = [];
+          const books = data.books?.books || [];
+          books.forEach((book: { bookId: string; bookTitle: string; publisher: string; price: number }) => {
+            declaredBooks.push({
+              bookId: book.bookId,
+              bookTitle: book.bookTitle,
+              publisher: book.publisher,
+            });
+          });
+
+          // Enrich books with additional data (price, availability, etc.)
+          const enrichedBooks = declaredBooks.map((declaredBook, index) => {
+            // Find the corresponding book from API response to get the actual price
+            const apiBook = books.find((b: { bookId: string }) => b.bookId === declaredBook.bookId);
+            const price = apiBook?.price || 0;
+            const isAvailable = price > 0; // Available if price > 0
+            const days = declaredBook.publisher.includes('Broken') ? "2-4 Days" : "1-3 Days";
+            
+            return {
+              ...declaredBook,
+              id: index + 1,
+              price: price,
+              store: declaredBook.publisher, // Υποθέτουμε ότι ο εκδότης είναι το βιβλιοπωλείο
+              available: isAvailable,
+              days: days,
+            } as Book;
+          });
+
+          setAllBooks(enrichedBooks);
+        } catch (err) {
+          console.error('Error fetching books:', err);
+          // Fallback to sessionStorage if API call fails
+          const storedData = sessionStorage.getItem('eleyth-declared-books');
+          if (storedData) {
+            const declaredBooks: DeclaredBook[] = JSON.parse(storedData);
+            
+            const enrichedBooks = declaredBooks.map((declaredBook, index) => {
+              const isAvailable = index % 3 !== 0;
+              const price = isAvailable ? (index % 2 === 0 ? 2.0 : 1.5) : 0;
+              const days = declaredBook.publisher.includes('Broken') ? "2-4 Days" : "1-3 Days";
+              
+              return {
+                ...declaredBook,
+                id: index + 1,
+                price: price,
+                store: declaredBook.publisher,
+                available: isAvailable,
+                days: days,
+              } as Book;
+            });
+
+            setAllBooks(enrichedBooks);
+          } else {
+            // Εάν δεν υπάρχουν δεδομένα, ανακατευθύνσου στην αρχική σελίδα
+            router.push('/');
+          }
+        } finally {
+          setLoading(false);
+        }
       }
-      setLoading(false);
-    }
+    };
+
+    fetchBooks();
   }, [router]);
   
   const groupedPublishers: PublisherGroup[] = useMemo(() => {
@@ -253,7 +323,7 @@ export default function SelectBooks() {
           </h3>
           <div className="flex justify-between items-center text-gray-600 mb-4">
             <p>Total amount</p>
-            <span className="text-primary-dark font-semibold">{formatPrice(totalPrice)} </span>
+            <span className="text-primary-dark font-semibold">{formatPrice(totalPrice ?? 0)} </span>
           </div>
           <div className="flex justify-between items-center text-gray-600 font-medium mb-4">
             <p>Books selected</p>
@@ -266,33 +336,25 @@ export default function SelectBooks() {
 
           {/* FORM POST προς JSP */}
           <form
-  method="POST"
-  action="http://ism.dmst.aueb.gr/ismgroup17/selectbooksController.jsp"
-  className="flex justify-center mt-6"
->
-  <input type="hidden" name="totalPrice" value={totalPrice.toFixed(2)} />
-  
-  {selectedBooks.map((book) => (
-    <React.Fragment key={book.id}>
-      {/* 1. Το ID του βιβλίου */}
-      <input type="hidden" name="selectedBookIds" value={book.id} />
-      
-      {/* 2. Το όνομα του εκδότη (που εσύ ονομάζεις storeName στον Controller) */}
-      <input type="hidden" name="storeName" value={book.publisher} />
-      
-      {/* 3. Η τιμή του βιβλίου (που εσύ ονομάζεις storePrice στον Controller) */}
-      <input type="hidden" name="storePrice" value={book.price} />
-    </React.Fragment>
-  ))}
-
-  <button
-    type="submit"
-    className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-    disabled={selectedPublishers.size === 0 || !hasAvailableBooksSelected}
-  >
-    Continue
-  </button>
-</form>
+            method="POST"
+            action="http://ism.dmst.aueb.gr/ismgroup17/orderbooks.jsp"
+            className="flex justify-center mt-6"
+          >
+            <input type="hidden" name="totalPrice" value={totalPrice != null ? totalPrice.toFixed(2) : '0.00'} />
+            {Object.entries(storeTotals).map(([store, price]) => (
+                <div key={store}>
+                  <input type="hidden" name="storeName" value={store} />
+                  <input type="hidden" name="storePrice" value={price.toFixed(2)} />
+                </div>
+              ))}
+            <button
+              type="submit"
+              className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={selectedPublishers.size === 0 || totalPrice === null || totalPrice === undefined || totalPrice === 0}
+            >
+              Continue
+            </button>
+          </form>
         </div>
       </div>
     </div>

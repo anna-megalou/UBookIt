@@ -3,6 +3,81 @@
 <%@ page import="java.text.DecimalFormatSymbols" %>
 <%
 request.setCharacterEncoding("UTF-8");
+
+// Αν ερχόμαστε από Next.js με POST, παίρνουμε τα params και τα κρατάμε στο session
+String totalPriceParam = request.getParameter("totalPrice");
+String[] incomingStoreNames = request.getParameterValues("storeName");
+String[] incomingStorePrices = request.getParameterValues("storePrice");
+String userIdParam = request.getParameter("userId");
+String declarationIdParam = request.getParameter("declarationId");
+
+if (userIdParam != null && !userIdParam.trim().isEmpty()) {
+    session.setAttribute("userIdRaw", userIdParam);
+    try {
+        session.setAttribute("userId", Integer.parseInt(userIdParam.trim()));
+    } catch (Exception e) {
+        // try to salvage digits (e.g. "123", "id:123", "123 ")
+        try {
+            String userDigits = userIdParam.replaceAll("[^0-9]", "");
+            if (userDigits != null && !userDigits.isEmpty()) {
+                long parsed = Long.parseLong(userDigits);
+                if (parsed > 0 && parsed <= Integer.MAX_VALUE) {
+                    session.setAttribute("userId", (int) parsed);
+                }
+            }
+        } catch (Exception ex) {
+            // ignore parse errors
+        }
+    }
+}
+if (declarationIdParam != null && !declarationIdParam.trim().isEmpty()) {
+    session.setAttribute("declarationIdRaw", declarationIdParam);
+    try {
+        session.setAttribute("declarationId", Integer.parseInt(declarationIdParam.trim()));
+    } catch (Exception e) {
+        // try to salvage digits (e.g. "1", "decl-1")
+        try {
+            String declDigits = declarationIdParam.replaceAll("[^0-9]", "");
+            if (declDigits != null && !declDigits.isEmpty()) {
+                long parsed = Long.parseLong(declDigits);
+                if (parsed > 0 && parsed <= Integer.MAX_VALUE) {
+                    session.setAttribute("declarationId", (int) parsed);
+                }
+            }
+        } catch (Exception ex) {
+            // ignore parse errors
+        }
+    }
+}
+
+// If we already created an order earlier, use it as a fallback "declarationId"
+if (session.getAttribute("declarationId") == null) {
+    Object oid = session.getAttribute("currentOrderId");
+    if (oid instanceof Integer) {
+        session.setAttribute("declarationId", ((Integer) oid).intValue());
+        session.setAttribute("declarationIdRaw", String.valueOf(((Integer) oid).intValue()));
+    } else if (oid instanceof String) {
+        try {
+            int parsed = Integer.parseInt(((String) oid).trim());
+            if (parsed > 0) {
+                session.setAttribute("declarationId", parsed);
+                session.setAttribute("declarationIdRaw", String.valueOf(parsed));
+            }
+        } catch (Exception e) {
+            // ignore parse errors
+        }
+    }
+}
+
+if (totalPriceParam != null && !totalPriceParam.trim().isEmpty()) {
+    try {
+        session.setAttribute("totalPrice", Double.parseDouble(totalPriceParam));
+    } catch (Exception e) {
+        // ignore parse errors
+    }
+}
+if (incomingStoreNames != null) session.setAttribute("storeNames", incomingStoreNames);
+if (incomingStorePrices != null) session.setAttribute("storePrices", incomingStorePrices);
 %>
 <!DOCTYPE html>
 <html lang="el">
@@ -225,6 +300,16 @@ request.setCharacterEncoding("UTF-8");
         } 
         %>
         <form action="orderbooksController.jsp" method="post">
+            <%
+                Integer sessionUserId = (Integer) session.getAttribute("userId");
+                Integer sessionDeclarationId = (Integer) session.getAttribute("declarationId");
+            %>
+            <% if (sessionUserId != null) { %>
+                <input type="hidden" name="userId" value="<%= sessionUserId %>">
+            <% } %>
+            <% if (sessionDeclarationId != null) { %>
+                <input type="hidden" name="declarationId" value="<%= sessionDeclarationId %>">
+            <% } %>
             <div class="flex gap-4">
 
                 <!-- LEFT SIDE FORM -->
@@ -291,6 +376,20 @@ request.setCharacterEncoding("UTF-8");
         DecimalFormat euroFormat = new DecimalFormat("0.00", symbols);
     %>
 
+    <!-- Κρατάμε τα συνολικά/ανά κατάστημα στο POST προς orderbooksController.jsp -->
+    <input type="hidden" name="totalPrice" value="<%= price %>">
+    <%
+        if (storeNames != null && storePrices != null) {
+            int count = Math.min(storeNames.length, storePrices.length);
+            for (int i = 0; i < count; i++) {
+    %>
+        <input type="hidden" name="storeName" value="<%= storeNames[i] %>">
+        <input type="hidden" name="storePrice" value="<%= storePrices[i] %>">
+    <%
+            }
+        }
+    %>
+
     <div class="amount-row">
         <span>Amount</span>
         <span><%= euroFormat.format(price) %> €</span>
@@ -299,7 +398,8 @@ request.setCharacterEncoding("UTF-8");
     <ul class="store-list">
     <%
         if (storeNames != null && storePrices != null) {
-            for (int i = 0; i < storeNames.length; i++) {
+            int count = Math.min(storeNames.length, storePrices.length);
+            for (int i = 0; i < count; i++) {
                 double sp = 0;
                 try {
                     sp = Double.parseDouble(storePrices[i]);

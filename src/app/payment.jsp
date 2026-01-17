@@ -197,6 +197,16 @@
         %>
 
         <form action="paymentController.jsp" method="post">
+            <%
+                Integer sessionUserId = (Integer) session.getAttribute("userId");
+                Integer sessionDeclarationId = (Integer) session.getAttribute("declarationId");
+            %>
+            <% if (sessionUserId != null) { %>
+                <input type="hidden" name="userId" value="<%= sessionUserId %>">
+            <% } %>
+            <% if (sessionDeclarationId != null) { %>
+                <input type="hidden" name="declarationId" value="<%= sessionDeclarationId %>">
+            <% } %>
 
             <div class="flex gap-4">
 

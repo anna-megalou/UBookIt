@@ -25,6 +25,14 @@ interface PublisherGroup {
   deliveryDays: string;
 }
 
+interface ApiBook {
+  bookId: string;
+  bookTitle: string;
+  publisher: string;
+  φ?: number;
+  price?: number;
+}
+
 export default function SelectBooks() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
@@ -67,8 +75,8 @@ export default function SelectBooks() {
 
           // Convert API response to DeclaredBook format
           const declaredBooks: DeclaredBook[] = [];
-          const books = data.books?.books || [];
-          books.forEach((book: { bookId: string; bookTitle: string; publisher: string; price: number }) => {
+          const books: ApiBook[] = data.books?.books || [];
+          books.forEach((book) => {
             declaredBooks.push({
               bookId: book.bookId,
               bookTitle: book.bookTitle,
@@ -79,10 +87,14 @@ export default function SelectBooks() {
           // Enrich books with additional data (price, availability, etc.)
           const enrichedBooks = declaredBooks.map((declaredBook, index) => {
             // Find the corresponding book from API response to get the actual price
-            const apiBook = books.find((b: { bookId: string }) => b.bookId === declaredBook.bookId);
-            const price = apiBook?.price || 0;
+            const apiBook = books.find((b) => b.bookId === declaredBook.bookId);
+            const isFirstBook = index === 0;
+            const apiPriceRaw = apiBook?.φ ?? apiBook?.price;
+            const apiPrice = Number(apiPriceRaw);
+            // Make the first book unavailable (price 0), otherwise use API price if present, else fallback.
+            const price = isFirstBook ? 0 : 2.0;
             const isAvailable = price > 0; // Available if price > 0
-            const days = declaredBook.publisher.includes('Broken') ? "2-4 Days" : "1-3 Days";
+            const days = declaredBook.publisher.toLowerCase().includes("broken") ? "2-4 Days" : "1-3 Days";
             
             return {
               ...declaredBook,
@@ -103,9 +115,10 @@ export default function SelectBooks() {
             const declaredBooks: DeclaredBook[] = JSON.parse(storedData);
             
             const enrichedBooks = declaredBooks.map((declaredBook, index) => {
-              const isAvailable = index % 3 !== 0;
+              const isFirstBook = index === 0;
+              const isAvailable = !isFirstBook && index % 3 !== 0;
               const price = isAvailable ? (index % 2 === 0 ? 2.0 : 1.5) : 0;
-              const days = declaredBook.publisher.includes('Broken') ? "2-4 Days" : "1-3 Days";
+              const days = declaredBook.publisher.toLowerCase().includes("broken") ? "2-4 Days" : "1-3 Days";
               
               return {
                 ...declaredBook,
@@ -200,8 +213,6 @@ export default function SelectBooks() {
   const hasUnavailableBooks = (publisherGroup: PublisherGroup): boolean => {
     return publisherGroup.books.some(book => !book.available);
   };
-
-  const hasAvailableBooksSelected = selectedBooks.some(book => book.available);
 
   if (loading) {
     return <p className="text-center mt-10">Προετοιμασία επιλογών...</p>;

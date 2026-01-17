@@ -10,6 +10,8 @@
     String[] selectedBookIds = request.getParameterValues("selectedBookIds");
     String[] storeNames = request.getParameterValues("storeName");
     String[] storePrices = request.getParameterValues("storePrice");
+    String userIdStr = request.getParameter("userId");
+    String declarationIdStr = request.getParameter("declarationId");
 
     // Έλεγχος αν υπάρχουν δεδομένα
     if (selectedBookIds == null || selectedBookIds.length == 0) {
@@ -20,7 +22,6 @@
 
     try {
         double totalPrice = Double.parseDouble(totalPriceStr);
-        int userId = 2; // Dummy User ID (όπως στο παράδειγμά σου)
         Timestamp now = new Timestamp(System.currentTimeMillis());
 
         // 2. Δημιουργία λίστας OrderItems
@@ -31,7 +32,7 @@
         }
 
         // 3. Δημιουργία του Order και κλήση του DAO
-        Order order = new Order(userId, now, itemsList, totalPrice);
+        Order order = new Order(Integer.parseInt(userIdStr.trim()), now, itemsList, totalPrice);
         OrderDAO orderDAO = new OrderDAO();
         
         // Η μέθοδος insertOrder κάνει το transaction (orders & order_items)
@@ -40,6 +41,8 @@
         // 4. Αποθήκευση στο Session (αν χρειάζονται για την επόμενη σελίδα)
         session.setAttribute("currentOrderId", order.getOrderId());
         session.setAttribute("totalPrice", totalPrice);
+        session.setAttribute("declarationId", declarationId);
+        session.setAttribute("userId", userIdStr);
         
         if (totalPriceStr != null) {
             session.setAttribute("totalPrice", Double.parseDouble(totalPriceStr));

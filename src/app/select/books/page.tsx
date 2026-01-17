@@ -39,7 +39,6 @@ export default function SelectBooks() {
   const [allBooks, setAllBooks] = useState<Book[]>([]); 
   const [selectedPublishers, setSelectedPublishers] = useState<Set<string>>(new Set());
   const [userId, setUserId] = useState<string | null>(null);
-  const [declarationId, setDeclarationId] = useState<string | null>(null);
 
   const isValidStorageValue = (value: string | null): value is string => {
     if (!value) return false;
@@ -53,13 +52,6 @@ export default function SelectBooks() {
     const candidate = userId ?? fromStorage;
     return isValidStorageValue(candidate) ? candidate : null;
   }, [userId]);
-
-  const declarationIdForPost = useMemo(() => {
-    if (typeof window === "undefined") return null;
-    const fromStorage = localStorage.getItem("declarationId") || sessionStorage.getItem("declarationId");
-    const candidate = declarationId ?? fromStorage;
-    return isValidStorageValue(candidate) ? candidate : null;
-  }, [declarationId]);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -96,25 +88,7 @@ export default function SelectBooks() {
             throw new Error(data.message || "Αποτυχία φόρτωσης δεδομένων");
           }
 
-          // Try to extract declarationId (API shapes may vary) and persist it for later pages
-          const rawDeclarationId =
-            data?.declarationId ??
-            data?.declaration?.declarationId ??
-            data?.books?.declarationId ??
-            data?.books?.declaration?.declarationId ??
-            data?.books?.id ??
-            localStorage.getItem("declarationId") ??
-            sessionStorage.getItem("declarationId") ??
-            null;
-
-          if (rawDeclarationId != null) {
-            const declarationIdStr = String(rawDeclarationId);
-            setDeclarationId(declarationIdStr);
-            const storage = localStorage.getItem("userId") ? localStorage : sessionStorage;
-            storage.setItem("declarationId", declarationIdStr);
-          }
-
-          // Convert API response to DeclaredBook format
+          const declarationId = data?.isbn ?? null;
           const declaredBooks: DeclaredBook[] = [];
           const books: ApiBook[] = data.books?.books || [];
           books.forEach((book) => {
@@ -389,11 +363,11 @@ export default function SelectBooks() {
           {/* FORM POST προς JSP */}
           <form
             method="POST"
-            action="http://ism.dmst.aueb.gr/ismgroup17/orderbooks.jsp"
+            action="http://ism.dmst.aueb.gr/ismgroup17/selectbooksController.jsp"
             className="flex justify-center mt-6"
           >
-            {userIdForPost && <input type="hidden" name="userId" value={userIdForPost} />}
-            {declarationIdForPost && <input type="hidden" name="declarationId" value={declarationIdForPost} />}
+            <input type="hidden" name="userId" value= "3"/>
+            <input type="hidden" name="declarationId" value="234567890" />
             <input type="hidden" name="totalPrice" value={totalPrice != null ? totalPrice.toFixed(2) : '0.00'} />
             {Object.entries(storeTotals).map(([store, price]) => (
                 <div key={store}>

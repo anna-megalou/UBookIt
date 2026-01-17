@@ -23,10 +23,8 @@ try {
     double totalAmount = priceObj;
 
     // dummies
-    int userId = Integer.parseInt(request.getParameter("userId"));
-    int declarationId = Integer.parseInt(request.getParameter("declarationId"));
-    if (userId <= 0) throw new Exception("User ID missing");
-    if (declarationId <= 0) throw new Exception("Declaration ID missing");
+    int userId = 2;
+    int declarationId = 1;
 
     double extraFee = 0.0;
     if (pay_method.equals("cod")) {

@@ -10,13 +10,10 @@
     String[] selectedBookIds = request.getParameterValues("selectedBookIds");
     String[] storeNames = request.getParameterValues("storeName");
     String[] storePrices = request.getParameterValues("storePrice");
-    String userIdStr = request.getParameter("userId");
-    String declarationIdStr = request.getParameter("declarationId");
 
     // Έλεγχος αν υπάρχουν δεδομένα
     if (selectedBookIds == null || selectedBookIds.length == 0) {
         request.setAttribute("errorMessage", "Πρέπει να επιλέξετε τουλάχιστον ένα διαθέσιμο σύγγραμμα.");
-        request.getRequestDispatcher("selectbooks.tsx").forward(request, response);
         return;
     }
 
@@ -32,17 +29,15 @@
         }
 
         // 3. Δημιουργία του Order και κλήση του DAO
-        Order order = new Order(Integer.parseInt(userIdStr.trim()), now, itemsList, totalPrice);
+        Order order = new Order(4, now, itemsList, totalPrice);
         OrderDAO orderDAO = new OrderDAO();
         
         // Η μέθοδος insertOrder κάνει το transaction (orders & order_items)
-        orderDAO.insertOrder(order);
+        //orderDAO.insertOrder(order);
 
         // 4. Αποθήκευση στο Session (αν χρειάζονται για την επόμενη σελίδα)
         session.setAttribute("currentOrderId", order.getOrderId());
         session.setAttribute("totalPrice", totalPrice);
-        session.setAttribute("declarationId", declarationId);
-        session.setAttribute("userId", userIdStr);
         
         if (totalPriceStr != null) {
             session.setAttribute("totalPrice", Double.parseDouble(totalPriceStr));
@@ -68,7 +63,7 @@
         String encodedError = java.net.URLEncoder.encode(fullError, "UTF-8");
         
         // Σε γυρνάει πίσω με την παράμετρο 'error' στο URL
-        response.sendRedirect("http://localhost:3003/select/books?error=" + encodedError);
+        response.sendRedirect("ubookit/select/books/?error=" + encodedError);
         return;
     }
 %>

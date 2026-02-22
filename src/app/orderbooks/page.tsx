@@ -1,137 +1,214 @@
 'use client';
-import Image from "next/image";
 
-export default function Home() {
+import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { User, MapPin, ArrowRight } from 'lucide-react';
+
+interface StoreEntry {
+  name: string;
+  price: string;
+}
+
+interface OrderData {
+  userId: string;
+  declarationId: string;
+  totalPrice: string;
+  selectedBookIds: string[];
+  stores: StoreEntry[];
+}
+
+export default function OrderBooks() {
+  const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [orderData, setOrderData] = useState<OrderData | null>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const raw = sessionStorage.getItem('orderData');
+    if (!raw) {
+      router.push('/select/books');
+      return;
+    }
+
+    try {
+      const parsed: OrderData = JSON.parse(raw);
+      setOrderData(parsed);
+    } catch {
+      router.push('/select/books');
+    }
+  }, [router]);
+
+  const formatPrice = (price: number): string =>
+    new Intl.NumberFormat('el-GR', {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 2,
+    }).format(price);
+
+  const totalNum = parseFloat(orderData?.totalPrice ?? '0');
+
+  const handleContinue = () => {
+    formRef.current?.submit();
+  };
+
+  if (!orderData) {
+    return <p className="text-center mt-10">Φόρτωση...</p>;
+  }
+
   return (
     <div className="container bg-white rounded-4xl mx-auto px-4 py-6">
-      {/* Header */}
-      <div className="flex justify-center lg:justify-start items-start px-16 pt-7 pb-15">
-        <h1 className="text-4xl font-bold text-primary-dark">
+      {/* Page Title */}
+      <div className="flex justify-center lg:justify-start items-start px-6 lg:px-16 pt-7 pb-10">
+        <h1 className="text-3xl lg:text-4xl font-bold text-primary-dark max-w-2xl">
           Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου
         </h1>
       </div>
 
-      {/* Main content */}
-      <div className="flex flex-col lg:flex-row justify-between items-start gap-10 px-15 pb-10">
-        {/* Left side - Form */}
-        <div className="flex flex-col gap-8 flex-1">
-          {/* Personal details */}
-          <div className="border-3 border-secondary-border shadow-sm bg-white-light rounded-3xl p-8 w-full">
-            <h2 className="text-2xl font-semibold text-primary-dark mb-6">Personal details</h2>
-
-            {/* Row 1 */}
-            <div className="flex flex-wrap gap-6 mb-4">
-              <div className="flex items-center gap-2 flex-1">
-                <label className="w-20 text-mg font-semibold text-primary-dark">AM</label>
-                <input type="text" placeholder="academic id" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
-              </div>
-              <div className="flex items-center gap-2 flex-1">
-                <label className="w-24 text-md font-semibold text-primary-dark">Identity</label>
-                <input type="text" placeholder="identity id" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
-              </div>
-            </div>
-
-            {/* Row 2 */}
-            <div className="flex flex-wrap gap-6 mb-4">
-              <div className="flex items-center gap-2 flex-1">
-                <label className="w-20 text-md font-semibold text-primary-dark">Name</label>
-                <input type="text"placeholder="name" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
-              </div>
-              <div className="flex items-center gap-2 flex-1">
-                <label className="w-24 text-md font-semibold text-primary-dark">Surname</label>
-                <input type="text" placeholder="surname" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
-              </div>
-            </div>
-
-            {/* Row 3 */}
-            <div className="flex flex-wrap gap-6 mb-4">
-              <div className="flex items-center gap-2 flex-1">
-                <label className="w-20 text-md font-semibold text-primary-dark">Email</label>
-                <input type="email" placeholder="your email" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
-              </div>
-            </div>
-
-            {/* Row 4 */}
-            <div className="flex flex-wrap gap-6">
-              <div className="flex items-center gap-2 flex-1">
-                <label className="w-20 text-md font-semibold text-primary-dark">Phone</label>
-                <input type="tel" placeholder="your phone" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
-              </div>
-            </div>
+      {/* Hidden form that POSTs to the JSP controller */}
+      <form
+        ref={formRef}
+        method="POST"
+        action="http://ism.dmst.aueb.gr/ismgroup17/selectbooksController.jsp"
+        className="hidden"
+      >
+        <input type="hidden" name="userId" value={orderData.userId} />
+        <input type="hidden" name="declarationId" value={orderData.declarationId} />
+        <input type="hidden" name="totalPrice" value={orderData.totalPrice} />
+        {orderData.selectedBookIds.map((bookId) => (
+          <input key={bookId} type="hidden" name="selectedBookIds" value={bookId} />
+        ))}
+        {orderData.stores.map((store) => (
+          <div key={store.name}>
+            <input type="hidden" name="storeName" value={store.name} />
+            <input type="hidden" name="storePrice" value={store.price} />
           </div>
+        ))}
+      </form>
 
-          {/* Location details */}
-          <div className="border-3 border-secondary-border shadow-sm bg-white-light rounded-3xl p-9 w-full">
-            <h2 className="text-2xl font-semibold text-primary-dark mb-6">Location details</h2>
-
-            {/* Row 1 */}
-            <div className="flex flex-wrap gap-6 mb-4">
-              <div className="flex items-center gap-2 flex-1">
-                <label className="w-20 text-md font-semibold text-primary-dark">City</label>
-                <input type="text" placeholder="city" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
+      {/* Main Layout */}
+      <div className="flex flex-col lg:flex-row gap-10 px-6 lg:px-16 pb-10">
+        {/* Left: Forms */}
+        <div className="flex-1 flex flex-col gap-8">
+          {/* Personal Details */}
+          <section className="border-3 border-secondary-border shadow-sm rounded-3xl p-8 w-full">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-2 bg-primary-light rounded-xl">
+                <User className="w-5 h-5 text-primary-dark" />
               </div>
-              <div className="flex items-center gap-2 flex-1">
-                <label className="w-24 text-md font-semibold text-primary-dark">Prefecture</label>
-                <input type="text" placeholder="prefecture" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
-              </div>
+              <h2 className="text-xl font-bold text-primary-dark tracking-tight">
+                Personal Details
+              </h2>
             </div>
 
-            {/* Row 2 */}
-            <div className="flex flex-wrap gap-6">
-              <div className="flex items-center gap-2 flex-1">
-                <label className="w-20 text-md font-semibold text-primary-dark">Street</label>
-                <input type="text" placeholder="street name" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
-              </div>
-              <div className="flex items-center gap-2 flex-1">
-                <label className="w-24 text-md font-semibold text-primary-dark">Street id</label>
-                <input type="text" placeholder="street id" className="border border-gray-300 rounded-full px-4 py-2 w-full"/>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+              <FloatingInput label="Academic ID" type="text" />
+              <FloatingInput label="Identity ID" type="text" />
+              <FloatingInput label="Name" type="text" />
+              <FloatingInput label="Surname" type="text" />
+              <FloatingInput label="Email" type="email" />
+              <FloatingInput label="Phone" type="tel" />
             </div>
-          </div>
+          </section>
+
+          {/* Location Details */}
+          <section className="border-3 border-secondary-border shadow-sm rounded-3xl p-8 w-full">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-2 bg-primary-light rounded-xl">
+                <MapPin className="w-5 h-5 text-primary-dark" />
+              </div>
+              <h2 className="text-xl font-bold text-primary-dark tracking-tight">
+                Location Details
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+              <FloatingInput label="City" type="text" />
+              <FloatingInput label="Prefecture" type="text" />
+              <FloatingInput label="Address" type="text" />
+              <FloatingInput label="Postal Code" type="text" />
+            </div>
+          </section>
         </div>
 
-        {/* Right side - Image + Payment summary */}
-        <div className="flex flex-col items-center w-full lg:w-1/3">
-          <Image
-            src="/assets/images/kid_with_card.png"
-            alt="Kid with card"
-            width={320}
-            height={320}
-            className="object-fill w-60 h-60 sm-min:w-72 sm-min:h-72 xl-custom:w-80 xl-custom:h-80 sm:hidden lg:block"
-              style={{ width: 'auto', height: 'auto' }}
-          />
+        {/* Right: Payment Summary */}
+        <div className="w-full lg:w-[360px] flex-shrink-0 sticky top-28 self-start flex flex-col items-center gap-4">
+          <div className="border-3 border-secondary-border shadow-sm rounded-3xl w-full overflow-hidden">
+            <div className="p-8">
+              <h3 className="text-xl font-bold text-primary-dark text-center mb-8">
+                Proceed your payment
+              </h3>
 
-          <div className="border-3 border-secondary-border shadow-sm bg-white-light rounded-3xl p-6 w-full bg-white">
-            <h3 className="text-xl font-bold text-primary-dark mb-4">Proceed your payment</h3>
-            <div className="flex justify-between mb-3">
-              <p className="text-gray-700 text-lg">Total amount</p>
-              <span className="text-gray-700 font-semibold text-lg">5€</span>
-            </div>
-            <ul className="text-gray-600 mb-6 text-md space-y-2">
-              <li className="flex justify-between">
-                <span><strong>•</strong> Broken Hill Publishers</span>
-                <span>2€</span>
-              </li>
-              <li className="flex justify-between">
-                <span><strong>•</strong> Βιβλιοδιανομή Ο.Π.Α.</span>
-                <span>1,5€</span>
-              </li>
-              <li className="flex justify-between">
-                <span><strong>•</strong> ΜΠΕΝΟΥ & ΣΙΑ Ε.Ε.</span>
-                <span>1,5€</span>
-              </li>
-            </ul>
-            <div className="flex justify-center">
+              {/* Amount */}
+              <div className="flex justify-between items-center mb-6">
+                <span className="text-secondary-dark font-medium">Amount</span>
+                <span className="text-primary-dark font-bold text-lg">
+                  {formatPrice(totalNum)}
+                </span>
+              </div>
+
+              {/* Store Breakdown */}
+              {orderData.stores.length > 0 && (
+                <div className="border-t border-secondary-border pt-5 mb-8 space-y-3">
+                  {orderData.stores.map((store, i) => (
+                    <div key={i} className="flex justify-between items-start gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <span className="w-2 h-2 rounded-full bg-primary-dark shrink-0 mt-1.5" />
+                        <span className="text-sm font-medium text-primary-dark leading-tight">
+                          {store.name}
+                        </span>
+                      </div>
+                      <span className="text-sm font-bold text-primary-dark whitespace-nowrap">
+                        {formatPrice(parseFloat(store.price))}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Continue Button */}
               <button
-                onClick={() => window.location.href = 'http://ism.dmst.aueb.gr/ismgroup17/payment.jsp'}
-                className="bg-primary-dark text-white text-center font-semibold py-2 px-10 rounded-3xl"
+                type="button"
+                onClick={handleContinue}
+                className="w-full bg-primary-dark hover:bg-secondary-dark text-white font-bold py-4 rounded-3xl transition-all flex items-center justify-center gap-3 group active:scale-[0.98]"
               >
-                Continue <strong>→</strong>
+                Continue
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function FloatingInput({
+  label,
+  type,
+}: {
+  label: string;
+  type: string;
+}) {
+  const [value, setValue] = useState('');
+  const id = `input-${label.toLowerCase().replace(/\s+/g, '-')}`;
+
+  return (
+    <div className="relative">
+      <input
+        id={id}
+        type={type}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder={label}
+        className="peer w-full px-5 py-4 rounded-2xl border-2 border-secondary-border bg-white text-primary-dark text-base focus:border-primary-dark focus:outline-none transition-all placeholder:text-secondary-typography"
+      />
+      <label
+        htmlFor={id}
+        className="absolute left-4 -top-2.5 bg-white px-1.5 text-xs font-semibold text-primary-dark opacity-0 -translate-y-1 transition-all duration-200 pointer-events-none peer-not-placeholder-shown:opacity-100 peer-not-placeholder-shown:translate-y-0 peer-focus:opacity-100 peer-focus:translate-y-0"
+      >
+        {label}
+      </label>
     </div>
   );
 }

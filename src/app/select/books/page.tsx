@@ -39,6 +39,7 @@ export default function SelectBooks() {
   const [allBooks, setAllBooks] = useState<Book[]>([]); 
   const [selectedPublishers, setSelectedPublishers] = useState<Set<string>>(new Set());
   const [userId, setUserId] = useState<string | null>(null);
+  const [declarationId, setDeclarationId] = useState<string | null>(null);
 
   const isValidStorageValue = (value: string | null): value is string => {
     if (!value) return false;
@@ -88,7 +89,8 @@ export default function SelectBooks() {
             throw new Error(data.message || "Αποτυχία φόρτωσης δεδομένων");
           }
 
-          const declarationId = data?.isbn ?? null;
+          const fetchedDeclarationId = data?.declarationId ?? data?.isbn ?? null;
+          setDeclarationId(fetchedDeclarationId != null ? String(fetchedDeclarationId) : null);
           const declaredBooks: DeclaredBook[] = [];
           const books: ApiBook[] = data.books?.books || [];
           books.forEach((book) => {
@@ -101,11 +103,7 @@ export default function SelectBooks() {
 
           // Enrich books with additional data (price, availability, etc.)
           const enrichedBooks = declaredBooks.map((declaredBook, index) => {
-            // Find the corresponding book from API response to get the actual price
-            const apiBook = books.find((b) => b.bookId === declaredBook.bookId);
             const isFirstBook = index === 0;
-            const apiPriceRaw = apiBook?.φ ?? apiBook?.price;
-            const apiPrice = Number(apiPriceRaw);
             // Make the first book unavailable (price 0), otherwise use API price if present, else fallback.
             const price = isFirstBook ? 0 : 2.0;
             const isAvailable = price > 0; // Available if price > 0
@@ -360,29 +358,34 @@ export default function SelectBooks() {
             <span className="text-primary-dark font-semibold">{uniqueStores.length}</span>
           </div>
 
-          {/* FORM POST προς JSP */}
-          <form
-            method="POST"
-            action="http://ism.dmst.aueb.gr/ismgroup17/selectbooksController.jsp"
-            className="flex justify-center mt-6"
-          >
-            <input type="hidden" name="userId" value= "3"/>
-            <input type="hidden" name="declarationId" value="234567890" />
-            <input type="hidden" name="totalPrice" value={totalPrice != null ? totalPrice.toFixed(2) : '0.00'} />
-            {Object.entries(storeTotals).map(([store, price]) => (
-                <div key={store}>
-                  <input type="hidden" name="storeName" value={store} />
-                  <input type="hidden" name="storePrice" value={price.toFixed(2)} />
-                </div>
-              ))}
+          <div className="flex justify-center mt-6">
             <button
-              type="submit"
+              type="button"
+              onClick={() => {
+                sessionStorage.setItem('orderData', JSON.stringify({
+                  userId: userIdForPost,
+                  declarationId: declarationId ?? '0',
+                  totalPrice: totalPrice?.toFixed(2) ?? '0.00',
+                  selectedBookIds: selectedBooks.map(b => b.bookId),
+                  stores: Object.entries(storeTotals).map(([name, price]) => ({
+                    name,
+                    price: price.toFixed(2),
+                  })),
+                }));
+                router.push('/orderbooks');
+              }}
               className="bg-primary-dark text-white py-2 px-10 rounded-3xl font-semibold hover:bg-primary-dark/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={selectedPublishers.size === 0 || totalPrice === null || totalPrice === undefined || totalPrice === 0}
+              disabled={
+                !userIdForPost ||
+                selectedPublishers.size === 0 ||
+                totalPrice === null ||
+                totalPrice === undefined ||
+                totalPrice === 0
+              }
             >
               Continue
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

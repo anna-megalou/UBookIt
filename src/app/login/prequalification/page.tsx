@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { withBasePath } from "@/lib/utils";
+import { universities as localUniversities } from "@/lib/constants";
 import Select from "@/components/ui/Select";
 import Button from "@/components/ui/Button";
 
@@ -17,6 +18,14 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedUniversity, setSelectedUniversity] = useState<string>('');
+  const API_TIMEOUT_MS = 8000;
+
+  const getFallbackUniversities = (): University[] => {
+    if (localUniversities.length > 0) {
+      return localUniversities;
+    }
+    return [{ value: "", label: "Choose your university" }];
+  };
 
   const getSigninUrl = () => {
     if (!selectedUniversity) return "/login/signin";
@@ -28,6 +37,9 @@ export default function LoginPage() {
 
   useEffect(() => {
     const fetchUniversities = async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
+
       try {
         setLoading(true);
         setError(null);
@@ -37,10 +49,8 @@ export default function LoginPage() {
             method: 'GET',
             headers: {
               'Accept': 'application/json',
-              'Content-Type': 'application/json',
             },
-            mode: 'cors',
-            credentials: 'omit',
+            signal: controller.signal,
           }
         );
         
@@ -66,11 +76,11 @@ export default function LoginPage() {
           ...formattedUniversities,
         ]);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-        console.error('Error fetching universities:', err);
-        // Fallback to empty array with placeholder
-        setUniversities([{ value: "", label: "Choose your university" }]);
+        console.warn('Live universities fetch failed, falling back to local data:', err);
+        setUniversities(getFallbackUniversities());
+        setError(null);
       } finally {
+        clearTimeout(timeoutId);
         setLoading(false);
       }
     };

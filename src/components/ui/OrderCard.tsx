@@ -1,6 +1,6 @@
 'use client';
 
-import { Order } from '@/app/tracking/page';
+import type { Order } from '@/app/tracking/page';
 
 interface OrderCardProps {
   order: Order;
@@ -9,13 +9,11 @@ interface OrderCardProps {
 }
 
 const statusConfig = {
- 
   processing: {
     label: 'Processing',
     color: '#787878',
     labelColor: '#787878',
     bgColor: 'bg-white',
-    textColor: 'text-secondary-typography',
     activeBgColor: 'bg-primary-dark',
   },
   delivering: {
@@ -23,7 +21,6 @@ const statusConfig = {
     color: '#27D7FF',
     labelColor: '#27D7FF',
     bgColor: 'bg-white',
-    textColor: 'text-secondary-typography',
     activeBgColor: 'bg-primary-dark',
   },
   completed: {
@@ -31,17 +28,23 @@ const statusConfig = {
     color: '#5ADA55',
     labelColor: '#5ADA55',
     bgColor: 'bg-white',
-    textColor: 'text-secondary-typography',
     activeBgColor: 'bg-primary-dark',
   },
 };
 
-// /* Frame 45 */
-
-export default function OrderCard({ order, isSelected = false, onClick }: OrderCardProps) {
+export default function OrderCard({
+  order,
+  isSelected = false,
+  onClick,
+}: OrderCardProps) {
   const config = statusConfig[order.status];
-  // When a card is selected, it gets a blue background
   const isActive = isSelected;
+
+  const formattedPrice = new Intl.NumberFormat('el-GR', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 2,
+  }).format(order.price);
 
   return (
     <div
@@ -52,42 +55,48 @@ export default function OrderCard({ order, isSelected = false, onClick }: OrderC
         shadow-[0px_1px_2px_rgba(0,0,0,0.3),0px_1px_3px_1px_rgba(0,0,0,0.15)]
       `}
     >
-      <div className="flex flex-rowt justify-between  items-center gap-3">
-        {/* Status Indicator */}
+      <div className="flex flex-row justify-between items-center gap-3">
         <div className="flex gap-2 mt-1">
           <div
             className="w-3 h-3 rounded-full flex-shrink-0"
             style={{ backgroundColor: config.color }}
           />
-          <span 
+          <span
             className="text-sm font-semibold"
             style={{ color: config.labelColor }}
           >
             {config.label}
           </span>
         </div>
-        <div className={`text-sm ${isActive ? 'text-gray-300' : 'text-secondary-typography'} font-bold`}>
-            #{order.id}
-          </div>
+        <div
+          className={`text-sm ${isActive ? 'text-gray-300' : 'text-secondary-typography'} font-bold`}
+        >
+          #{order.id}
+        </div>
       </div>
 
       <div className="mt-1 flex justify-between items-start">
         <div className="flex flex-col gap-1 flex-1">
-          <div className={`font-bold text-2xl ${isActive ? 'text-white' : 'text-secondary-dark'}`}>
-            {order.quantity} {order.itemType}
+          <div
+            className={`font-bold text-2xl ${isActive ? 'text-white' : 'text-secondary-dark'}`}
+          >
+            {order.items} {order.items === 1 ? 'Book' : 'Books'}
           </div>
-          <div className={`text-sm ${isActive ? 'text-gray-300' : 'text-secondary-typography'}`}>
-            {order.storeName} → {order.destination}
+          <div
+            className={`text-sm ${isActive ? 'text-gray-300' : 'text-secondary-typography'}`}
+          >
+            {order.store} → {order.city}, {order.postalCode}
           </div>
         </div>
 
         <div className="flex flex-col items-end gap-1 ml-4">
-          <div className={`font-bold text-2xl ${isActive ? 'text-white' : 'text-secondary-dark'}`}>
-            {order.price}
+          <div
+            className={`font-bold text-2xl ${isActive ? 'text-white' : 'text-secondary-dark'}`}
+          >
+            {formattedPrice}
           </div>
         </div>
       </div>
     </div>
   );
 }
-

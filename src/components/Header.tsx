@@ -17,7 +17,8 @@ export default function Header() {
     const logoutPages = [
       '/confirm/declaration',
       '/select/books',
-      '/orderbooks'
+      '/orderbooks',
+      '/payment'
     ];
     
     // Normalize pathname (remove trailing slash if present)

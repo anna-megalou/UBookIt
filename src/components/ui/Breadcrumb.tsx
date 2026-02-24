@@ -67,6 +67,8 @@ export default function Breadcrumb() {
         label = "Prequalification";
       } else if (segment === "tracking") {
         label = "Tracking";
+      } else if (segment === "payment") {
+        label = "Payment Page";
       } else if (segment === "declaration") {
         label = "Declaration";
       }

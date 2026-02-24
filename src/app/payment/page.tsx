@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { IconShieldCheck, IconLoader2, IconCircleCheck } from "@tabler/icons-react";
+import { IconCreditCard, IconLoader2, IconCircleCheck } from "@tabler/icons-react";
 
 export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
@@ -262,15 +262,24 @@ export default function CheckoutPage() {
             </button>
           </div>
 
-          {/* Secure encryption illustration */}
-          <div className="flex flex-col items-center justify-center py-8">
-            <div className="w-24 h-24 rounded-full bg-primary-light flex items-center justify-center mb-4">
-              <IconShieldCheck className="w-12 h-12 text-primary-dark" />
+          {/* Secure encryption illustration - only when paying by card */}
+          {paymentMethod === "CARD" && (
+          <div className="border-3 border-secondary-border shadow-sm rounded-3xl p-6 w-full flex flex-col items-center justify-center">
+            <div className="relative w-24 h-24 flex items-center justify-center mb-3">
+              <div className="absolute inset-0 rounded-full border-2 border-secondary-dark" />
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-secondary-border" />
+              <div className="relative z-10 flex items-center justify-center">
+                <IconCreditCard className="w-10 h-10 text-primary-dark" />
+              </div>
+              <div className="absolute top-0 right-0 z-20 w-8 h-8 rounded-full bg-accents-green flex items-center justify-center shadow-md ring-2 ring-white">
+                <IconCircleCheck className="w-5 h-5 text-white" strokeWidth={2.5} />
+              </div>
             </div>
             <p className="text-secondary-typography text-sm text-center leading-relaxed">
               Secure encryption for all your<br />transactions
             </p>
           </div>
+          )}
         </div>
       </div>
     </div>

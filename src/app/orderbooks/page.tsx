@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { User, MapPin, ArrowRight } from 'lucide-react';
 
@@ -19,7 +19,6 @@ interface OrderData {
 
 export default function OrderBooks() {
   const router = useRouter();
-  const formRef = useRef<HTMLFormElement>(null);
   const [orderData, setOrderData] = useState<OrderData | null>(null);
 
   useEffect(() => {
@@ -49,7 +48,7 @@ export default function OrderBooks() {
   const totalNum = parseFloat(orderData?.totalPrice ?? '0');
 
   const handleContinue = () => {
-    formRef.current?.submit();
+    router.push('/payment');
   };
 
   if (!orderData) {
@@ -64,27 +63,6 @@ export default function OrderBooks() {
           Συμπλήρωσε τα στοιχεία αποστολής για την παραγγελία σου
         </h1>
       </div>
-
-      {/* Hidden form that POSTs to the JSP controller */}
-      <form
-        ref={formRef}
-        method="POST"
-        action="http://ism.dmst.aueb.gr/ismgroup17/selectbooksController.jsp"
-        className="hidden"
-      >
-        <input type="hidden" name="userId" value={orderData.userId} />
-        <input type="hidden" name="declarationId" value={orderData.declarationId} />
-        <input type="hidden" name="totalPrice" value={orderData.totalPrice} />
-        {orderData.selectedBookIds.map((bookId) => (
-          <input key={bookId} type="hidden" name="selectedBookIds" value={bookId} />
-        ))}
-        {orderData.stores.map((store) => (
-          <div key={store.name}>
-            <input type="hidden" name="storeName" value={store.name} />
-            <input type="hidden" name="storePrice" value={store.price} />
-          </div>
-        ))}
-      </form>
 
       {/* Main Layout */}
       <div className="flex flex-col lg:flex-row gap-10 px-6 lg:px-16 pb-10">

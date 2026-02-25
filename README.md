@@ -1,78 +1,65 @@
-# Assets Directory Structure
+# UBookIt
 
-This directory contains all the assets used in the UniBookIt application.
+A digital platform that helps Greek university students order and receive their academic textbooks with ease. UBookIt connects with Eudoxus and offers a simple solution for book ordering and delivery, eliminating the need to visit physical bookstores.
 
-## 📁 Directory Structure
+## Screenshots
 
+### Landing Page
+
+![Landing Page](docs/screenshots/01-landing-page.png)
+
+### Landing Page — Browse by University
+
+![Landing Page](docs/screenshots/04-homepage.png)
+
+### Landing Page - FAQ
+
+![FAQ](docs/screenshots/10-faq.png)
+
+
+### Sign Up
+
+![Sign Up](docs/screenshots/02-sign-up.png)
+
+### Login
+
+![Login](docs/screenshots/03-login.png)
+
+
+### Book Declaration Confirmation
+
+![Book Declaration](docs/screenshots/06-book-declaration.png)
+
+### Book Selection
+
+![Book Selection](docs/screenshots/05-book-selection.png)
+
+
+### Order & Shipping Details
+
+![Order Details](docs/screenshots/07-order-details.png)
+
+### Payment
+
+![Payment](docs/screenshots/08-payment.png)
+
+### Order Tracking
+
+![Order Tracking](docs/screenshots/09-tracking.png)
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (React 19)
+- **Styling:** Tailwind CSS 4, FlyonUI
+- **Maps:** Leaflet / React-Leaflet
+- **Icons:** Lucide, Tabler Icons, Font Awesome
+- **Language:** TypeScript
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
 ```
-src/assets/
-├── icons/           # SVG icons and small graphics
-├── images/          # Photos, logos, and raster images
-├── illustrations/   # Custom illustrations and graphics
-└── README.md       # This file
-```
 
-## 🎯 Usage Guidelines
-
-### Icons (`src/assets/icons/`)
-- **Purpose**: Small SVG icons, UI elements, buttons
-- **Format**: SVG preferred, PNG for complex icons
-- **Naming**: `icon-name.svg` (kebab-case)
-- **Examples**: `menu.svg`, `close.svg`, `arrow-right.svg`
-
-### Images (`src/assets/images/`)
-- **Purpose**: Photos, logos, hero images
-- **Format**: JPG, PNG, WebP
-- **Naming**: `image-name.jpg` (kebab-case)
-- **Examples**: `hero-student.jpg`, `logo.png`, `university-building.jpg`
-
-### Illustrations (`src/assets/illustrations/`)
-- **Purpose**: Custom graphics, diagrams, illustrations
-- **Format**: SVG preferred for scalability
-- **Naming**: `illustration-name.svg` (kebab-case)
-- **Examples**: `student-with-books.svg`, `university-campus.svg`
-
-## 📦 Public Assets
-
-```
-public/
-├── icons/           # Static icons (favicon, etc.)
-├── images/          # Static images
-└── illustrations/   # Static illustrations
-```
-
-## 🔧 Import Examples
-
-### In React Components:
-```tsx
-// Import SVG as component
-import StudentIllustration from '@/assets/illustrations/student-with-books.svg';
-
-// Import as URL
-import heroImage from '@/assets/images/hero-student.jpg';
-
-// Usage
-<img src={heroImage} alt="Student" />
-<StudentIllustration className="w-64 h-64" />
-```
-
-### In CSS:
-```css
-.hero-section {
-  background-image: url('/icons/hero-pattern.svg');
-}
-```
-
-## 📏 Image Guidelines
-
-- **Icons**: 16x16, 24x24, 32x32, 48x48px
-- **Images**: Optimized for web (WebP when possible)
-- **Illustrations**: Vector format (SVG) for scalability
-- **Max file size**: 500KB for images, 100KB for icons
-
-## 🎨 Design System Integration
-
-All assets should follow the UniBookIt design system:
-- **Colors**: Use the defined color palette
-- **Style**: Consistent with the overall design
-- **Accessibility**: Proper alt text and ARIA labels
+The app will be available at [http://localhost:3000](http://localhost:3000).

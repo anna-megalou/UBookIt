@@ -63,3 +63,6 @@ npm run dev
 ```
 
 The app will be available at [http://localhost:3000](http://localhost:3000).
+
+1. Select the Athens University of Economics and Business in the prequalification page
+2. Use as Username: pramatari and password: 1234 in the /login/signin/ page

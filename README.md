@@ -59,6 +59,7 @@ A digital platform that helps Greek university students order and receive their 
 
 ```bash
 npm install
+npm run build
 npm run dev
 ```
 
